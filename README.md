@@ -11,43 +11,53 @@ English • [简体中文](locales/zh-CN/README.md)
   <p align="center">
   <img src="assets/icons/icemark-logo.png" width="30%" />
   </p>
-  <p>Icemark is an AI learning and writing assistant that can research materials, write reviews, create stories, and organize reports with AI assistance.</p>
+  <p>Icemark, AI Agent for Product Managers</p>
 </div>
 <br>
 <br>
 
-**Icemark** is a powerful AI-powered learning and writing assistant that lives in your editor.
+**Icemark** is an AI Agent specifically designed for Product Managers, providing both specialized capabilities like market research, PRD writing, and prototype design, as well as general advanced assistance capabilities to help product managers handle various daily work challenges.
 
-Icemark's core includes two main parts: the **Agent** and **MCP (Model Context Protocol)**.
+Icemark consists of two main components:
 
-It can be used to:
-- Research materials, write reviews, create stories, and organize reports with AI assistance.
-- Interact using natural language.
-- Read and write files directly in your workspace.
-- Run terminal commands.
-- Control a web browser.
-- Adapt its behavior through customizable modes.
-- Utilize MCP integration to get data from regular search engines and various community platforms, increasing the diversity of information sources.
+1. **Icemark Agent** - A VSCode extension plugin that executes tasks.
+2. **Icemark MCP** - A toolkit that provides Icemark Agent with tools for web searching, content extraction, searches on platforms like Zhihu, Xiaohongshu, and Weibo, as well as language style management and corpus management.
 
-Key characteristics include:
-- **AI Assistance**: Helps you think clearly and write deeply.
-- **Task Splitting**: Split tasks into smaller, manageable parts.
-- **Tool Support**: Allows the AI to solve problems by browsing the web, running commands, and more.
-- **Customizable Modes**: Specialized personas with their own behaviors and assigned models.
+## ✨ Assistant-Max Mode
 
-Note: Icemark is built on the open source code of Roo code.
+A special highlight is the **Assistant-Max Mode** - an advanced cognitive iterative working mode focused on managing and executing long-term, complex tasks such as:
 
-**Important Note: Icemark is currently not open source.**
+- Novel writing
+- Market research and company analysis
+- In-depth analysis on specific topics
 
----
+Essentially, it can handle any information processing task.
 
-## 🎉 Icemark 1.0 Released
+Before starting a task, it creates a detailed plan and confirms it with you, allowing for corrections. It also has task interruption and resumption capabilities - you can stop at any time and resume when you have new materials or ideas.
 
-Icemark 1.0 brings new features and improvements!
+This mirrors our daily work routine: establishing initial goals and plans, deepening understanding during execution, gradually modifying and adjusting plans, iterating and upgrading, and finally completing tasks.
 
-- Icemark MCP integration
-- Comment Writing
-- Report Organization
+**Note**: This mode consumes significant tokens. For testing, it's recommended to use low-cost models (we recommend OpenRouter's free DeepSeek R1). However, better models yield better results.
+
+## 🔧 Key Features
+
+- **Market Research**: Comprehensive market analysis and competitor research
+- **PRD Writing**: Professional Product Requirements Document creation
+- **Prototype Design**: Rapid prototyping and design iteration
+- **Advanced Assistance**: General AI capabilities for various tasks
+- **Natural Language Interaction**: Communicate using everyday language
+- **File Operations**: Direct read/write operations in your workspace
+- **Terminal Commands**: Execute system commands when needed
+- **Customizable Modes**: Specialized personas tailored for different tasks
+- **MCP Integration**: Supports not only Icemark MCP, but also community MCPs
+
+## 🛠 Technical Foundation
+
+Icemark is built on **Roo Code 1.5.5** with the following key adaptations:
+
+1. **Mode Adaptation**: Added PRD, Prototype, and other modes specifically needed by Product Managers
+2. **MCP Toolkit**: Provided comprehensive MCP integration to significantly enhance real-world work processing capabilities
+3. **StreamHTTP Protocol Support**: Enhanced collaboration stability and efficiency between Agent and MCP
 
 ---
 
