@@ -57,7 +57,7 @@ Icemark is built on **Roo Code 1.5.5** with the following key adaptations:
 
 1. **Mode Adaptation**: Added PRD, Prototype, and other modes specifically needed by Product Managers
 2. **MCP Toolkit**: Provided comprehensive MCP integration to significantly enhance real-world work processing capabilities
-3. **StreamHTTP Protocol Support**: Enhanced collaboration stability and efficiency between Agent and MCP
+3. **streamableHttp Protocol Support**: Enhanced collaboration stability and efficiency between Agent and MCP
 
 ## 📖 Usage Guide
 

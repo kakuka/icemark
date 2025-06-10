@@ -57,7 +57,7 @@ Icemark基于**Roo Code 1.5.5**开发，主要调整包括：
 
 1. **模式适配**: 增加PRD、Prototype等产品经理所需模式，令其更符合产品经理的需求
 2. **配套MCP**: 提供了配套MCP，大大增强了实际工作处理能力
-3. **StreamHTTP协议支持**: 增加了对StreamHTTP协议的支持，加强了Agent和MCP之间的协同稳定性和效率
+3. **streamableHttp协议支持**: 增加了对streamableHttp协议的支持，加强了Agent和MCP之间的协同稳定性和效率
 
 ## 📖 使用说明
 
