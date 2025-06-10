@@ -9,7 +9,7 @@
 <div align="center">
   <h1>Icemark</h1>
   <p align="center">
-  <img src="assets/icons/icemark-logo.png" width="30%" />
+  <img src="../../assets/icons/icemark-logo.png" width="30%" />
   </p>
   <p>Icemark, 产品经理的AI Agent。</p>
 </div>
