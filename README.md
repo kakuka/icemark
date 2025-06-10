@@ -59,6 +59,129 @@ Icemark is built on **Roo Code 1.5.5** with the following key adaptations:
 2. **MCP Toolkit**: Provided comprehensive MCP integration to significantly enhance real-world work processing capabilities
 3. **StreamHTTP Protocol Support**: Enhanced collaboration stability and efficiency between Agent and MCP
 
+## 📖 Usage Guide
+
+### 1. Download & Installation
+
+Icemark consists of two components: Agent (VSCode extension) and MCP (toolkit).
+
+#### 1.1 Agent Installation
+
+The Agent is a VSCode extension with two installation methods:
+
+First, open VSCode extension marketplace (press `Ctrl+Shift+X` after opening VSCode).
+
+**Method 1: Direct Search**
+- Search for "Icemark" to find the extension
+- Click on it and then click Install on the details page
+
+**Method 2: Install via VSIX**
+- First download the VSIX file from: https://github.com/kakuka/icemark/releases/download/v1.0/icemark-agent.vsix
+- Then click "Install from VSIX" in the extension marketplace management panel
+
+<img src="assets/images/install-from-vsix.png" width="100%" />
+
+#### 1.2 MCP Installation
+
+Choose the appropriate version based on your operating system:
+- **Mac**: Download Mac version at: https://github.com/kakuka/icemark/releases/download/v1.0/Icemark.MCP-1.0.3-universal.dmg
+- **Windows**: Download Windows version at: https://github.com/kakuka/icemark/releases/download/v1.0/Icemark.MCP.Setup.1.0.3.exe
+
+**⚠️ Security Warnings Handling**
+
+Since Icemark is not code-signed, the operating system will display security warnings:
+
+- **Mac**: Refer to [Apple's official guide](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac)
+- **Windows**: Windows 11 will block via SmartScreen, simply click "Run anyway"
+
+### 2. Configuration
+
+#### 2.1 Configure AI Model API Keys
+
+Configure your AI model provider's API key in Icemark Agent:
+- The software provides configuration guidance
+- Follow the guided steps to configure
+
+#### 2.2 Configure Agent-MCP Connection
+
+**Step 1: Ensure Icemark MCP is Running**
+
+After starting Icemark MCP, find the configuration information in the help page, similar to:
+
+```json
+"icemark-mcp-streamable": {
+  "autoApprove": [],
+  "disabled": false,
+  "timeout": 600,
+  "url": "http://localhost:54321/mcp",
+  "transportType": "streamableHttp",
+  "alwaysAllow": []
+}
+```
+
+> 📝 **Note**: By default, Icemark MCP runs on port 54321. If this port is occupied, it will automatically select another port.
+
+**Step 2: Add MCP Configuration in Agent**
+
+1. Copy the above configuration information
+2. Open Icemark Agent's MCP management panel (top toolbar)
+3. Click "MCP servers" button
+4. Click "Edit Global Configuration"
+5. Paste the configuration information and save
+
+<img src="assets/images/mcp-setup.png" width="30%" />
+
+Final configuration result:
+
+```json
+{
+  "mcpServers": {
+    "icemark-mcp-streamable": {
+      "autoApprove": [],
+      "disabled": false,
+      "timeout": 600,
+      "url": "http://localhost:54321/mcp",
+      "transportType": "streamableHttp",
+      "alwaysAllow": []
+    }
+  }
+}
+```
+
+**Step 3: Confirm Connection Status**
+
+Verify the connection status and click the reconnect button if necessary.
+
+<img src="assets/images/mcp-server-status.png" width="50%" />
+
+#### 2.3 Icemark MCP Configuration (Optional)
+
+Configure the following in Icemark MCP's configuration page:
+
+**Website Login**
+- Used to obtain information from websites that require login
+- Enter the target website address as prompted and log in
+- Icemark MCP's built-in browser will save login information
+- Logins expire and may need periodic re-login
+- Applicable for Zhihu search, Xiaohongshu search, Weibo search, etc.
+
+**Language Style Configuration**
+- Provide corpus for specific language styles
+- When using Icemark Agent, tell it to use MCP tools
+- Can generate content in specific styles (e.g., Jin Yong style, Han Han style, etc.)
+
+### 3. Getting Started
+
+After configuration, you can start using:
+
+1. **Select Appropriate Mode**: Click the bottom-left corner of the dialog to switch
+2. **Start with Basic Mode**: Recommended to begin with the basic Assistant mode
+3. **Use Custom Modes**: After becoming familiar, use advanced custom mode features
+
+<img src="assets/images/mode-selection.png" width="50%" />
+
+> 💡 **Advanced Tip**: For detailed custom mode instructions, refer to [Roo-code Documentation](https://docs.roocode.com/features/custom-modes)
+
 ---
 
 ## Disclaimer
