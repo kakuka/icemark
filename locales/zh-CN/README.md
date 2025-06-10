@@ -6,7 +6,14 @@
 </sub>
 </div>
 <br>
-
+<div align="center">
+  <h1>Icemark</h1>
+  <p align="center">
+  <img src="assets/icons/icemark-logo.png" width="30%" />
+  </p>
+  <p>Icemark, 产品经理的AI Agent。</p>
+</div>
+<br>
 **Icemark** 是一个专门面向产品经理的AI Agent，不仅具备市场调研、PRD编写、原型设计等专用能力，也具备高级辅助等通用能力，能够帮助产品经理应对日常各种工作挑战。
 
 Icemark主要包括两个部分：
