@@ -1,10 +1,9 @@
-<div align="center">
-<sub>
+**Navigation:**
+- [🌐 Website](https://icemark.tech)
+- [📖 Documentation](https://github.com/kakuka/icemark/blob/main/pages/index.md)
+- [🇨🇳 中文](https://gitee.com/kakuka1988/icemark)
 
-English • [简体中文](locales/zh-CN/README.md)
-
-</sub>
-</div>
+---
 <br>
 <div align="center">
   <h1>Icemark</h1>
@@ -76,7 +75,7 @@ First, open VSCode extension marketplace (press `Ctrl+Shift+X` after opening VSC
 - Click on it and then click Install on the details page
 
 **Method 2: Install via VSIX**
-- First download the VSIX file from: https://github.com/kakuka/icemark/releases/download/v1.0/icemark-agent.vsix
+- First download the VSIX file from: https://github.com/kakuka/icemark/releases/download/latest/icemark-agent.vsix
 - Then click "Install from VSIX" in the extension marketplace management panel
 
 <img src="assets/images/install-from-vsix.png" width="100%" />
@@ -84,8 +83,8 @@ First, open VSCode extension marketplace (press `Ctrl+Shift+X` after opening VSC
 #### 1.2 MCP Installation
 
 Choose the appropriate version based on your operating system:
-- **Mac**: Download Mac version at: https://github.com/kakuka/icemark/releases/download/v1.0/Icemark.MCP-1.0.3-universal.dmg
-- **Windows**: Download Windows version at: https://github.com/kakuka/icemark/releases/download/v1.0/Icemark.MCP.Setup.1.0.3.exe
+- **Mac**: Download Mac version at: https://github.com/kakuka/icemark/releases/download/latest/Icemark.MCP-universal.dmg
+- **Windows**: Download Windows version at: https://github.com/kakuka/icemark/releases/download/latest/Icemark.MCP.Setup.exe
 
 **⚠️ Security Warnings Handling**
 
