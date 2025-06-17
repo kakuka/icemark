@@ -178,9 +178,6 @@ After configuration, you can start using:
 3. **Use Custom Modes**: After becoming familiar, use advanced custom mode features
 
 <img src="assets/images/mode-selection.png" width="50%" />
-
-> 💡 **Advanced Tip**: For detailed custom mode instructions, refer to [Roo-code Documentation](https://docs.roocode.com/features/custom-modes)
-
 ---
 
 ## Disclaimer
