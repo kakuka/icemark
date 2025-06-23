@@ -8,100 +8,141 @@
 <div align="center">
   <h1>Icemark</h1>
   <p align="center">
-  <img src="assets/icons/icemark-logo.png" width="30%" />
+    <img src="assets/icons/icemark-logo.png" width="30%" alt="Icemark Logo" />
   </p>
-  <p>Icemark, AI Agent for Product Managers</p>
+  <p><strong>Icemark, AI Agent for Product Managers</strong></p>
 </div>
 <br>
-<br>
+
+## 📋 Product Overview
 
 **Icemark** is an AI Agent specifically designed for Product Managers, providing both specialized capabilities like market research, PRD writing, and prototype design, as well as general advanced assistance capabilities to help product managers handle various daily work challenges.
 
-Icemark consists of two main components:
+## ⭐ Main Features
 
-1. **Icemark Agent** - A VSCode extension plugin that executes tasks.
-2. **Icemark MCP** - A toolkit that provides Icemark Agent with tools for web searching, content extraction, searches on platforms like Zhihu, Xiaohongshu, and Weibo, as well as language style management and corpus management.
+Icemark provides four core working modes, each deeply optimized for specific work scenarios of product managers:
 
-## ✨ Assistant-Max Mode
+### 1️⃣ General Assistant **Icemark Mode**
 
-A special highlight is the **Assistant-Max Mode** - an advanced cognitive iterative working mode focused on managing and executing long-term, complex tasks such as:
+This is a versatile AI assistant with comprehensive capabilities including planning, analysis, execution, problem-solving, and research. Through the intelligent Task Manifest document management system, it can handle complex multi-step projects, support task interruption and resumption, ensuring work continuity and controllability. Whether for daily work assistance or complex project management, it provides professional support.
 
-- Novel writing
-- Market research and company analysis
-- In-depth analysis on specific topics
+### 2️⃣ Market Analysis **Market Mode**
 
-Essentially, it can handle any information processing task.
+An elite-level analysis assistant specifically designed for market research and competitive analysis. Utilizing professional analysis frameworks such as SWOT analysis, PESTEL analysis, Porter's Five Forces model, and market segmentation strategies, combined with real-time data search and deep content extraction capabilities, it generates structured multi-dimensional market analysis reports. Helps product managers deeply understand market environments and seize business opportunities.
 
-Before starting a task, it creates a detailed plan and confirms it with you, allowing for corrections. It also has task interruption and resumption capabilities - you can stop at any time and resume when you have new materials or ideas.
+### 3️⃣ PRD Writing **PRD Mode**
 
-This mirrors our daily work routine: establishing initial goals and plans, deepening understanding during execution, gradually modifying and adjusting plans, iterating and upgrading, and finally completing tasks.
+A professional requirements analysis assistant based on user stories, JTBD (Jobs-to-be-Done) theory, and the three-question method. Through systematic requirement mining methods, it deeply understands users' real needs, analyzes the four driving forces of user behavior (push, pull, anxiety, habits), and creates clear and complete product requirement documents, ensuring product design truly meets user needs.
 
-**Note**: This mode consumes significant tokens. For testing, it's recommended to use low-cost models (we recommend OpenRouter's free DeepSeek R1). However, better models yield better results.
+### 4️⃣ Rapid Prototype Generation **Prototype Mode**
 
-## 🔧 Key Features
+A professional product prototype creation assistant that can quickly generate HTML-format interactive prototypes based on product requirements. Supports multi-platform prototype design for Web, mobile, and desktop, providing modern UI interfaces and user-friendly interactive experiences, helping product managers quickly validate product concepts and showcase design ideas.
 
-- **Market Research**: Comprehensive market analysis and competitor research
-- **PRD Writing**: Professional Product Requirements Document creation
-- **Prototype Design**: Rapid prototyping and design iteration
-- **Advanced Assistance**: General AI capabilities for various tasks
-- **Natural Language Interaction**: Communicate using everyday language
-- **File Operations**: Direct read/write operations in your workspace
-- **Terminal Commands**: Execute system commands when needed
-- **Customizable Modes**: Specialized personas tailored for different tasks
-- **MCP Integration**: Supports not only Icemark MCP, but also community MCPs
+---
 
-## 🛠 Technical Foundation
+**✨ Core Advantages**: Icemark provides numerous basic tools, along with web search, web information extraction, and Markdown conversion capabilities, eliminating the need for other paid services and providing one-stop solutions for common problems.
 
-Icemark is built on **Roo Code 3.5.5** with the following key adaptations:
+## 🛠️ Technical Foundation
 
-1. **Mode Adaptation**: Added PRD, Prototype, and other modes specifically needed by Product Managers
-2. **MCP Toolkit**: Provided comprehensive MCP integration to significantly enhance real-world work processing capabilities
-3. **streamableHttp Protocol Support**: Enhanced collaboration stability and efficiency between Agent and MCP
+Icemark is built on **Roo Code 3.5.5**.
 
-## 📖 Usage Guide
+## 📥 Download & Installation
 
-### 1. Download & Installation
+Icemark is a Visual Studio Code extension, with the simplest installation method being direct installation through the extension interface.
 
-Icemark consists of two components: Agent (VSCode extension) and MCP (toolkit).
+> ⚠️ **Important Note**: To use Icemark, you must first install Visual Studio Code (VSCode). Installation instructions: https://code.visualstudio.com/
 
-#### 1.1 Agent Installation
+After installing VSCode, there are three ways to install Icemark:
 
-The Agent is a VSCode extension with two installation methods:
+### 🔍 Method 1: Direct Search
+- Launch VSCode and open the extension marketplace (`Ctrl+Shift+X`)
+- Search for "**Icemark**" to find it
+- Click on the extension, then click **Install** on the details page
 
-First, open VSCode extension marketplace (press `Ctrl+Shift+X` after opening VSCode).
+### 🌐 Method 2: Marketplace Installation
+- Open VSCode's online marketplace page: https://marketplace.visualstudio.com/items?itemName=icemark-tech.icemark-agent
+- Click the **Install** button, which will automatically launch VSCode and follow the prompts for installation
 
-**Method 1: Direct Search**
-- Search for "Icemark" to find the extension
-- Click on it and then click Install on the details page
+> 💡 If you cannot access VSCode's online marketplace due to network issues, you can use the VSIX file for direct installation below.
 
-**Method 2: Install via VSIX**
-- First download the VSIX file from: https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix
-- Then click "Install from VSIX" in the extension marketplace management panel
+### 📦 Method 3: Install via VSIX
+- First download the VSIX file: https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix 
+- Launch VSCode and open the extension marketplace (`Ctrl+Shift+X`)
+- Click "**Install from VSIX**" in the extension marketplace management panel
 
-<img src="assets/images/install-from-vsix.png" width="100%" />
+<div align="center">
+  <img src="assets/images/install-from-vsix.png" width="80%" alt="Install from VSIX" />
+</div>
 
-#### 1.2 MCP Installation
+## ⚙️ Initial Configuration
+
+Icemark is an AI Agent based on large language models, but it doesn't over-encapsulate or bind to any specific large model. You can choose to use your preferred large model service provider.
+
+### 🔑 Configure API Keys
+
+When Icemark starts, there will be relevant prompts. Follow the prompts to configure. For Alibaba Cloud, ByteDance's Volcano Engine, etc., you can choose `OpenAI Compatible`.
+
+**Parameters to configure:**
+
+| Parameter | Description | How to Obtain |
+|-----------|-------------|---------------|
+| Base URL | API base address | Obtain from large model service provider |
+| API Key | Access key | Obtain from large model service provider |
+| Model | Model name to use | Obtain from large model service provider |
+
+<div align="center">
+  <img src="assets/images/configLLM.png" width="60%" alt="Configure Large Model" />
+</div>
+
+### 🎯 Getting Started
+
+After completing the initial configuration, you can use Icemark's various capabilities. We recommend starting with **Icemark mode**.
+
+<div align="center">
+  <img src="assets/images/modes.png" width="60%" alt="Select Mode" />
+</div>
+
+---
+
+Now, you should be able to handle many tasks through Icemark. If you're already familiar with Icemark, we recommend trying the advanced features.
+
+## 🚀 Advanced Usage
+
+Icemark provides the following advanced features to help you further improve work efficiency:
+
+### 🛠️ 1. Custom Modes
+
+Custom modes allow you to extend Icemark's capabilities or customize working mechanisms that better match your work. It's definitely worth trying.
+
+**📖 Reference Documentation:**
+- 🇺🇸 English: https://github.com/kakuka/icemark/blob/main/pages/modes.md
+- 🇨🇳 Chinese: https://gitee.com/kakuka1988/icemark/blob/main/pages/modes.md
+
+### 🔧 2. Connect to MCP for More Capabilities
+
+MCP is the Agent's toolkit. Icemark also has a matching MCP service software—**Icemark-MCP**.
+
+Icemark-MCP not only provides basic tools like web search and content extraction, but also provides search capabilities for Zhihu, Xiaohongshu, Weibo and other community platforms, as well as more personalized services like language style management and corpus management.
+
+#### 📥 2.1 Download & Installation
 
 Choose the appropriate version based on your operating system:
-- **Mac**: Download Mac version at: https://github.com/kakuka/icemark/releases/latest/download/Icemark.MCP-universal.dmg
-- **Windows**: Download Windows version at: https://github.com/kakuka/icemark/releases/latest/download/Icemark.MCP.Setup.exe
 
-**⚠️ Security Warnings Handling**
+| Operating System | Download Link |
+|------------------|---------------|
+| 🍎 **Mac** | [Icemark.MCP-universal.dmg](https://github.com/kakuka/icemark/releases/latest/download/Icemark.MCP-universal.dmg) |
+| 🪟 **Windows** | [Icemark.MCP.Setup.exe](https://github.com/kakuka/icemark/releases/latest/download/Icemark.MCP.Setup.exe) |
+
+**⚠️ Security Warning Handling**
 
 Since Icemark is not code-signed, the operating system will display security warnings:
 
 - **Mac**: Refer to [Apple's official guide](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac)
-- **Windows**: Windows 11 will block via SmartScreen, simply click "Run anyway"
+- **Windows**: When Windows 11 blocks via SmartScreen, simply click "Run anyway"
 
-### 2. Configuration
+#### ⚙️ 2.2 Configure MCP Connection
 
-#### 2.1 Configure AI Model API Keys
-
-Configure your AI model provider's API key in Icemark Agent:
-- The software provides configuration guidance
-- Follow the guided steps to configure
-
-#### 2.2 Configure Agent-MCP Connection
+After MCP installation, it must be configured to match with Icemark.
 
 **Step 1: Ensure Icemark MCP is Running**
 
@@ -128,9 +169,11 @@ After starting Icemark MCP, find the configuration information in the help page,
 4. Click "Edit Global Configuration"
 5. Paste the configuration information and save
 
-<img src="assets/images/mcp-setup.png" width="30%" />
+<div align="center">
+  <img src="assets/images/mcp-setup.png" width="40%" alt="MCP Configuration" />
+</div>
 
-Final configuration result:
+**Final configuration result:**
 
 ```json
 {
@@ -151,37 +194,28 @@ Final configuration result:
 
 Verify the connection status and click the reconnect button if necessary.
 
-<img src="assets/images/mcp-server-status.png" width="50%" />
+<div align="center">
+  <img src="assets/images/mcp-server-status.png" width="60%" alt="MCP Server Status" />
+</div>
 
-#### 2.3 Icemark MCP Configuration (Optional)
+#### 🎨 2.3 Advanced Configuration
 
-Configure the following in Icemark MCP's configuration page:
+The following advanced settings can be configured in Icemark MCP's configuration page:
 
-**Website Login**
+**🔐 Website Login**
 - Used to obtain information from websites that require login
 - Enter the target website address as prompted and log in
 - Icemark MCP's built-in browser will save login information
 - Logins expire and may need periodic re-login
 - Applicable for Zhihu search, Xiaohongshu search, Weibo search, etc.
 
-**Language Style Configuration**
+**✍️ Language Style Configuration**
 - Provide corpus for specific language styles
 - When using Icemark Agent, tell it to use MCP tools
 - Can generate content in specific styles (e.g., Jin Yong style, Han Han style, etc.)
 
-### 3. Getting Started
-
-After configuration, you can start using:
-
-1. **Select Appropriate Mode**: Click the bottom-left corner of the dialog to switch
-2. **Start with Basic Mode**: Recommended to begin with the basic Assistant mode
-3. **Use Custom Modes**: After becoming familiar, use advanced custom mode features
-
-<img src="assets/images/mode-selection.png" width="50%" />
 ---
 
-## Disclaimer
+## ⚖️ Disclaimer
 
 **Please note** that Icemark, Inc does **not** make any representations or warranties regarding any code, models, or other tools provided or made available in connection with Icemark, any associated third-party tools, or any resulting outputs. You assume **all risks** associated with the use of any such tools or outputs; such tools are provided on an **"AS IS"** and **"AS AVAILABLE"** basis. Such risks may include, without limitation, intellectual property infringement, cyber vulnerabilities or attacks, bias, inaccuracies, errors, defects, viruses, downtime, property loss or damage, and/or personal injury. You are solely responsible for your use of any such tools or outputs (including, without limitation, the legality, appropriateness, and results thereof).
-
----
