@@ -1,7 +1,9 @@
+# Icemark English Documentation
+
 **Navigation:**
-- [🌐 Website](https://icemark.tech)
-- [📖 Documentation](https://github.com/kakuka/icemark/blob/main/pages/index.md)
-- [🇨🇳 中文](https://gitee.com/kakuka1988/icemark)
+- [website: icemark.tech](https://icemark.tech)
+- [Documentation](https://github.com/kakuka/icemark/blob/main/pages/index.md)
+- [中文](https://gitee.com/kakuka1988/icemark)
 
 ---
 <br>
@@ -16,7 +18,7 @@
 
 ## 📋 Product Overview
 
-**Icemark** is an AI Agent specifically designed for Product Managers, providing both specialized capabilities like market research, PRD writing, and prototype design, as well as general advanced assistance capabilities to help product managers handle various daily work challenges.
+**Icemark** is an AI Agent for Product Managers, providing not only specialized capabilities like market research, PRD writing, and prototype design, but also general assistance capabilities to help product managers handle various daily work challenges.
 
 ## ⭐ Main Features
 
@@ -40,11 +42,17 @@ A professional product prototype creation assistant that can quickly generate HT
 
 ---
 
-**✨ Core Advantages**: Icemark provides numerous basic tools, along with web search, web information extraction, and Markdown conversion capabilities, eliminating the need for other paid services and providing one-stop solutions for common problems.
+**✨ Core Advantages**: Icemark provides numerous basic tools, such as:
+
+- Internet search, including Bing, Baidu, Sogou, and DuckDuckGo
+- Web information extraction and conversion to Markdown
+- Social platform search, such as Zhihu, Xiaohongshu, Weibo, etc.
+
+With Icemark, you no longer need other similar paid MCP services, providing one-stop solutions for common problems.
 
 ## 🛠️ Technical Foundation
 
-Icemark is built on **Roo Code 3.5.5**.
+Icemark is built on **RooCode 3.5.5**.
 
 ## 📥 Download & Installation
 
@@ -108,114 +116,23 @@ Now, you should be able to handle many tasks through Icemark. If you're already 
 
 ## 🚀 Advanced Usage
 
-Icemark provides the following advanced features to help you further improve work efficiency:
+Icemark provides custom modes to help you further improve work efficiency:
 
-### 🛠️ 1. Custom Modes
+### 🛠️ Custom Modes
 
 Custom modes allow you to extend Icemark's capabilities or customize working mechanisms that better match your work. It's definitely worth trying.
 
 **📖 Reference Documentation:**
-- 🇺🇸 English: https://github.com/kakuka/icemark/blob/main/pages/modes.md
-- 🇨🇳 Chinese: https://gitee.com/kakuka1988/icemark/blob/main/pages/modes.md
+- https://github.com/kakuka/icemark/blob/main/pages/modes.md
 
-### 🔧 2. Connect to MCP for More Capabilities
+---
 
-MCP is the Agent's toolkit. Icemark also has a matching MCP service software—**Icemark-MCP**.
+## 🛠️ Technical Foundation
 
-Icemark-MCP not only provides basic tools like web search and content extraction, but also provides search capabilities for Zhihu, Xiaohongshu, Weibo and other community platforms, as well as more personalized services like language style management and corpus management.
-
-#### 📥 2.1 Download & Installation
-
-Choose the appropriate version based on your operating system:
-
-| Operating System | Download Link |
-|------------------|---------------|
-| 🍎 **Mac** | [Icemark.MCP-universal.dmg](https://github.com/kakuka/icemark/releases/latest/download/Icemark.MCP-universal.dmg) |
-| 🪟 **Windows** | [Icemark.MCP.Setup.exe](https://github.com/kakuka/icemark/releases/latest/download/Icemark.MCP.Setup.exe) |
-
-**⚠️ Security Warning Handling**
-
-Since Icemark is not code-signed, the operating system will display security warnings:
-
-- **Mac**: Refer to [Apple's official guide](https://support.apple.com/en-hk/guide/mac-help/mh40616/mac)
-- **Windows**: When Windows 11 blocks via SmartScreen, simply click "Run anyway"
-
-#### ⚙️ 2.2 Configure MCP Connection
-
-After MCP installation, it must be configured to match with Icemark.
-
-**Step 1: Ensure Icemark MCP is Running**
-
-After starting Icemark MCP, find the configuration information in the help page, similar to:
-
-```json
-"icemark-mcp-streamable": {
-  "autoApprove": [],
-  "disabled": false,
-  "timeout": 600,
-  "url": "http://localhost:54321/mcp",
-  "transportType": "streamableHttp",
-  "alwaysAllow": []
-}
-```
-
-> 📝 **Note**: By default, Icemark MCP runs on port 54321. If this port is occupied, it will automatically select another port.
-
-**Step 2: Add MCP Configuration in Agent**
-
-1. Copy the above configuration information
-2. Open Icemark Agent's MCP management panel (top toolbar)
-3. Click "MCP servers" button
-4. Click "Edit Global Configuration"
-5. Paste the configuration information and save
-
-<div align="center">
-  <img src="assets/images/mcp-setup.png" width="40%" alt="MCP Configuration" />
-</div>
-
-**Final configuration result:**
-
-```json
-{
-  "mcpServers": {
-    "icemark-mcp-streamable": {
-      "autoApprove": [],
-      "disabled": false,
-      "timeout": 600,
-      "url": "http://localhost:54321/mcp",
-      "transportType": "streamableHttp",
-      "alwaysAllow": []
-    }
-  }
-}
-```
-
-**Step 3: Confirm Connection Status**
-
-Verify the connection status and click the reconnect button if necessary.
-
-<div align="center">
-  <img src="assets/images/mcp-server-status.png" width="60%" alt="MCP Server Status" />
-</div>
-
-#### 🎨 2.3 Advanced Configuration
-
-The following advanced settings can be configured in Icemark MCP's configuration page:
-
-**🔐 Website Login**
-- Used to obtain information from websites that require login
-- Enter the target website address as prompted and log in
-- Icemark MCP's built-in browser will save login information
-- Logins expire and may need periodic re-login
-- Applicable for Zhihu search, Xiaohongshu search, Weibo search, etc.
-
-**✍️ Language Style Configuration**
-- Provide corpus for specific language styles
-- When using Icemark Agent, tell it to use MCP tools
-- Can generate content in specific styles (e.g., Jin Yong style, Han Han style, etc.)
+Icemark is built on **RooCode 3.5.5**.
 
 ---
 
 ## ⚖️ Disclaimer
 
-**Please note** that Icemark, Inc does **not** make any representations or warranties regarding any code, models, or other tools provided or made available in connection with Icemark, any associated third-party tools, or any resulting outputs. You assume **all risks** associated with the use of any such tools or outputs; such tools are provided on an **"AS IS"** and **"AS AVAILABLE"** basis. Such risks may include, without limitation, intellectual property infringement, cyber vulnerabilities or attacks, bias, inaccuracies, errors, defects, viruses, downtime, property loss or damage, and/or personal injury. You are solely responsible for your use of any such tools or outputs (including, without limitation, the legality, appropriateness, and results thereof).
+**Please note** that Icemark, Inc **does not** make any representations or warranties regarding any code, models, or other tools provided or made available in connection with Icemark, any associated third-party tools, or any resulting outputs. You assume **all risks** associated with the use of any such tools or outputs; such tools are provided on an **"AS IS"** and **"AS AVAILABLE"** basis. Such risks may include, without limitation, intellectual property infringement, cyber vulnerabilities or attacks, bias, inaccuracies, errors, defects, viruses, downtime, property loss or damage, and/or personal injury. You are solely responsible for your use of any such tools or outputs (including, without limitation, the legality, appropriateness, and results thereof).
