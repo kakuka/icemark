@@ -74,7 +74,7 @@ After installing VSCode, there are three ways to install Icemark:
 > 💡 If you cannot access VSCode's online marketplace due to network issues, you can use the VSIX file for direct installation below.
 
 ### 📦 Method 3: Install via VSIX
-- First download the VSIX file: https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix 
+- First download the VSIX file: https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix  (If this link does not work, here is an alternative : https://gitee.com/kakuka1988/icemark/releases/download/v1.0.0/icemark-agent.vsix )
 - Launch VSCode and open the extension marketplace (`Ctrl+Shift+X`)
 - Click "**Install from VSIX**" in the extension marketplace management panel
 
