@@ -88,13 +88,24 @@ Icemark is an AI Agent based on large language models, but it doesn't over-encap
 
 ### 🔑 Configure API Keys
 
-When Icemark starts, there will be relevant prompts. Follow the prompts to configure. For Alibaba Cloud, ByteDance's Volcano Engine, etc., you can choose `OpenAI Compatible`.
+When Icemark starts, you will see relevant prompts. Simply follow the instructions to configure.
 
-**Parameters to configure:**
+For Chinese users, we recommend using DeepSeek: https://www.deepseek.com/
+- After registering an account, obtain the API key at: https://platform.deepseek.com/
+- Fill this key into Icemark's model configuration.
+
+<div align="center">
+  <img src="assets/images/deepseek-config.png" width="60%" alt="Configure DeepSeek" />
+</div>
+
+
+For providers like Alibaba Cloud, ByteDance's Volcano Engine, etc., you can choose `OpenAI Compatible`:
+
+**Required configuration parameters:**
 
 | Parameter | Description | How to Obtain |
 |-----------|-------------|---------------|
-| Base URL | API base address | Obtain from large model service provider |
+| Base URL | API base URL | Obtain from large model service provider |
 | API Key | Access key | Obtain from large model service provider |
 | Model | Model name to use | Obtain from large model service provider |
 
