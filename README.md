@@ -50,9 +50,11 @@ A professional product prototype creation assistant that can quickly generate HT
 
 With Icemark, you no longer need other similar paid MCP services, providing one-stop solutions for common problems.
 
-## 🛠️ Technical Foundation
+## 💻 Main Interface
 
-Icemark is built on **RooCode 3.5.5**.
+<div align="center">
+  <img src="assets/images/icemark-in-vscode-en.png" width="100%" alt="Icemark in vscode" />
+</div>
 
 ## 📥 Download & Installation
 
@@ -82,9 +84,12 @@ After installing VSCode, there are three ways to install Icemark:
   <img src="assets/images/install-from-vsix.png" width="80%" alt="Install from VSIX" />
 </div>
 
+After installation is complete, click the Icemark icon in the left sidebar.
+> Icon location: The `entry` position shown in the main interface image above.
+
 ## ⚙️ Initial Configuration
 
-Icemark is an AI Agent based on large language models, but it doesn't over-encapsulate or bind to any specific large model. You can choose to use your preferred large model service provider.
+Icemark supports multiple LLM providers, which can be configured according to your preferences.
 
 ### 🔑 Configure API Keys
 
@@ -93,6 +98,7 @@ When Icemark starts, you will see relevant prompts. Simply follow the instructio
 For Chinese users, we recommend using DeepSeek: https://www.deepseek.com/
 - After registering an account, obtain the API key at: https://platform.deepseek.com/
 - Fill this key into Icemark's model configuration.
+- Select Model and save.
 
 <div align="center">
   <img src="assets/images/deepseek-config.png" width="60%" alt="Configure DeepSeek" />
@@ -112,6 +118,9 @@ For providers like Alibaba Cloud, ByteDance's Volcano Engine, etc., you can choo
 <div align="center">
   <img src="assets/images/configLLM.png" width="60%" alt="Configure Large Model" />
 </div>
+
+You can add other providers or adjust existing configurations later.
+>Location: The `LLM Config` configuration shown in the main interface image above.
 
 ### 🎯 Getting Started
 
