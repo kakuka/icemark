@@ -2,9 +2,9 @@
 
 **Navigation:**
 
-- [website: icemark.tech](https://icemark.tech)
-- [Documentation](https://github.com/kakuka/icemark/blob/main/docs/en/index.md)
-- [中文](README.zh-CN.md)
+- website: [icemark.tech](https://icemark.tech)
+- GitHub: [https://github.com/kakuka/icemark](https://github.com/kakuka/icemark)
+- [中文](https://github.com/kakuka/icemark/blob/main/README.zh-CN.md)
 
 ---
 
@@ -67,18 +67,21 @@ Icemark is a Visual Studio Code extension, with the simplest installation method
 After installing VSCode, there are three ways to install Icemark:
 
 ### 🔍 Method 1: Direct Search
+
 - Launch VSCode and open the extension marketplace (`Ctrl+Shift+X`)
 - Search for "**Icemark**" to find it
 - Click on the extension, then click **Install** on the details page
 
 ### 🌐 Method 2: Marketplace Installation
+
 - Open VSCode's online marketplace page: https://marketplace.visualstudio.com/items?itemName=icemark-tech.icemark-agent
 - Click the **Install** button, which will automatically launch VSCode and follow the prompts for installation
 
 > 💡 If you cannot access VSCode's online marketplace due to network issues, you can use the VSIX file for direct installation below.
 
 ### 📦 Method 3: Install via VSIX
-- First download the VSIX file: https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix  (If this link does not work, here is an alternative : https://gitee.com/kakuka1988/icemark/releases/download/v1.0.0/icemark-agent.vsix )
+
+- First download the VSIX file: https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix (If this link does not work, here is an alternative : https://gitee.com/kakuka1988/icemark/releases/download/v1.0.0/icemark-agent.vsix )
 - Launch VSCode and open the extension marketplace (`Ctrl+Shift+X`)
 - Click "**Install from VSIX**" in the extension marketplace management panel
 
@@ -87,6 +90,7 @@ After installing VSCode, there are three ways to install Icemark:
 </div>
 
 After installation is complete, click the Icemark icon in the left sidebar.
+
 > Icon location: The `entry` position shown in the main interface image above.
 
 ## ⚙️ Initial Configuration
@@ -98,6 +102,7 @@ Icemark supports multiple LLM providers, which can be configured according to yo
 When Icemark starts, you will see relevant prompts. Simply follow the instructions to configure.
 
 For Chinese users, we recommend using DeepSeek: https://www.deepseek.com/
+
 - After registering an account, obtain the API key at: https://platform.deepseek.com/
 - Fill this key into Icemark's model configuration.
 - Select Model and save.
@@ -106,23 +111,23 @@ For Chinese users, we recommend using DeepSeek: https://www.deepseek.com/
   <img src="assets/images/deepseek-config.png" width="60%" alt="Configure DeepSeek" />
 </div>
 
-
 For providers like Alibaba Cloud, ByteDance's Volcano Engine, etc., you can choose `OpenAI Compatible`:
 
 **Required configuration parameters:**
 
-| Parameter | Description | How to Obtain |
-|-----------|-------------|---------------|
-| Base URL | API base URL | Obtain from large model service provider |
-| API Key | Access key | Obtain from large model service provider |
-| Model | Model name to use | Obtain from large model service provider |
+| Parameter | Description       | How to Obtain                            |
+| --------- | ----------------- | ---------------------------------------- |
+| Base URL  | API base URL      | Obtain from large model service provider |
+| API Key   | Access key        | Obtain from large model service provider |
+| Model     | Model name to use | Obtain from large model service provider |
 
 <div align="center">
   <img src="assets/images/configLLM.png" width="60%" alt="Configure Large Model" />
 </div>
 
 You can add other providers or adjust existing configurations later.
->Location: The `LLM Config` configuration shown in the main interface image above.
+
+> Location: The `LLM Config` configuration shown in the main interface image above.
 
 ### 🎯 Getting Started
 
@@ -145,6 +150,7 @@ Icemark provides custom modes to help you further improve work efficiency:
 Custom modes allow you to extend Icemark's capabilities or customize working mechanisms that better match your work. It's definitely worth trying.
 
 **📖 Reference Documentation:**
+
 - [modes](https://github.com/kakuka/icemark/blob/main/docs/en/modes.md)
 
 ---
@@ -152,6 +158,10 @@ Custom modes allow you to extend Icemark's capabilities or customize working mec
 ## 🛠️ Technical Foundation
 
 Icemark is built on **RooCode 3.5.5**.
+
+## 📬 Contact Us
+
+If you have any questions or suggestions, feel free to contact us at <icemark.tech@gmail.com>
 
 ---
 
