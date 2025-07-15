@@ -1,5 +1,9 @@
 # Icemark Changelog
 
+## [1.2.5] - 2025-07-15
+- support render markdown
+- open source
+
 ## [1.2.2] - 2025-07-10
 - support for Excalidraw and Mermaid
 - IceViewer
