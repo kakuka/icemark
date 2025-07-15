@@ -1,0 +1,300 @@
+{
+	"greeting": "欢迎使用 Icemark",
+	"task": {
+		"title": "任务",
+		"seeMore": "展开",
+		"seeLess": "收起",
+		"tokens": "Token 用量:",
+		"cache": "缓存:",
+		"apiCost": "API 费用:",
+		"contextWindow": "上下文长度：",
+		"closeAndStart": "关闭任务并开始新任务",
+		"export": "导出任务历史",
+		"delete": "删除任务（Shift + 点击跳过确认）"
+	},
+	"unpin": "取消置顶",
+	"pin": "置顶",
+	"tokenProgress": {
+		"availableSpace": "可用: {{amount}}",
+		"tokensUsed": "已使用: {{used}} / {{total}}",
+		"reservedForResponse": "已保留: {{amount}}"
+	},
+	"retry": {
+		"title": "重试",
+		"tooltip": "再次尝试操作"
+	},
+	"startNewTask": {
+		"title": "开始新任务",
+		"tooltip": "开始一个新任务"
+	},
+	"proceedAnyways": {
+		"title": "仍然继续",
+		"tooltip": "在命令执行时继续"
+	},
+	"save": {
+		"title": "保存",
+		"tooltip": "保存文件更改"
+	},
+	"reject": {
+		"title": "拒绝",
+		"tooltip": "拒绝此操作"
+	},
+	"completeSubtaskAndReturn": "完成子任务并返回",
+	"approve": {
+		"title": "批准",
+		"tooltip": "批准此操作"
+	},
+	"runCommand": {
+		"title": "运行命令",
+		"tooltip": "执行此命令"
+	},
+	"proceedWhileRunning": {
+		"title": "强制继续",
+		"tooltip": "忽略运行中的命令并继续"
+	},
+	"killCommand": {
+		"title": "终止命令",
+		"tooltip": "终止当前命令"
+	},
+	"resumeTask": {
+		"title": "恢复任务",
+		"tooltip": "继续当前任务"
+	},
+	"terminate": {
+		"title": "结束",
+		"tooltip": "结束当前任务"
+	},
+	"cancel": {
+		"title": "取消",
+		"tooltip": "取消当前操作"
+	},
+	"scrollToBottom": "滚动到聊天底部",
+	"about": "<strong>产品经理的AI Agent</strong><br>具备市场调研、PRD编写、原型设计等专用能力，以及高级辅助等通用能力。<br>注：Icemark基于Roo Code 3.5.5开发。",
+	"onboarding": "<strong>此工作区中的任务列表为空。</strong> 请在下方输入任务开始。 ",
+	"rooTips": {
+		"boomerangTasks": {
+			"title": "任务拆分",
+			"description": "将任务拆分为更小、更易于管理的部分。"
+		},
+		"website": {
+			"title": "网站",
+			"description": "https://icemark.tech"
+		},
+		"document": {
+			"title": "文档",
+			"description": "https://gitee.com/kakuka1988/icemark"
+		},
+		"stickyModels": {
+			"title": "粘性模式",
+			"description": "每个模式 都会记住 您上次使用的模型"
+		},
+		"tools": {
+			"title": "工具",
+			"description": "允许 AI 通过浏览网络、运行命令等方式解决问题。"
+		},
+		"customizableModes": {
+			"title": "自定义模式",
+			"description": "具有专属行为和指定模型的特定角色"
+		}
+	},
+	"selectMode": "选择交互模式",
+	"selectApiConfig": "选择 API 配置",
+	"enhancePrompt": "增强提示词",
+	"addImages": "添加图片到消息",
+	"sendMessage": "发送消息",
+	"typeMessage": "输入消息...",
+	"typeTask": "在此处输入您的任务...",
+	"addContext": "@添加上下文，/切换模式",
+	"dragFiles": "Shift+拖拽文件",
+	"dragFilesImages": "Shift+拖拽文件/图片",
+	"enhancePromptDescription": "'增强提示'按钮通过提供额外上下文、澄清或重新表述来帮助改进您的请求。尝试在此处输入请求，然后再次点击按钮查看其工作原理。",
+	"errorReadingFile": "读取文件时出错:",
+	"noValidImages": "没有处理有效图片",
+	"separator": "分隔符",
+	"edit": "编辑...",
+	"forNextMode": "用于下一个模式",
+	"error": "错误",
+	"diffError": {
+		"title": "编辑失败"
+	},
+	"troubleMessage": "Icemark遇到问题...",
+	"apiRequest": {
+		"title": "API请求",
+		"failed": "API请求失败",
+		"streaming": "API请求...",
+		"cancelled": "API请求已取消",
+		"streamingFailed": "API流式传输失败"
+	},
+	"checkpoint": {
+		"initial": "初始检查点",
+		"regular": "检查点",
+		"initializingWarning": "正在初始化检查点...如果耗时过长，你可以在<settingsLink>设置</settingsLink>中禁用检查点并重新启动任务。",
+		"menu": {
+			"viewDiff": "查看差异",
+			"restore": "恢复检查点",
+			"restoreFiles": "恢复文件",
+			"restoreFilesDescription": "将项目文件恢复到此检查点状态",
+			"restoreFilesAndTask": "恢复文件和任务",
+			"confirm": "确认",
+			"cancel": "取消",
+			"cannotUndo": "此操作无法撤消。",
+			"restoreFilesAndTaskDescription": "恢复文件至此时状态，并清除后续对话记录"
+		},
+		"current": "当前"
+	},
+	"instructions": {
+		"wantsToFetch": "Icemark想要获取详细指示以协助当前任务"
+	},
+	"fileOperations": {
+		"wantsToRead": "需要读取文件:",
+		"wantsToReadOutsideWorkspace": "请求访问外部文件:",
+		"didRead": "已读取文件:",
+		"wantsToEdit": "需要编辑文件:",
+		"wantsToEditOutsideWorkspace": "需要编辑外部文件:",
+		"wantsToCreate": "需要新建文件:",
+		"wantsToSearchReplace": "需要在此文件中搜索和替换:",
+		"didSearchReplace": "已完成搜索和替换:",
+		"wantsToInsert": "需要在此文件中插入内容:",
+		"wantsToInsertWithLineNumber": "需要在第 {{lineNumber}} 行插入内容:",
+		"wantsToInsertAtEnd": "需要在文件末尾添加内容:",
+		"wantsToSave": "需要保存资源:",
+		"wantsToSaveOutsideWorkspace": "需要保存资源到外部位置:",
+		"didSave": "已保存资源:",
+		"wantsToFetchUrl": "需要获取网页内容:",
+		"didFetchUrl": "已获取网页内容:",
+		"wantsToFetchUrlAndSave": "需要获取网页内容并保存:",
+		"didFetchUrlAndSave": "已获取网页内容并保存:",
+		"wantsToSearchWeb": "需要搜索网络:",
+		"didSearchWeb": "已完成网络搜索:",
+		"keywords": "关键词",
+		"wantsToCreatePrototype": "需要创建原型项目:",
+		"didCreatePrototype": "已创建原型项目:"
+	},
+	"webSearch": {
+		"platform": "搜索平台",
+		"pageLimit": "页数限制",
+		"platforms": {
+			"general": "通用搜索引擎",
+			"xiaohongshu": "小红书",
+			"zhihu": "知乎",
+			"weibo": "微博"
+		}
+	},
+	"prototype": {
+		"path": "路径",
+		"folder": "项目文件夹",
+		"action": "动作",
+		"wantsToUse": "需要使用原型工具:",
+		"didUse": "已使用原型工具:"
+	},
+	"directoryOperations": {
+		"wantsToViewTopLevel": "需要查看目录文件列表:",
+		"didViewTopLevel": "已查看目录文件列表:",
+		"wantsToViewRecursive": "需要查看目录所有文件:",
+		"didViewRecursive": "已查看目录所有文件:",
+		"wantsToViewDefinitions": "Icemark想查看此目录中使用的源代码定义名称:",
+		"didViewDefinitions": "Icemark已查看此目录中使用的源代码定义名称:",
+		"wantsToSearch": "需要搜索内容: {{regex}}",
+		"didSearch": "已完成内容搜索: {{regex}}",
+		"wantsToCreate": "需要创建目录:",
+		"wantsToCreateOutsideWorkspace": "需要在工作区外创建目录:",
+		"didCreate": "已创建目录:"
+	},
+	"initJobWorkDir": {
+		"wantsToCreate": "需要初始化作业工作目录:",
+		"wantsToCreateOutsideWorkspace": "需要在工作区外初始化作业工作目录:",
+		"didCreate": "已初始化 Assistant-max 作业结构:"
+	},
+	"commandOutput": "命令输出",
+	"response": "响应",
+	"arguments": "参数",
+	"mcp": {
+		"wantsToUseTool": "Icemark想在{{serverName}} MCP上使用工具:",
+		"wantsToAccessResource": "Icemark想访问{{serverName}} MCP服务上的资源:"
+	},
+	"modes": {
+		"wantsToSwitch": "即将切换至{{mode}}模式",
+		"wantsToSwitchWithReason": "即将切换至{{mode}}模式（原因：{{reason}}）",
+		"didSwitch": "已切换至{{mode}}模式",
+		"didSwitchWithReason": "已切换至{{mode}}模式（原因：{{reason}}）"
+	},
+	"workspace": {
+		"label": "工作区",
+		"statusSet": "已设置",
+		"statusNotSet": "未设置",
+		"fileSavePrefix": "📁",
+		"setButton": "设置",
+		"switchButton": "切换",
+		"helpButton": "帮助",
+		"clickToOpen": "点击在文件管理器中打开",
+		"noPath": "未设置路径",
+		"copyPath": "拷贝路径",
+		"expand": "展开工作区",
+		"collapse": "折叠工作区"
+	},
+	"subtasks": {
+		"wantsToCreate": "Icemark想在<code>{{mode}}</code>模式下创建新子任务:",
+		"wantsToFinish": "Icemark想完成此子任务",
+		"newTaskContent": "子任务说明",
+		"completionContent": "子任务已完成",
+		"resultContent": "子任务结果",
+		"defaultResult": "请继续下一个任务。",
+		"completionInstructions": "子任务已完成！您可以查看结果并提出修改或下一步建议。如果一切正常，请确认以将结果返回给主任务。"
+	},
+	"questions": {
+		"hasQuestion": "Icemark有一个问题:"
+	},
+	"taskCompleted": "任务完成",
+	"powershell": {
+		"issues": "看起来您遇到了Windows PowerShell问题，请参阅此"
+	},
+	"autoApprove": {
+		"title": "自动批准:",
+		"none": "无",
+		"description": "允许直接执行操作无需确认，请谨慎启用。前往<settingsLink>设置</settingsLink>调整"
+	},
+	"reasoning": {
+		"thinking": "思考中",
+		"seconds": "{{count}}秒"
+	},
+	"followUpSuggest": {
+		"copyToInput": "复制到输入框（或按住Shift点击）"
+	},
+	"announcement": {
+		"title": "🎉 Icemark 1.0 已发布",
+		"description": "Icemark 1.0 为产品经理提供专业的AI辅助功能。",
+		"whatsNew": "主要功能",
+		"feature1": "<bold>Icemark MCP集成</bold>: 借助 Icemark MCP，可以获取常规搜索引擎数据和知乎、微博、小红书等各种社区数据。大大增加了信息来源的多样性",
+		"feature2": "<bold>PRD编写</bold>: 专业的产品需求文档创建和编辑功能",
+		"feature3": "<bold>市场调研</bold>: 全面的市场分析和竞品研究能力",
+		"hideButton": "隐藏公告"
+	},
+	"browser": {
+		"rooWantsToUse": "Icemark想使用浏览器:",
+		"consoleLogs": "控制台日志",
+		"noNewLogs": "(没有新日志)",
+		"screenshot": "浏览器截图",
+		"cursor": "光标",
+		"navigation": {
+			"step": "步骤 {{current}} / {{total}}",
+			"previous": "上一步",
+			"next": "下一步"
+		},
+		"sessionStarted": "浏览器会话已启动",
+		"actions": {
+			"title": "浏览器操作: ",
+			"launch": "访问 {{url}}",
+			"click": "点击 ({{coordinate}})",
+			"type": "输入 \"{{text}}\"",
+			"scrollDown": "向下滚动",
+			"scrollUp": "向上滚动",
+			"close": "关闭浏览器"
+		}
+	},
+	"systemPromptWarning": "警告：自定义系统提示词覆盖已激活。这可能严重破坏功能并导致不可预测的行为。",
+	"shellIntegration": {
+		"title": "命令执行警告",
+		"description": "您的命令正在没有 VSCode 终端 shell 集成的情况下执行。要隐藏此警告，您可以在 <settingsLink>Icemark 设置</settingsLink>的 <strong>Terminal</strong> 部分禁用 shell 集成，或使用下方链接排查 VSCode 终端集成问题。",
+		"troubleshooting": "点击此处查看 shell 集成文档。"
+	}
+}

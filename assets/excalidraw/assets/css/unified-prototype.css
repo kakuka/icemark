@@ -1,0 +1,39 @@
+
+/* 工具栏内的状态指示器样式 - VSCode深色主题风格 */
+.status-indicator {
+    padding: 0;
+    font-size: 12px;
+    color: greenyellow; /* 绿黄色文字 */
+    background: none; /* 去掉背景 */
+    border: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.status-indicator.show {
+    opacity: 1;
+}
+
+/* 工具栏内的连接状态样式 - VSCode深色主题风格 */
+.connection-status {
+    padding: 0;
+    font-size: 12px;
+    color: #ffffff; /* 白色文字 */
+    background: none; /* 去掉背景 */
+    border: none;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    align-items: baseline;
+    background: greenyellow;
+    flex-shrink: 0;
+}

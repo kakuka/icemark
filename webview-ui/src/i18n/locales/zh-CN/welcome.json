@@ -1,0 +1,41 @@
+{
+	"greeting": "嗨，我是Icemark！",
+	"introduction": "<strong>Icemark是产品经理的AI Agent</strong>，具备市场调研、PRD编写、原型设计等专用能力，以及高级辅助等通用能力。要继续使用，Icemark需要一个API密钥。<br>注：Icemark基于Roo Code 3.5.5开发。",
+	"notice": "请先配置大语言模型API提供商",
+	"start": "开始吧！",
+	"chooseProvider": "选择一个API提供商开始：",
+	"providerTip": "在开始前，必须配置LLM提供商。 中国区域用户推荐使用DeepSeek，其他区域用户推荐OpenRouter。更多信息请参考下面材料。",
+	"routers": {
+		"requesty": {
+			"description": "智能调度多个大语言模型"
+			
+		},
+		"openrouter": {
+			"description": "统一了大语言模型的接口"
+		}
+	},
+	"startRouter": "通过路由器快速设置",
+	"startCustom": "设置你的API密钥",
+	"telemetry": {
+		"title": "帮助改进Icemark",
+		"changeSettings": "可以随时在<settingsLink>设置</settingsLink>页面底部更改此设置",
+		"settings": "设置",
+		"anonymousTelemetry": "发送匿名的错误和使用数据，以帮助我们修复错误并改进扩展程序。不会涉及代码、提示词或个人隐私信息。",
+		"allow": "允许",
+		"deny": "拒绝"
+	},
+	"or": "或",
+	"importSettings": "导入设置",
+	"getStarted": {
+		"title": "配置您的AI提供商",
+		"signinLink": "登录",
+		"connect": "或者连接到自托管服务器",
+		"addApiKey": "添加API密钥"
+	},
+	"analytics": {
+		"title": "帮助改进Icemark",
+		"description": "允许收集匿名遥测数据，帮助我们改进功能。永远不会收集您的代码或提示。",
+		"toggle": "发送匿名使用数据",
+		"button": "继续"
+	}
+}

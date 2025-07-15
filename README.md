@@ -1,11 +1,13 @@
 # Icemark English Documentation
 
 **Navigation:**
+
 - [website: icemark.tech](https://icemark.tech)
-- [Documentation](https://github.com/kakuka/icemark/blob/main/pages/index.md)
-- [中文](https://gitee.com/kakuka1988/icemark)
+- [Documentation](https://github.com/kakuka/icemark/blob/main/docs/en/index.md)
+- [中文](README.zh-CN.md)
 
 ---
+
 <br>
 <div align="center">
   <h1>Icemark</h1>
@@ -143,7 +145,7 @@ Icemark provides custom modes to help you further improve work efficiency:
 Custom modes allow you to extend Icemark's capabilities or customize working mechanisms that better match your work. It's definitely worth trying.
 
 **📖 Reference Documentation:**
-- https://github.com/kakuka/icemark/blob/main/pages/modes.md
+- [modes](https://github.com/kakuka/icemark/blob/main/docs/en/modes.md)
 
 ---
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Viewer</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="unified-toolbar">
+        <div class="toolbar-left">
+            <span id="IceViewer">☘️ IceViewer</span>
+            <span class="prototype-path" id="prototype-path">Loading...</span>
+        </div>
+        <div class="toolbar-right">
+            <div class="status-indicator" id="save-indicator"></div>
+            <div class="connection-status" id="connection-status">
+                <span>Icemark Server</span>
+                <div class="status-dot" id="status-dot"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="file-sidebar">
+            <h3>Pages</h3>
+            <ul class="file-list" id="file-list">
+                <li class="loading">
+                    <div>🔄 Loading files...</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="resizer" id="resizer"></div>
+        
+        <div class="preview-area">
+            <div class="preview-header">
+                <div class="file-path" id="file-path">Select a file</div>
+                <div class="preview-controls">
+                    
+                    <div class="view-selector">
+                        <button class="device-btn active" id="device-phone" data-device="phone">iPhone 14 Pro</button>
+                        <button class="device-btn" id="device-pad" data-device="pad">iPad Air</button>
+                        <button class="device-btn" id="device-desktop" data-device="desktop">PC</button>
+                        <div class="custom-size">
+                            <input type="number" id="custom-width" class="size-input" value="393" min="200" max="2000">
+                            <span class="size-separator">×</span>
+                            <input type="number" id="custom-height" class="size-input" value="852" min="200" max="3000">
+                        </div>
+                    </div>
+                    ·
+                    <div class="control-group">
+                        <button class="control-btn" id="zoom-out" title="缩小">−</button>
+                        <span class="control-btn" id="zoom-display" title="点击重置缩放">100%</span>
+                        <button class="control-btn" id="zoom-in" title="放大">+</button>
+                    </div>
+                    ·
+                    <div class="control-group">
+                        <button class="control-btn" id="screenshot-btn" title="截图">
+                            <img src="assets/icons/snapshot.png" alt="Screenshot" class="btn-icon">
+                        </button>
+                    </div>
+                    ·
+                    <div class="control-group">
+                        <button class="control-btn" id="browser-btn" title="Open in Browser">Open in Browser</button>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-container" id="preview-container">
+                <iframe class="preview-frame" id="preview-frame"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/html-manager.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

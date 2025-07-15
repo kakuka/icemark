@@ -1,0 +1,33 @@
+{
+	"number_format": {
+		"thousand_suffix": "k",
+		"million_suffix": "m",
+		"billion_suffix": "b"
+	},
+	"ui": {
+		"search_placeholder": "Search..."
+	},
+	"mermaid": {
+		"loading": "Generating mermaid diagram...",
+		"render_error": "Unable to Render Diagram"
+	},
+	"ice_viewer": {
+		"title": "IceViewer",
+		"all": "All",
+		"create": "Create",
+		"new_mermaid": "New Mermaid",
+		"new_excalidraw": "New Whiteboard",
+		"expand": "Expand",
+		"collapse": "Collapse",
+		"expand_more": "Expand ({{count}} more)",
+		"open": "Render",
+		"no_files": "No prototype files",
+		"new_mermaid_tooltip": "Create new Mermaid diagram",
+		"new_excalidraw_tooltip": "Create new Excalidraw diagram",
+		"filter_label": "Filter",
+		"filter_excalidraw_tooltip": "Show/Hide Excalidraw files",
+		"filter_mermaid_tooltip": "Show/Hide Mermaid files",
+		"filter_html_tooltip": "Show/Hide HTML files",
+		"no_files_filtered": "No files match current filters"
+	}
+}

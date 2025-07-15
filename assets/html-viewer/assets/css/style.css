@@ -1,0 +1,505 @@
+/* 重置默认样式，防止滚动栏出现 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 设置CSS变量 */
+:root {
+    --file-list-width: 250px;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+/* 使用flex布局分割页面 */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================== 顶部工具栏样式 ==================== */
+/* 顶部工具栏 - VSCode深色主题风格 */
+.unified-toolbar {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+    width: 100%;
+    background: #2d2d2d;
+    border-bottom: 1px solid #404040;
+    padding: 0 12px;
+    flex-shrink: 0;
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+/* IceViewer标识 */
+#IceViewer {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff; /* 白色文字 */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 文件路径样式 */
+.prototype-path {
+    font-size: 12px;
+    color: greenyellow;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    opacity: 0.9;
+}
+
+/* 状态指示器样式 */
+.status-indicator {
+    padding: 0;
+    font-size: 12px;
+    color: greenyellow;
+    background: none;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.status-indicator.show {
+    opacity: 1;
+}
+
+/* 连接状态样式 */
+.connection-status {
+    padding: 0;
+    font-size: 12px;
+    color: #ffffff;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: greenyellow;
+    flex-shrink: 0;
+}
+
+/* ==================== 主容器布局 ==================== */
+/* 主容器 - 占用剩余空间 */
+.main-content {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+}
+
+/* 文件列表面板 */
+.file-sidebar {
+    width: var(--file-list-width, 250px);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+}
+
+.file-sidebar h3 {
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+.file-list {
+    flex: 1;
+    overflow-y: auto;
+    list-style: none;
+}
+
+.file-list li {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-list li:hover {
+    background: #f8f9fa;
+}
+
+.file-list li.active {
+    background: #e3f2fd;
+    color: #1976d2;
+    font-weight: 500;
+}
+
+.file-name {
+    font-size: 14px;
+}
+
+.file-size {
+    font-size: 12px;
+    color: #999;
+}
+
+/* 分割线 */
+.resizer {
+    width: 4px;
+    background: #e0e0e0;
+    cursor: col-resize;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.resizer:hover {
+    background: #bbb;
+}
+
+.resizer:active {
+    background: #007bff;
+}
+
+.resizer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4), transparent);
+    border-radius: 1px;
+}
+
+/* ==================== 预览面板 ==================== */
+/* 预览面板 */
+.preview-area {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    position: relative;
+    height: 100%;
+}
+
+/* Preview区域头部控制样式 */
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+.file-path {
+    font-size: 14px;
+    color: #666;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.preview-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.preview-container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+    position: relative;
+}
+
+/* ==================== 控制按钮样式 ==================== */
+.toolbar-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #666;
+    transition: background-color 0.2s;
+}
+
+.toolbar-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+.toolbar-btn:hover .btn-icon {
+    opacity: 1;
+}
+
+/* 控制按钮组 */
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.control-btn {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #666;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: #e0e0e0;
+}
+
+.control-btn .btn-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
+/* 视图选择器 */
+.view-selector {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.view-label {
+    color: #666;
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.device-btn {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #666;
+    transition: all 0.2s;
+    white-space: nowrap;
+    margin-right: 0px;
+}
+
+.device-btn:last-of-type {
+    margin-right: 0;
+}
+
+.device-btn:hover {
+    background: #f8f9fa;
+    border-color: #bbb;
+    color: #333;
+}
+
+.device-btn.active {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.device-btn.active:hover {
+    background: #0056b3;
+    border-color: #0056b3;
+}
+
+/* 自定义尺寸 */
+.custom-size {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 4px;
+}
+
+.size-input {
+    width: 60px;
+    padding: 4px 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+    transition: border-color 0.2s;
+}
+
+.size-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.size-input::placeholder {
+    color: #999;
+}
+
+.size-separator {
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* ==================== HTML预览样式 ==================== */
+.preview-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #fff;
+    transition: transform 0.1s ease;
+}
+
+/* 设备预览尺寸 */
+.device-phone {
+    width: 393px;
+    height: 852px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.device-pad {
+    width: 820px;
+    height: 1180px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.device-desktop {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.device-custom {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* 兼容性：保留旧的mobile-preview类名 */
+.mobile-preview {
+    width: 393px;
+    height: 852px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ==================== 状态提示样式 ==================== */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 16px;
+    color: #666;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.error {
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 12px;
+    border-radius: 4px;
+    margin: 16px;
+    font-size: 13px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    .toolbar-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    
+    .file-sidebar {
+        width: 200px;
+        min-width: 150px;
+    }
+    
+    .preview-container {
+        padding: 12px;
+    }
+
+    #IceViewer {
+        font-size: 12px;
+    }
+    
+    .prototype-path {
+        font-size: 11px;
+    }
+} 
