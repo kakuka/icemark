@@ -1,11 +1,13 @@
 # Icemark 中文文档
 
 **跳转导航:**
-- [官网: icemark.tech](https://icemark.tech)
-- [操作文档](https://github.com/kakuka/icemark/blob/main/docs/zh-CN/index.md)
-- [English](README.md)
+
+- 官网: [icemark.tech](https://icemark.tech)
+- GitHub: [https://github.com/kakuka/icemark](https://github.com/kakuka/icemark)
+- [English](https://github.com/kakuka/icemark/blob/main/README.md)
 
 ---
+
 <br>
 <div align="center">
   <h1>Icemark</h1>
@@ -56,7 +58,6 @@ Icemark提供四个核心工作模式，每个模式都针对产品经理的特�
   <img src="assets/images/icemark-in-vscode.png" width="100%" alt="Icemark in vscode" />
 </div>
 
-
 ## 📥 下载与安装
 
 Icemark是一个Visual Studio Code的扩展，最简单的方式是直接在扩展界面进行安装。
@@ -66,17 +67,20 @@ Icemark是一个Visual Studio Code的扩展，最简单的方式是直接在扩�
 在安装VSCode之后，有以下三种安装Icemark的方式：
 
 ### 🔍 方式一：直接搜索
+
 - 启动VSCode，打开扩展市场（`Ctrl+Shift+X`）
 - 搜索"**Icemark**"即可找到
 - 点击扩展，然后在详情页面点击**安装**
 
 ### 🌐 方式二：市场安装
+
 - 打开VSCode的在线市场页面：https://marketplace.visualstudio.com/items?itemName=icemark-tech.icemark-agent
 - 点击**安装**按钮，然后会自动唤起VSCode，按照提示进行安装
 
 > 💡 如果因为网络等问题，打不开VSCode的在线市场，可以使用下面的VSIX文件直接安装。
 
 ### 📦 方式三：通过VSIX安装
+
 - 首先下载VSIX文件：https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix (备用链接：https://gitee.com/kakuka1988/icemark/releases/download/v1.0.0/icemark-agent.vsix )
 - 启动VSCode，打开扩展市场（`Ctrl+Shift+X`）
 - 在扩展市场的管理面板中点击"**Install from VSIX**"
@@ -86,6 +90,7 @@ Icemark是一个Visual Studio Code的扩展，最简单的方式是直接在扩�
 </div>
 
 安装完成后，点击左侧边栏的Icemark图标。
+
 > 图标位置：前面主界面的图片中的主入口位置。
 
 ## ⚙️ 初始化配置
@@ -97,6 +102,7 @@ Icemark支持多个大模型提供商，可以根据自己喜好进行配置。
 在Icemark启动时，需要进行供应商和模型配置。
 
 对于中国用户，推荐使用DeepSeek：https://www.deepseek.com/:
+
 - 注册账号后，获取API key，地址：https://platform.deepseek.com/
 - 将该key填到Icemark的模型配置中。
 
@@ -104,23 +110,23 @@ Icemark支持多个大模型提供商，可以根据自己喜好进行配置。
   <img src="assets/images/deepseek-config.png" width="60%" alt="配置DeepSeek" />
 </div>
 
-
 对于阿里云、字节的火山引擎等，可以选择 `OpenAI Compatible`：
 
 **需要配置的参数：**
 
-| 参数 | 说明 | 获取方式 |
-|------|------|----------|
-| Base URL | API基础地址 | 从大模型服务商获取 |
-| API Key | 访问密钥 | 从大模型服务商获取 |
-| Model | 使用的模型名称 | 从大模型服务商获取 |
+| 参数     | 说明           | 获取方式           |
+| -------- | -------------- | ------------------ |
+| Base URL | API基础地址    | 从大模型服务商获取 |
+| API Key  | 访问密钥       | 从大模型服务商获取 |
+| Model    | 使用的模型名称 | 从大模型服务商获取 |
 
 <div align="center">
   <img src="assets/images/configLLM.png" width="60%" alt="配置大模型" />
 </div>
 
 后续可以新增其他供应商或对已有配置进行调整。
->位置：前面主界面的图片中的模型配置。
+
+> 位置：前面主界面的图片中的模型配置。
 
 ### 🎯 开始使用
 
@@ -143,14 +149,18 @@ Icemark还提供了自定义模式，助您进一步提升工作效率：
 自定义模式可以让你扩展Icemark的能力，或者定制和你的工作更加匹配的工作机制，非常值得尝试。
 
 **📖 参考文档：**
-- [模式](https://github.com/kakuka/icemark/blob/main/docs/zh-CN/modes.md)
 
+- [模式](https://github.com/kakuka/icemark/blob/main/docs/zh-CN/modes.md)
 
 ---
 
 ## 🛠️ 技术基础
 
 Icemark基于 **Roo Code 3.5.5** 开发。
+
+## 📬 联系我们
+
+有任何疑问或建议，欢迎联系 <icemark.tech@gmail.com>
 
 ---
 
