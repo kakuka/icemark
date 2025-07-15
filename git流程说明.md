@@ -225,7 +225,7 @@ git add .
 git commit -m "chore: prepare for v1.2.0 release"
 
 # Step 5: 构建和发布
-npm run vsix  # 生成.vsix文件
+npm run build  # 生成.vsix文件
 # 手动测试.vsix文件、发布到VS Code Marketplace
 
 # Step 6-7: 打标签发布
