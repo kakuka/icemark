@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excalidraw Viewer</title>
+    <link rel="stylesheet" href="assets/css/unified-prototype.css">
+    <style>
+        /* 重置默认样式，防止滚动栏出现 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* 使用flex布局分割页面 */
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 顶部工具栏 - VSCode深色主题风格 */
+        .unified-toolbar {
+            display: flex !important; /* 覆盖CSS文件中的display: none */
+            justify-content: space-between;
+            align-items: center;
+            height: 32px;
+            width: 100%;
+            background: #2d2d2d; /* VSCode深色背景 */
+            border-bottom: 1px solid #404040; /* 深色边框 */
+            padding: 0 12px;
+            flex-shrink: 0; /* 防止工具栏被压缩 */
+        }
+        
+        .toolbar-left {
+            display: flex;
+            align-items: baseline; /* 改为基线对齐，让文字底部对齐 */
+            gap: 8px;
+        }
+        
+        .toolbar-right {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        
+        /* IceViewer标识 */
+        #IceViewer {
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff; /* 白色文字 */
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Excalidraw图标 */
+        .excalidraw-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+        
+        /* 文件路径样式 */
+        .prototype-path {
+            font-size: 12px;
+            color: greenyellow; 
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            opacity: 0.9;
+        }
+        
+        @font-face {
+            font-family: "Virgil";
+            src: url("assets/fonts/Virgil.woff2") format("woff2");
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: "Chinese";
+            src: url("assets/fonts/Chinese.woff2") format("woff2");
+            font-display: swap;
+        }
+        
+        /* 为 Virgil 字体添加中文后备字体 */
+        @font-face {
+            font-family: "Virgil";
+            src: url("assets/fonts/Chinese.woff2") format("woff2");
+            font-display: swap;
+            unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
+        }
+        
+        /* Excalidraw容器 - 占用剩余空间 */
+        .container {
+            flex: 1; /* 占用剩余的所有空间 */
+            width: 100%;
+            overflow: hidden; /* 防止溢出 */
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 18px;
+            color: #666;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="unified-toolbar">
+        <div class="toolbar-left">
+            <span id="IceViewer">
+                ☘️ IceViewer
+            </span>
+            <span class="prototype-path" id="prototype-path">Loading...</span>
+        </div>
+        <div class="toolbar-right">
+            <div class="status-indicator" id="save-indicator"></div>
+            <div class="connection-status" id="connection-status">
+                <span>Icemark Server</span>
+                <div class="status-dot" id="status-dot"></div>
+            </div>
+        </div>
+    </div>
+    <div id="excalidraw-container" class="container">
+        <div class="loading">
+            <div>🎨 Loading Excalidraw...</div>
+        </div>
+    </div>
+
+    <script>
+        // 设置 Excalidraw 资源路径
+        window.EXCALIDRAW_ASSET_PATH = "./assets/";
+        
+        // 确保中文字体加载
+        if (document.fonts && document.fonts.load) {
+            document.fonts.load('1em Chinese').then(() => {
+                console.log('Chinese font loaded successfully');
+            }).catch(err => {
+                console.warn('Failed to load Chinese font:', err);
+            });
+        }
+    </script>
+
+    <script src="assets/js/excalidraw-manager.js"></script>
+    <script src="assets/js/react.production.min.js"></script>
+    <script src="assets/js/react-dom.production.min.js"></script>
+    <script src="assets/js/excalidraw.production.min.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html> 

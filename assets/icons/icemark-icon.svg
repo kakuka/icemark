@@ -1,0 +1,14 @@
+<svg viewBox="0 0 48 48" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 圆角白色边界 -->
+ <text x="24" y="46" text-anchor="middle" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#2196F3" font-weight="bold">Icemark</text>
+  <!-- mark（小写蓝色） -->
+  <!-- 最远的山峰（最淡） -->
+  <!-- 最远的山峰（最淡） -->
+  <polygon points="8,36 16,18 24,30 32,22 40,36" fill="#B3E6FF"/>
+  <!-- 中间的山峰 -->
+  <polygon points="10,36 18,23 24,32 28,18 38,36" fill="#6DD0FF"/>
+  <!-- 最前的主山峰（最高） -->
+  <polygon points="15,36 24,10 31,28 34,36" fill="#42A5F5"/>
+  <!-- 前景冰面/阴影 -->
+  <polygon points="24,10 31,28 24,36 20,30" fill="#1E88E5"/>
+</svg> 

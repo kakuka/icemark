@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="unified-toolbar">
+        <div class="toolbar-left">
+            <span id="IceViewer">☘️ IceViewer</span>
+            <span class="prototype-path" id="prototype-path">Loading...</span>
+        </div>
+        <div class="toolbar-right">
+            <div class="status-indicator" id="save-indicator"></div>
+            <div class="connection-status" id="connection-status">
+                <span>Icemark Server</span>
+                <div class="status-dot" id="status-dot"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container content-container">
+        <div class="editor-panel">
+            <div class="editor-header">Markdown</div>
+            <textarea id="editor" class="editor" placeholder="Enter Markdown content here..."></textarea>
+        </div>
+        
+        <div class="resizer" id="resizer"></div>
+        
+        <div class="preview-panel">
+            <div class="preview-header">
+                <span>Preview</span>
+                <div class="preview-controls">
+                    <button class="toolbar-btn" id="screenshot-btn" title="snapshot">
+                        <img src="assets/icons/snapshot.png" alt="Screenshot" class="btn-icon">
+                    </button>
+                </div>
+            </div>
+            <div id="preview" class="preview-content">
+                <div class="loading">
+                    <div>📝 Loading Markdown...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/markdown-manager.js"></script>
+    <script src="assets/js/marked.min.js"></script>
+    <script src="assets/js/highlight.min.js"></script>
+    <script src="assets/js/mermaid.min.js"></script>
+    <script src="assets/js/markdown-manager.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+/* 重置默认样式，防止滚动栏出现 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 设置CSS变量 */
+:root {
+    --editor-width: 30%;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+/* 使用flex布局分割页面 */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================== 顶部工具栏样式 ==================== */
+/* 顶部工具栏 - VSCode深色主题风格 */
+.unified-toolbar {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+    width: 100%;
+    background: #2d2d2d;
+    border-bottom: 1px solid #404040;
+    padding: 0 12px;
+    flex-shrink: 0;
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+/* IceViewer标识 */
+#IceViewer {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff; /* 白色文字 */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 文件路径样式 */
+.prototype-path {
+    font-size: 12px;
+    color: greenyellow;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    opacity: 0.9;
+}
+
+/* 状态指示器样式 */
+.status-indicator {
+    padding: 0;
+    font-size: 12px;
+    color: greenyellow;
+    background: none;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.status-indicator.show {
+    opacity: 1;
+}
+
+/* 连接状态样式 */
+.connection-status {
+    padding: 0;
+    font-size: 12px;
+    color: #ffffff;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: greenyellow;
+    flex-shrink: 0;
+}
+
+/* ==================== 主容器布局 ==================== */
+/* 主容器 - 占用剩余空间 */
+.container {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    position: relative;
+}
+
+/* 编辑器面板 */
+.editor-panel {
+    width: var(--editor-width, 30%);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    border-right: 1px solid #e0e0e0;
+    height: 100%;
+}
+
+.editor-header {
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+.editor {
+    flex: 1;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    border: none;
+    outline: none;
+    padding: 16px;
+    resize: none;
+    background: #fafafa;
+    color: #333;
+    border-left: 3px solid #007bff;
+    transition: all 0.2s;
+}
+
+.editor:focus {
+    background: #fff;
+    border-left-color: #0056b3;
+    box-shadow: inset 0 0 0 1px rgba(0, 123, 255, 0.1);
+}
+
+.editor::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* 分割线 */
+.resizer {
+    width: 4px;
+    background: #e0e0e0;
+    cursor: col-resize;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.resizer:hover {
+    background: #bbb;
+}
+
+.resizer:active {
+    background: #007bff;
+}
+
+.resizer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4), transparent);
+    border-radius: 1px;
+}
+
+/* ==================== 预览面板 ==================== */
+/* 预览面板 */
+.preview-panel {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    position: relative;
+    height: 100%;
+}
+
+/* Preview区域头部控制样式 */
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+.preview-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.preview-content {
+    flex: 1;
+    padding: 16px;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+    position: relative;
+}
+
+/* ==================== 控制按钮样式 ==================== */
+.toolbar-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #666;
+    transition: background-color 0.2s;
+}
+
+.toolbar-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+.toolbar-btn:hover .btn-icon {
+    opacity: 1;
+}
+
+/* 缩放控件 */
+.zoom-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.zoom-display {
+    min-width: 35px;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+.zoom-display:hover {
+    background: #e9ecef;
+    color: #333;
+}
+
+/* ==================== Mermaid图表样式 ==================== */
+.mermaid {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: grab;
+    transition: transform 0.1s ease;
+    user-select: none;
+}
+
+.mermaid:active {
+    cursor: grabbing;
+}
+
+/* ==================== 状态提示样式 ==================== */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 16px;
+    color: #666;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.error {
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 12px;
+    border-radius: 4px;
+    margin: 16px;
+    font-size: 13px;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    .toolbar-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    
+    .editor-panel {
+        width: 40%;
+        min-width: 150px;
+    }
+    
+    .editor {
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    .preview-content {
+        padding: 12px;
+    }
+
+    #IceViewer {
+        font-size: 12px;
+    }
+    
+    .prototype-path {
+        font-size: 11px;
+    }
+} 

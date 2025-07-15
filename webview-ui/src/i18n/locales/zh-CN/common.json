@@ -1,0 +1,33 @@
+{
+	"number_format": {
+		"thousand_suffix": "k",
+		"million_suffix": "m",
+		"billion_suffix": "b"
+	},
+	"ui": {
+		"search_placeholder": "搜索..."
+	},
+	"mermaid": {
+		"loading": "生成 Mermaid 图表中...",
+		"render_error": "无法渲染图表"
+	},
+	"ice_viewer": {
+		"title": "IceViewer",
+		"all": "全部",
+		"new_mermaid": "新建Mermaid",
+		"new_excalidraw": "新白板",
+		"expand": "展开",
+		"create": "新建",
+		"collapse": "收起",
+		"expand_more": "展开 ({{count}} 更多)",
+		"open": "渲染",
+		"no_files": "暂无原型文件",
+		"new_mermaid_tooltip": "新建 Mermaid 图表",
+		"new_excalidraw_tooltip": "新建 Excalidraw 图表",
+		"filter_label": "筛选",
+		"filter_excalidraw_tooltip": "显示/隐藏 Excalidraw 文件",
+		"filter_mermaid_tooltip": "显示/隐藏 Mermaid 文件", 
+		"filter_html_tooltip": "显示/隐藏 HTML 文件",
+		"no_files_filtered": "当前筛选条件下无文件"
+	}
+}
