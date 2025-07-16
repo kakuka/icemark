@@ -22,6 +22,11 @@
 
 **Icemark** is an AI Agent for Product Managers, providing not only specialized capabilities like market research, PRD writing, and prototype design, but also general assistance capabilities to help product managers handle various daily work challenges.
 
+<div align="center">
+  <img src="assets/images/excalidraw-to-prototype-8x.gif" width="100%" alt="prototype" />
+</div>
+
+
 ## ⭐ Main Features
 
 Icemark provides four core working modes, each deeply optimized for specific work scenarios of product managers:
@@ -52,13 +57,19 @@ A professional product prototype creation assistant that can quickly generate HT
 
 With Icemark, you no longer need other similar paid MCP services, providing one-stop solutions for common problems.
 
+
+
+## 📥 Download & Installation
+
+<div align="center">
+  <img src="assets/images/setup-marketplace.gif" width="100%" alt="setup" />
+</div>
+
 ## 💻 Main Interface
 
 <div align="center">
   <img src="assets/images/icemark-in-vscode-en.png" width="100%" alt="Icemark in vscode" />
 </div>
-
-## 📥 Download & Installation
 
 Icemark is a Visual Studio Code extension, with the simplest installation method being direct installation through the extension interface.
 

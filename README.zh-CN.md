@@ -22,6 +22,10 @@
 
 **Icemark** 是一个产品经理的AI Agent，不仅具备市场调研、PRD编写、原型设计等专用能力，也具备通用辅助能力，能够帮助产品经理应对日常各种工作挑战。
 
+<div align="center">
+  <img src="assets/images/excalidraw-to-prototype-8x.gif" width="100%" alt="prototype" />
+</div>
+
 ## ⭐ 主要功能
 
 Icemark提供四个核心工作模式，每个模式都针对产品经理的特定工作场景进行了深度优化：
@@ -52,13 +56,19 @@ Icemark提供四个核心工作模式，每个模式都针对产品经理的特�
 
 使用Icemark，你不需再使用其他类似的付费MCP服务，一站式解决常规问题。
 
-## 💻 主界面
+
+## 📥 下载与安装
+
+<div align="center">
+  <img src="assets/images/setup-marketplace.gif" width="100%" alt="setup" />
+</div>
+
+### 💻 主界面
 
 <div align="center">
   <img src="assets/images/icemark-in-vscode.png" width="100%" alt="Icemark in vscode" />
 </div>
 
-## 📥 下载与安装
 
 Icemark是一个Visual Studio Code的扩展，最简单的方式是直接在扩展界面进行安装。
 
