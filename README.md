@@ -64,14 +64,16 @@ With Icemark, you no longer need other similar paid MCP services, providing one-
 Integrated with Excalidraw to support hand-drawn wireframes and generate interactive prototypes.
 [https://www.youtube.com/watch?v=gAQMNN-qMpk](https://www.youtube.com/watch?v=gAQMNN-qMpk)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gAQMNN-qMpk?si=G-7DEYqXgIR81mhj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![Demo Video](https://img.youtube.com/vi/gAQMNN-qMpk/hqdefault.jpg)](https://www.youtube.com/watch?v=gAQMNN-qMpk)
+
 
 ### Product Analysis
 
 Built-in Xiaohongshu browsing feature, enables comparison and analysis of different products based on Xiaohongshu content, generating visual reports with text and images.
 [https://www.youtube.com/watch?v=LRmbJNd4Np4](https://www.youtube.com/watch?v=LRmbJNd4Np4)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LRmbJNd4Np4?si=bHAFJIAtln30ICb5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![Demo Video](https://img.youtube.com/vi/LRmbJNd4Np4/hqdefault.jpg)](https://youtu.be/LRmbJNd4Np4)
+
 
 
 
@@ -159,7 +161,8 @@ You can add other providers or adjust existing configurations later.
 ## Install and config video
 
 [https://www.youtube.com/watch?v=rH7K5lilpV4](https://www.youtube.com/watch?v=rH7K5lilpV4)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rH7K5lilpV4?si=GmY1A9LtOhKa4DZY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[![Watch the Demo](https://img.youtube.com/vi/rH7K5lilpV4/hqdefault.jpg)](https://www.youtube.com/watch?v=rH7K5lilpV4)
 
 
 ### 🎯 Getting Started
