@@ -56,6 +56,21 @@ Icemark提供四个核心工作模式，每个模式都针对产品经理的特�
 
 使用Icemark，你不需再使用其他类似的付费MCP服务，一站式解决常规问题。
 
+## 🎞️ 演示视频
+
+### 手绘草图生成可交互原型
+
+集成Excalidraw，支持手绘线框图，然后生成交互性原型。
+[https://www.bilibili.com/video/BV1j6gcz3En3/](https://www.bilibili.com/video/BV1j6gcz3En3/)
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114866417370560&bvid=BV1j6gcz3En3&cid=31098143482&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
+### 产品分析
+
+内置小红书浏览功能，基于小红书，对不同产品进行对比分析，并生成图文报告。
+[https://www.bilibili.com/video/BV1jBgczkExP](https://www.bilibili.com/video/BV1jBgczkExP)
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114866434149405&bvid=BV1jBgczkExP&cid=31098145558&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 ## 📥 下载与安装
 
@@ -137,6 +152,12 @@ Icemark支持多个大模型提供商，可以根据自己喜好进行配置。
 后续可以新增其他供应商或对已有配置进行调整。
 
 > 位置：前面主界面的图片中的模型配置。
+
+## 安装与初始化配置视频
+
+[https://www.bilibili.com/video/BV1d6gczgE61/](https://www.bilibili.com/video/BV1d6gczgE61/)
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114866417306209&bvid=BV1d6gczgE61&cid=31098079866&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
 
 ### 🎯 开始使用
 
