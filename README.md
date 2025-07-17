@@ -57,6 +57,22 @@ A professional product prototype creation assistant that can quickly generate HT
 
 With Icemark, you no longer need other similar paid MCP services, providing one-stop solutions for common problems.
 
+## 🎞️ Demo Video
+
+### Turn Hand-Drawn Sketches into Interactive Prototypes
+
+Integrated with Excalidraw to support hand-drawn wireframes and generate interactive prototypes.
+[https://www.youtube.com/watch?v=gAQMNN-qMpk](https://www.youtube.com/watch?v=gAQMNN-qMpk)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gAQMNN-qMpk?si=G-7DEYqXgIR81mhj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### Product Analysis
+
+Built-in Xiaohongshu browsing feature, enables comparison and analysis of different products based on Xiaohongshu content, generating visual reports with text and images.
+[https://www.youtube.com/watch?v=LRmbJNd4Np4](https://www.youtube.com/watch?v=LRmbJNd4Np4)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LRmbJNd4Np4?si=bHAFJIAtln30ICb5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 
 ## 📥 Download & Installation
@@ -65,7 +81,7 @@ With Icemark, you no longer need other similar paid MCP services, providing one-
   <img src="assets/images/setup-marketplace.gif" width="100%" alt="setup" />
 </div>
 
-## 💻 Main Interface
+### 💻 Main Interface
 
 <div align="center">
   <img src="assets/images/icemark-in-vscode-en.png" width="100%" alt="Icemark in vscode" />
@@ -139,6 +155,12 @@ For providers like Alibaba Cloud, ByteDance's Volcano Engine, etc., you can choo
 You can add other providers or adjust existing configurations later.
 
 > Location: The `LLM Config` configuration shown in the main interface image above.
+
+## Install and config video
+
+[https://www.youtube.com/watch?v=rH7K5lilpV4](https://www.youtube.com/watch?v=rH7K5lilpV4)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rH7K5lilpV4?si=GmY1A9LtOhKa4DZY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 ### 🎯 Getting Started
 
