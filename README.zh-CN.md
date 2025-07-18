@@ -63,7 +63,6 @@ Icemark提供四个核心工作模式，每个模式都针对产品经理的特�
 集成Excalidraw，支持手绘线框图，然后生成交互性原型。
 [https://www.bilibili.com/video/BV1j6gcz3En3/](https://www.bilibili.com/video/BV1j6gcz3En3/)
 
-
 ### 产品分析
 
 内置小红书浏览功能，基于小红书，对不同产品进行对比分析，并生成图文报告。
@@ -80,7 +79,6 @@ Icemark提供四个核心工作模式，每个模式都针对产品经理的特�
 <div align="center">
   <img src="assets/images/icemark-in-vscode.png" width="100%" alt="Icemark in vscode" />
 </div>
-
 
 Icemark是一个Visual Studio Code的扩展，最简单的方式是直接在扩展界面进行安装。
 
@@ -103,7 +101,8 @@ Icemark是一个Visual Studio Code的扩展，最简单的方式是直接在扩�
 
 ### 📦 方式三：通过VSIX安装
 
-- 首先下载VSIX文件：https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix (备用链接：https://gitee.com/kakuka1988/icemark/releases/download/v1.0.0/icemark-agent.vsix )
+- 首先下载VSIX文件
+    > 在github的release页面 [https://github.com/kakuka/icemark/releases/](https://github.com/kakuka/icemark/releases/)，找到最新的release ,然后从`Assets`选项中，找到icemark-agent-[version].vsix（比如 icemark-agent-1.2.6.vsix），点击下载。也可以到官网[https://icemark.tech/](https://icemark.tech/)下载。
 - 启动VSCode，打开扩展市场（`Ctrl+Shift+X`）
 - 在扩展市场的管理面板中点击"**Install from VSIX**"
 
@@ -153,7 +152,6 @@ Icemark支持多个大模型提供商，可以根据自己喜好进行配置。
 ## 安装与初始化配置视频
 
 [https://www.bilibili.com/video/BV1d6gczgE61/](https://www.bilibili.com/video/BV1d6gczgE61/)
-
 
 ### 🎯 开始使用
 

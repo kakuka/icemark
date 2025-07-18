@@ -26,7 +26,6 @@
   <img src="assets/images/excalidraw-to-prototype-8x.gif" width="100%" alt="prototype" />
 </div>
 
-
 ## ⭐ Main Features
 
 Icemark provides four core working modes, each deeply optimized for specific work scenarios of product managers:
@@ -66,16 +65,12 @@ Integrated with Excalidraw to support hand-drawn wireframes and generate interac
 
 [![Demo Video](https://img.youtube.com/vi/gAQMNN-qMpk/hqdefault.jpg)](https://www.youtube.com/watch?v=gAQMNN-qMpk)
 
-
 ### Product Analysis
 
 Built-in Xiaohongshu browsing feature, enables comparison and analysis of different products based on Xiaohongshu content, generating visual reports with text and images.
 [https://www.youtube.com/watch?v=LRmbJNd4Np4](https://www.youtube.com/watch?v=LRmbJNd4Np4)
 
 [![Demo Video](https://img.youtube.com/vi/LRmbJNd4Np4/hqdefault.jpg)](https://youtu.be/LRmbJNd4Np4)
-
-
-
 
 ## 📥 Download & Installation
 
@@ -110,7 +105,8 @@ After installing VSCode, there are three ways to install Icemark:
 
 ### 📦 Method 3: Install via VSIX
 
-- First download the VSIX file: https://github.com/kakuka/icemark/releases/latest/download/icemark-agent.vsix (If this link does not work, here is an alternative : https://gitee.com/kakuka1988/icemark/releases/download/v1.0.0/icemark-agent.vsix )
+- First download the VSIX file
+    > On the GitHub Releases page [https://github.com/kakuka/icemark/releases/](https://github.com/kakuka/icemark/releases/), find the latest release. Then, under the `Assets` section, locate icemark-agent-[version].vsix (for example, icemark-agent-1.2.6.vsix) and click to download. You can also download it from website: [https://icemark.tech/](https://icemark.tech/).
 - Launch VSCode and open the extension marketplace (`Ctrl+Shift+X`)
 - Click "**Install from VSIX**" in the extension marketplace management panel
 
@@ -163,7 +159,6 @@ You can add other providers or adjust existing configurations later.
 [https://www.youtube.com/watch?v=rH7K5lilpV4](https://www.youtube.com/watch?v=rH7K5lilpV4)
 
 [![Watch the Demo](https://img.youtube.com/vi/rH7K5lilpV4/hqdefault.jpg)](https://www.youtube.com/watch?v=rH7K5lilpV4)
-
 
 ### 🎯 Getting Started
 
