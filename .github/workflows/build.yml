@@ -1,0 +1,59 @@
+name: 构建和发布 VS Code 扩展
+
+on:
+  push:
+    tags:
+      - 'v*'  # 推送 v1.0.0 这样的标签时触发
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.18.1'
+          cache: 'npm'
+
+      - name: 安装所有依赖
+        run: npm run install:all
+
+      - name: 构建扩展包
+        run: npm run build
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: vsix-package
+          path: bin/*.vsix
+          retention-days: 1
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')  # 只在标签推送时创建 Release
+    permissions:
+      contents: write  # 确保对仓库内容有写权限
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 下载构建产物
+        uses: actions/download-artifact@v4
+        with:
+          name: vsix-package
+          path: ./artifacts
+
+      - name: 创建 Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./artifacts/*.vsix
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
