@@ -36,11 +36,17 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')  # 只在标签推送时创建 Release
+    # 移除条件限制，让 release job 总是运行
     permissions:
       contents: write  # 确保对仓库内容有写权限
 
     steps:
+      - name: 调试信息
+        run: |
+          echo "GitHub ref: ${{ github.ref }}"
+          echo "GitHub ref type: ${{ github.ref_type }}"
+          echo "GitHub ref name: ${{ github.ref_name }}"
+          
       - name: 检出代码
         uses: actions/checkout@v4
 
@@ -51,9 +57,17 @@ jobs:
           path: ./artifacts
 
       - name: 创建 Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: ./artifacts/*.vsix
           generate_release_notes: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: 上传产物（非标签推送）
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          echo "这不是标签推送，跳过 Release 创建"
+          echo "构建的文件列表："
+          ls -la ./artifacts/ 
