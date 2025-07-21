@@ -5,6 +5,7 @@
 - 官网: [icemark.tech](https://icemark.tech)
 - GitHub: [https://github.com/kakuka/icemark](https://github.com/kakuka/icemark)
 - [English](https://github.com/kakuka/icemark/blob/main/README.md)
+- [更多主题](docs/zh-CN/index.md)
 
 ---
 
@@ -175,7 +176,7 @@ Icemark还提供了自定义模式，助您进一步提升工作效率：
 
 **📖 参考文档：**
 
-- [模式](https://github.com/kakuka/icemark/blob/main/docs/zh-CN/modes.md)
+- [模式](docs/zh-CN/modes.md)
 
 ---
 
