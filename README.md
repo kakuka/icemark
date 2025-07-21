@@ -189,7 +189,7 @@ Custom modes allow you to extend Icemark's capabilities or customize working mec
 
 ## 🛠️ Technical Foundation
 
-Icemark is built on **RooCode 3.5.5**.
+Icemark is built on **RooCode 3.15.5**.
 
 ## 📬 Contact Us
 

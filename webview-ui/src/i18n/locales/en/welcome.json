@@ -1,6 +1,6 @@
 {
 	"greeting": "Hi, I'm Icemark!",
-	"introduction": "<strong>Icemark is an AI Agent for Product Managers</strong> that provides specialized capabilities like market research, PRD writing, and prototype design, as well as general advanced assistance capabilities. To continue, Icemark requires an API key.<br>Note: Icemark is built on Roo Code 3.5.5.",
+	"introduction": "<strong>Icemark is an AI Agent for Product Managers</strong> that provides specialized capabilities like market research, PRD writing, and prototype design, as well as general advanced assistance capabilities. To continue, Icemark requires an API key.<br>Note: Icemark is built on Roo Code 3.15.5.",
 	"notice": "To get started, this extension needs an API provider.",
 	"start": "Let's go!",
 	"chooseProvider": "Choose an API provider to get started:",
