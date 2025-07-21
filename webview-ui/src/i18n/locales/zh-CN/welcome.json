@@ -1,6 +1,6 @@
 {
 	"greeting": "嗨，我是Icemark！",
-	"introduction": "<strong>Icemark是产品经理的AI Agent</strong>，具备市场调研、PRD编写、原型设计等专用能力，以及高级辅助等通用能力。要继续使用，Icemark需要一个API密钥。<br>注：Icemark基于Roo Code 3.5.5开发。",
+	"introduction": "<strong>Icemark是产品经理的AI Agent</strong>，具备市场调研、PRD编写、原型设计等专用能力，以及高级辅助等通用能力。要继续使用，Icemark需要一个API密钥。<br>注：Icemark基于Roo Code 3.15.5开发。",
 	"notice": "请先配置大语言模型API提供商",
 	"start": "开始吧！",
 	"chooseProvider": "选择一个API提供商开始：",

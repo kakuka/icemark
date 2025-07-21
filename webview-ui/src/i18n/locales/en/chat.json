@@ -69,7 +69,7 @@
 		"tooltip": "Cancel the current operation"
 	},
 	"scrollToBottom": "Scroll to bottom of chat",
-	"about": "<strong>AI Agent for Product Managers</strong><br>Provides specialized capabilities like market research, PRD writing, and prototype design, as well as general advanced assistance capabilities.<br>Note: Icemark is built on Roo Code 3.5.5.",
+	"about": "<strong>AI Agent for Product Managers</strong><br>Provides specialized capabilities like market research, PRD writing, and prototype design, as well as general advanced assistance capabilities.<br>Note: Icemark is built on Roo Code 3.15.5.",
 	"onboarding": "Your task list in this workspace is empty.",
 	"rooTips": {
 		"boomerangTasks": {

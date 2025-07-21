@@ -69,7 +69,7 @@
 		"tooltip": "取消当前操作"
 	},
 	"scrollToBottom": "滚动到聊天底部",
-	"about": "<strong>产品经理的AI Agent</strong><br>具备市场调研、PRD编写、原型设计等专用能力，以及高级辅助等通用能力。<br>注：Icemark基于Roo Code 3.5.5开发。",
+	"about": "<strong>产品经理的AI Agent</strong><br>具备市场调研、PRD编写、原型设计等专用能力，以及高级辅助等通用能力。<br>注：Icemark基于Roo Code 3.15.5开发。",
 	"onboarding": "<strong>此工作区中的任务列表为空。</strong> 请在下方输入任务开始。 ",
 	"rooTips": {
 		"boomerangTasks": {
