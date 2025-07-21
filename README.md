@@ -5,6 +5,7 @@
 - website: [icemark.tech](https://icemark.tech)
 - GitHub: [https://github.com/kakuka/icemark](https://github.com/kakuka/icemark)
 - [中文](https://github.com/kakuka/icemark/blob/main/README.zh-CN.md)
+- [More Topics](docs/en/index.md)
 
 ---
 
