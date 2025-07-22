@@ -5,7 +5,7 @@
 - 官网: [icemark.tech](https://icemark.tech)
 - GitHub: [https://github.com/kakuka/icemark](https://github.com/kakuka/icemark)
 - [English](https://github.com/kakuka/icemark/blob/main/README.md)
-- [更多主题](docs/zh-CN/index.md)
+- [主题阅读:基本用法、关键概念等](docs/zh-CN/index.md)
 
 ---
 
