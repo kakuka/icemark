@@ -197,6 +197,58 @@ export class MarkdownEngine extends BaseEngine {
 				}
 			})
 
+			// 通配符路由处理 markdown 中引用的本地资源文件（放在最后作为 fallback）
+			app.get('*', async (req: any, res: any, next: any) => {
+				try {
+					// 检查是否是资源文件请求（通过文件扩展名判断）
+					if (req.path.match(/\.(png|jpg|jpeg|gif|svg|pdf|md|mmd|css|js|ico|txt|doc|docx|webp|bmp|tiff|mp4|mp3|wav|json|xml|csv|zip|rar|7z)$/i)) {
+						const filePath = this.getFilePathById(fileId)
+						
+						if (!filePath) {
+							console.log('File ID not found for resource request:', req.path)
+							return res.status(404).send('File not found')
+						}
+						
+						// 获取 markdown 文件所在的目录
+						const markdownDir = path.dirname(filePath)
+						
+						// 构建请求的文件完整路径
+						// 去掉开头的 / 并处理 ./ 相对路径
+						const relativePath = req.path.replace(/^\/+/, '').replace(/^\.\//, '')
+						const requestedFile = path.resolve(markdownDir, relativePath)
+						
+						console.log('Resource request:', {
+							requestPath: req.path,
+							markdownDir: markdownDir,
+							relativePath: relativePath,
+							requestedFile: requestedFile
+						})
+						
+						// 安全检查：确保请求的文件在 markdown 文件所在目录及其子目录中
+						if (!requestedFile.startsWith(path.resolve(markdownDir))) {
+							console.log('Security check failed: file outside allowed directory')
+							return res.status(403).send('Access denied')
+						}
+						
+						// 检查文件是否存在
+						try {
+							await fs.access(requestedFile)
+							console.log('Serving resource file:', requestedFile)
+							return res.sendFile(requestedFile)
+						} catch (error) {
+							console.log('Resource file not found:', requestedFile)
+							return res.status(404).send('Resource not found')
+						}
+					}
+					
+					// 不是资源文件请求，继续到下一个路由处理器
+					next()
+				} catch (error) {
+					console.error('Resource serving error:', error)
+					next()
+				}
+			})
+
 			// 启动服务器
 			const { port, server } = await this.startHttpServer(app)
 			
