@@ -395,7 +395,7 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 			await provider.context.globalState.update("allowedCommands", message.commands)
 			// Also update workspace settings
 			await vscode.workspace
-				.getConfiguration("roo-cline")
+				.getConfiguration("icemark")
 				.update("allowedCommands", message.commands, vscode.ConfigurationTarget.Global)
 			break
 		case "openMcpSettings": {
@@ -907,7 +907,7 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 		case "prototype":
 			try {
 				const cwd = provider.cwd
-				
+
 				if (!cwd) {
 					provider.log("No workspace folder found for prototype operation")
 					return
@@ -922,7 +922,7 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 					const icemarkFileTree = await prototypeService.scan()
 					await provider.postMessageToWebview({
 						type: "prototype",
-						icemarkFileTree
+						icemarkFileTree,
 					})
 				} else if (action === "init" || action === "show") {
 					// 处理 init 和 show 操作
@@ -931,14 +931,17 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 						return
 					}
 
-					const result = action === "init" 
-						? await prototypeService.init(filePath)
-						: await prototypeService.show(filePath)
+					const result =
+						action === "init"
+							? await prototypeService.init(filePath)
+							: await prototypeService.show(filePath)
 
 					provider.log(`Prototype ${action} result: ${result.message}`)
-					
+
 					if (!result.success) {
-						vscode.window.showErrorMessage(`原型${action === "init" ? "创建" : "显示"}失败：${result.message}`)
+						vscode.window.showErrorMessage(
+							`原型${action === "init" ? "创建" : "显示"}失败：${result.message}`,
+						)
 					}
 				}
 			} catch (error) {

@@ -254,12 +254,11 @@
 		"description": "Auto-approve allows Icemark to perform actions without asking for permission. Only enable for actions you fully trust. More detailed configuration available in <settingsLink>Settings</settingsLink>."
 	},
 	"announcement": {
-		"title": "🎉 Icemark 1.0 Released",
-		"description": "Icemark 1.0 brings professional AI assistance for Product Managers.",
+		"title": "🎉 Icemark 1.2.7 Released",
+		"description": "Optimized user experience and added documentation.",
 		"whatsNew": "Main Features",
-		"feature1": "<bold>Icemark MCP integration </bold>: with Icemark MCP, you can get data from regular search engines and various community platforms like Zhihu, Weibo, Xiaohongshu, etc. This greatly increases the diversity of information sources",
-		"feature2": "<bold>PRD Writing</bold>: Professional Product Requirements Document creation and editing capabilities",
-		"feature3": "<bold>Market Research</bold>: Comprehensive market analysis and competitor research abilities",
+		"feature1": "Support for real-time Markdown rendering",
+
 		"hideButton": "Hide announcement"
 	},
 	"reasoning": {
