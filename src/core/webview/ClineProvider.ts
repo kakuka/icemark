@@ -76,7 +76,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 
 	public isViewLaunched = false
 	public settingsImportedAt?: number
-	public readonly latestAnnouncementId = "icemark-1-0" // Update for v1.0 announcement
+	public readonly latestAnnouncementId = "icemark-1-2-7" // Update for v1.0 announcement
 	public readonly providerSettingsManager: ProviderSettingsManager
 	public readonly customModesManager: CustomModesManager
 
@@ -124,7 +124,10 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 
 		// Add this cline instance into the stack that represents the order of all the called tasks.
 		this.clineStack.push(cline)
-		this.log("addClineToStack end,now the stack is " + this.clineStack.map((c) => `${c.taskId}.${c.instanceId}`).join(", "))
+		this.log(
+			"addClineToStack end,now the stack is " +
+				this.clineStack.map((c) => `${c.taskId}.${c.instanceId}`).join(", "),
+		)
 
 		// Ensure getState() resolves correctly.
 		const state = await this.getState()
@@ -148,8 +151,13 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 
 		if (cline) {
 			console.log(`[subtasks] removing task ${cline.taskId}.${cline.instanceId} from stack`)
-			this.log("removeClineFromStack cline.taskId is " + cline.taskId + " , cline.instanceId is " + cline.instanceId)
-			this.log("after remove ,current stack is " + this.clineStack.map((c) => `${c.taskId}.${c.instanceId}`).join(", "))
+			this.log(
+				"removeClineFromStack cline.taskId is " + cline.taskId + " , cline.instanceId is " + cline.instanceId,
+			)
+			this.log(
+				"after remove ,current stack is " +
+					this.clineStack.map((c) => `${c.taskId}.${c.instanceId}`).join(", "),
+			)
 
 			//this.log("")
 			try {
@@ -522,16 +530,16 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 		// 获取前一个操作的引用
 		const previousOperation = ClineProvider.initializationLock
 		let releaseLock: () => void
-		
+
 		// 创建新的锁Promise，并获取释放锁的函数
-		ClineProvider.initializationLock = new Promise<void>(resolve => {
+		ClineProvider.initializationLock = new Promise<void>((resolve) => {
 			releaseLock = resolve
 		})
 
 		try {
 			// 等待前一个操作完成
 			await previousOperation
-			
+
 			// 执行原有的业务逻辑
 			await this.removeClineFromStack()
 
@@ -547,7 +555,9 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			} = await this.getState()
 
 			const modePrompt = customModePrompts?.[mode] as PromptComponent
-			const effectiveInstructions = [globalInstructions, modePrompt?.customInstructions].filter(Boolean).join("\n\n")
+			const effectiveInstructions = [globalInstructions, modePrompt?.customInstructions]
+				.filter(Boolean)
+				.join("\n\n")
 
 			const cline = new Cline({
 				provider: this,

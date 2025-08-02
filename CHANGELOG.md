@@ -1,5 +1,9 @@
 # Icemark Changelog
 
+## [1.2.7] - 2025-08-02
+- fix markdown render 
+- docs
+
 ## [1.2.6] - 2025-07-18
 - get start GIF
 - github action: auto build & release 

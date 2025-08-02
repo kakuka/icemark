@@ -261,12 +261,10 @@
 		"copyToInput": "复制到输入框（或按住Shift点击）"
 	},
 	"announcement": {
-		"title": "🎉 Icemark 1.0 已发布",
-		"description": "Icemark 1.0 为产品经理提供专业的AI辅助功能。",
+		"title": "🎉 Icemark 1.2.7 已发布",
+		"description": "优化用户体验，增加使用文档。",
 		"whatsNew": "主要功能",
-		"feature1": "<bold>Icemark MCP集成</bold>: 借助 Icemark MCP，可以获取常规搜索引擎数据和知乎、微博、小红书等各种社区数据。大大增加了信息来源的多样性",
-		"feature2": "<bold>PRD编写</bold>: 专业的产品需求文档创建和编辑功能",
-		"feature3": "<bold>市场调研</bold>: 全面的市场分析和竞品研究能力",
+		"feature1": "支持Markdown实时渲染",
 		"hideButton": "隐藏公告"
 	},
 	"browser": {

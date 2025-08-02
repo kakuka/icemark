@@ -17,35 +17,25 @@ const Announcement = ({ hideAnnouncement }: AnnouncementProps) => {
 			href=""
 			onClick={(e) => {
 				e.preventDefault()
-				window.postMessage(
-					{ type: "action", action: "openExternal", data: { url: "" } },
-					"*",
-				)
+				window.postMessage({ type: "action", action: "openExternal", data: { url: "" } }, "*")
 			}}>
 			Discord
 		</VSCodeLink>
 	)
-
 
 	const redditLink = (
 		<VSCodeLink
 			href=""
 			onClick={(e) => {
 				e.preventDefault()
-				window.postMessage(
-					{ type: "action", action: "openExternal", data: { url: "" } },
-					"*",
-				)
+				window.postMessage({ type: "action", action: "openExternal", data: { url: "" } }, "*")
 			}}>
 			Reddit
 		</VSCodeLink>
-
-	
-	 )
+	)
 
 	// discordLink = "";
 	// redditLink = "";
-
 
 	return (
 		<div className="flex flex-col justify-center absolute top-0 bottom-0 left-0 right-0 z-50 p-10 bg-black/50">
@@ -81,7 +71,7 @@ const Announcement = ({ hideAnnouncement }: AnnouncementProps) => {
 							}}
 						/>
 					</li>
-					<li>
+					{/* <li>
 						•{" "}
 						<Trans
 							i18nKey="chat:announcement.feature2"
@@ -100,7 +90,7 @@ const Announcement = ({ hideAnnouncement }: AnnouncementProps) => {
 								code: <code />,
 							}}
 						/>
-					</li>
+					</li> */}
 				</ul>
 
 				<p style={{ margin: "10px 0px 0px" }}>
