@@ -68,6 +68,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 	private disposables: vscode.Disposable[] = []
 	private view?: vscode.WebviewView | vscode.WebviewPanel
 	private clineStack: Cline[] = []
+	private taskTodoMap: Map<string, any> = new Map()
 	private _workspaceTracker?: WorkspaceTracker // workSpaceTracker read-only for access outside this class
 	public get workspaceTracker(): WorkspaceTracker | undefined {
 		return this._workspaceTracker
@@ -184,6 +185,16 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			return undefined
 		}
 		return this.clineStack[this.clineStack.length - 1]
+	}
+
+	public getTaskTodoList(taskId?: string): any | undefined {
+		const id = taskId ?? this.getCurrentCline()?.taskId
+		if (!id) return undefined
+		return this.taskTodoMap.get(id)
+	}
+
+	public setTaskTodoList(taskId: string, todo: any) {
+		this.taskTodoMap.set(taskId, todo)
 	}
 
 	// returns the current clineStack length (how many cline objects are in the stack)
@@ -1191,6 +1202,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			alwaysAllowMcp,
 			alwaysAllowModeSwitch,
 			alwaysAllowSubtasks,
+			alwaysAllowUpdateTodoList,
 			soundEnabled,
 			ttsEnabled,
 			ttsSpeed,
@@ -1326,6 +1338,8 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			terminalCompressProgressBar: terminalCompressProgressBar ?? true,
 			hasSystemPromptOverride,
 			historyPreviewCollapsed: historyPreviewCollapsed ?? false,
+			currentTodoList: this.getTaskTodoList(),
+			alwaysAllowUpdateTodoList: alwaysAllowUpdateTodoList ?? false,
 		}
 	}
 
@@ -1425,6 +1439,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 				}
 				return value
 			})(),
+			alwaysAllowUpdateTodoList: stateValues.alwaysAllowUpdateTodoList ?? false,
 		}
 	}
 

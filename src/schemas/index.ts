@@ -562,6 +562,7 @@ export const globalSettingsSchema = z.object({
 	alwaysAllowSubtasks: z.boolean().optional(),
 	alwaysAllowExecute: z.boolean().optional(),
 	allowedCommands: z.array(z.string()).optional(),
+	alwaysAllowUpdateTodoList: z.boolean().optional(),
 
 	browserToolEnabled: z.boolean().optional(),
 	browserViewportSize: z.string().optional(),
@@ -642,6 +643,7 @@ const globalSettingsRecord: GlobalSettingsRecord = {
 	alwaysAllowSubtasks: undefined,
 	alwaysAllowExecute: undefined,
 	allowedCommands: undefined,
+	alwaysAllowUpdateTodoList: undefined,
 
 	browserToolEnabled: undefined,
 	browserViewportSize: undefined,
@@ -889,6 +891,7 @@ export const toolNames = [
 	"url_content_fetch",
 	"web_search",
 	"prototype",
+	"update_todo_list",
 ] as const
 
 export const toolNamesSchema = z.enum(toolNames)

@@ -84,6 +84,8 @@ import { initJobWorkDirTool } from "./tools/initJobWorkDirTool"
 import { urlContentFetchTool } from "./tools/urlContentFetchTool"
 import { webSearchTool } from "./tools/webSearchTool"
 import { prototypeTool } from "./tools/prototypeTool"
+import { updateTodoListTool } from "./tools/updateTodoListTool"
+import { formatReminderSection } from "./prompts/sections/todo"
 
 // prompts
 import { formatResponse } from "./prompts/responses"
@@ -1336,6 +1338,8 @@ export class Cline extends EventEmitter<ClineEvents> {
 							return `[${block.name} searching for keywords: '${block.params.keyword_list}']`
 						case "prototype":
 							return `[${block.name} ${block.params.action}${block.params.folder ? ` '${block.params.folder}'` : ""}${block.params.path ? ` in '${block.params.path}'` : ""}]`
+						case "update_todo_list":
+							return `[${block.name} updating todo list${block.params.reason ? ` because: ${block.params.reason}` : ""}]`
 					}
 				}
 
@@ -1597,6 +1601,9 @@ export class Cline extends EventEmitter<ClineEvents> {
 						break
 					case "prototype":
 						await prototypeTool(this, block, askApproval, handleError, pushToolResult, removeClosingTag)
+						break
+					case "update_todo_list":
+						await updateTodoListTool(this, block, askApproval, handleError, pushToolResult, removeClosingTag)
 						break
 					case "attempt_completion":
 						await attemptCompletionTool(
@@ -2338,6 +2345,16 @@ export class Cline extends EventEmitter<ClineEvents> {
 				details += result
 			}
 		}
+
+		// Append reminders (todo) at the very end to minimize prompt cache invalidation
+		try {
+			const provider = this.providerRef.deref()
+			const todo = provider?.getTaskTodoList?.()
+			const reminder = formatReminderSection(todo)
+			if (reminder) {
+				details += `\n\n${reminder}`
+			}
+		} catch {}
 
 		return `<environment_details>\n${details.trim()}\n</environment_details>`
 	}

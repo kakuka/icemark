@@ -25,6 +25,7 @@ import { getInitJobWorkDirDescription } from "./init-job-workdir"
 import { getUrlContentFetchDescription } from "./url-content-fetch"
 import { getWebSearchDescription } from "./web-search"
 import { getPrototypeDescription } from "./prototype"
+import { getUpdateTodoListDescription } from "./update-todo-list"
 
 // Map of tool names to their description functions
 const toolDescriptionMap: Record<string, (args: ToolArgs) => string | undefined> = {
@@ -51,6 +52,7 @@ const toolDescriptionMap: Record<string, (args: ToolArgs) => string | undefined>
 	prototype: (args) => getPrototypeDescription(args),
 	apply_diff: (args) =>
 		args.diffStrategy ? args.diffStrategy.getToolDescription({ cwd: args.cwd, toolOptions: args.toolOptions }) : "",
+	update_todo_list: () => getUpdateTodoListDescription(),
 }
 
 export function getToolDescriptionsForMode(
@@ -134,4 +136,5 @@ export {
 	getSearchAndReplaceDescription,
 	getSaveResourceDescription,
 	getInitJobWorkDirDescription,
+	getUpdateTodoListDescription,
 }
