@@ -68,15 +68,15 @@ async function generatePrompt(
 ${getSharedToolUseSection()}
 
 ${getToolDescriptionsForMode(
-	mode,
-	cwd,
-	supportsComputerUse,
-	effectiveDiffStrategy,
-	browserViewportSize,
-	mcpHub,
-	customModeConfigs,
-	experiments,
-)}
+		mode,
+		cwd,
+		supportsComputerUse,
+		effectiveDiffStrategy,
+		browserViewportSize,
+		mcpHub,
+		customModeConfigs,
+		experiments,
+	)}
 
 ${getToolUseGuidelinesSection()}
 
@@ -92,7 +92,13 @@ ${getSystemInfoSection(cwd)}
 
 ${getObjectiveSection()}
 
-${await addCustomInstructions(promptComponent?.customInstructions || modeConfig.customInstructions || "", globalCustomInstructions || "", cwd, mode, { language: language ?? formatLanguage(vscode.env.language), rooIgnoreInstructions })}`
+${await addCustomInstructions(
+		promptComponent?.customInstructions || modeConfig.customInstructions || "",
+		globalCustomInstructions || "",
+		cwd,
+		mode,
+		{ language: language ?? formatLanguage(vscode.env.language), rooIgnoreInstructions },
+	)}`
 
 	return basePrompt
 }

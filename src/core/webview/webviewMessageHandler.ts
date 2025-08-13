@@ -1408,7 +1408,7 @@ const generateSystemPrompt = async (provider: ClineProvider, message: WebviewMes
 		experiments,
 		enableMcpServerCreation,
 		language,
-		rooIgnoreInstructions,
+		rooIgnoreInstructions
 	)
 
 	return systemPrompt

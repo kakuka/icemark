@@ -43,9 +43,14 @@ const TaskHeader = ({
 	onClose,
 }: TaskHeaderProps) => {
 	const { t } = useTranslation()
-	const { apiConfiguration, currentTaskItem } = useExtensionState()
+	const { apiConfiguration, currentTaskItem, currentTodoList } = useExtensionState()
 	const { info: model } = useSelectedModel(apiConfiguration)
 	const [isTaskExpanded, setIsTaskExpanded] = useState(false)
+
+	// Precompute todo progress to avoid calling hooks inside callbacks
+	const todoCompleted = currentTodoList?.completedCount ?? 0
+	const todoTotal = currentTodoList?.totalCount ?? 0
+	const todoPercent = todoTotal > 0 ? Math.round((todoCompleted * 100) / todoTotal) : 0
 
 	const textContainerRef = useRef<HTMLDivElement>(null)
 	const textRef = useRef<HTMLDivElement>(null)
@@ -121,6 +126,12 @@ const TaskHeader = ({
 						{task.images && task.images.length > 0 && <Thumbnails images={task.images} />}
 
 						<div className="flex flex-col gap-1">
+							{(currentTaskItem && (currentTaskItem as any)) !== undefined && todoTotal > 0 && (
+								<div className="flex items-center gap-1 flex-wrap h-[20px]">
+									<span className="font-bold">{t("chat:task.todo")}</span>
+									<span className="flex items-center gap-0.5">{todoCompleted}/{todoTotal} ({todoPercent}%)</span>
+								</div>
+							)}
 							{isTaskExpanded && contextWindow > 0 && (
 								<div
 									className={`w-full flex ${windowWidth < 400 ? "flex-col" : "flex-row"} gap-1 h-auto`}>

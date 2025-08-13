@@ -69,6 +69,7 @@ export const toolParamNames = [
 	"keyword_list",
 	"page_limit",
 	"search_on",
+	"todos",
 ] as const
 
 export type ToolParamName = (typeof toolParamNames)[number]
@@ -168,6 +169,11 @@ export interface SaveResourceToolUse extends ToolUse {
 	params: Partial<Pick<Record<ToolParamName, string>, "uri" | "folder" | "filename">>
 }
 
+export interface UpdateTodoListToolUse extends ToolUse {
+	name: "update_todo_list"
+	params: Partial<Pick<Record<ToolParamName, string>, "todos" | "reason">>
+}
+
 export interface UrlContentFetchToolUse extends ToolUse {
 	name: "url_content_fetch"
 	params: Partial<Pick<Record<ToolParamName, string>, "url" | "save_to_file_full_path">>
@@ -217,6 +223,7 @@ export const TOOL_DISPLAY_NAMES: Record<ToolName, string> = {
 	url_content_fetch: "fetch web content",
 	web_search: "search the web",
 	prototype: "create prototypes",
+	update_todo_list: "update todo list",
 } as const
 
 export type { ToolGroup }
@@ -256,6 +263,7 @@ export const ALWAYS_AVAILABLE_TOOLS: ToolName[] = [
 	"attempt_completion",
 	"switch_mode",
 	"new_task",
+	"update_todo_list",
 ] as const
 
 export type DiffResult =

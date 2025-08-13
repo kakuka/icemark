@@ -170,6 +170,8 @@ export type ExtensionState = Pick<
 	| "customModePrompts"
 	| "customSupportPrompts"
 	| "enhancementApiConfigId"
+	| "historyPreviewCollapsed"
+	| "alwaysAllowUpdateTodoList"
 > & {
 	version: string
 	clineMessages: ClineMessage[]
@@ -206,6 +208,7 @@ export type ExtensionState = Pick<
 	renderContext: "sidebar" | "editor"
 	settingsImportedAt?: number
 	historyPreviewCollapsed?: boolean
+	currentTodoList?: any
 }
 
 export type { ClineMessage, ClineAsk, ClineSay }
@@ -231,6 +234,7 @@ export interface ClineSayTool {
 		| "urlContentFetch"
 		| "webSearch"
 		| "prototype"
+		| "updateTodoList"
 	path?: string
 	diff?: string
 	content?: string
@@ -255,6 +259,8 @@ export interface ClineSayTool {
 	pageLimit?: number
 	searchOn?: string
 	action?: string
+	// todo
+	todos?: string
 }
 
 // Must keep in sync with system prompt.

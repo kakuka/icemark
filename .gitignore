@@ -5,6 +5,7 @@ out-*
 node_modules
 coverage/
 
+.dev-prompt
 .DS_Store
 
 # Builds
