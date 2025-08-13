@@ -81,7 +81,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 		autoApprovalEnabled,
 		alwaysAllowModeSwitch,
 		alwaysAllowSubtasks,
-		alwaysAllowUpdateTodoList,
+		//alwaysAllowUpdateTodoList,
 		customModes,
 		telemetrySetting,
 		hasSystemPromptOverride,
@@ -803,9 +803,9 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 					return alwaysAllowSubtasks
 				}
 
-				// if (tool?.tool === "updateTodoList") {
-				// 	return true
-				// }
+				if (tool?.tool === "updateTodoList") {
+					return true
+				}
 
 				const isOutsideWorkspace = !!tool.isOutsideWorkspace
 
@@ -835,7 +835,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 			isMcpToolAlwaysAllowed,
 			alwaysAllowModeSwitch,
 			alwaysAllowSubtasks,
-			alwaysAllowUpdateTodoList,
+			//alwaysAllowUpdateTodoList,
 		],
 	)
 

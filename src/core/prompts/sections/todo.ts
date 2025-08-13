@@ -26,16 +26,25 @@ export function formatReminderSection(todoList?: TodoItem[] | TodoList): string 
 
 	lines.push("| # | Content | Status |")
 	lines.push("|---|---------|--------|")
-	items.forEach((item, idx) => {
-		const content = (item.title ?? item.content ?? "").toString()
-		const escaped = content.replace(/\\/g, "\\\\").replace(/\|/g, "\\|")
-		const status = item.status
-			? statusMap[item.status] || item.status
-			: item.done === true
-				? "Completed"
-				: "Pending"
-		lines.push(`| ${idx + 1} | ${escaped} | ${status} |`)
-	})
+	const walk = (arr: TodoItem[], prefix: string, level: number) => {
+		for (let i = 0; i < arr.length; i++) {
+			const item = arr[i]
+			const number = prefix ? `${prefix}.${i + 1}` : `${i + 1}`
+			const content = (item.title ?? item.content ?? "").toString()
+			const escaped = content.replace(/\\/g, "\\\\").replace(/\|/g, "\\|")
+			const status = item.status
+				? statusMap[item.status] || item.status
+				: item.done === true
+					? "Completed"
+					: "Pending"
+			const indent = level > 0 ? "  ".repeat(level) : ""
+			lines.push(`| ${number} | ${indent}${escaped} | ${status} |`)
+			if (Array.isArray(item.children) && item.children.length > 0) {
+				walk(item.children, number, level + 1)
+			}
+		}
+	}
+	walk(items, "", 0)
 	lines.push("")
 	lines.push(
 		"",

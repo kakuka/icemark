@@ -480,17 +480,25 @@ export const ChatRowContent = ({
 							<span style={{ fontWeight: "bold" }}>{t("chat:todo.updated")}</span>
 						</div>
 						{(() => {
-							const summaryFromTool = (() => {
-								try {
-									const s = (tool as any)?.summary
-									return typeof s === "string" ? JSON.parse(s) : s
-								} catch {
-									return undefined
-								}
-							})()
-							const items: any[] = currentTodoList?.items ?? []
-							const total = currentTodoList?.totalCount ?? summaryFromTool?.total ?? items.length
-							const completed = currentTodoList?.completedCount ?? summaryFromTool?.completed ?? items.filter((it) => it?.status === "completed").length
+							// const summaryFromTool = (() => {
+							// 	try {
+							// 		const s = (tool as any)?.summary
+							// 		return typeof s === "string" ? JSON.parse(s) : s
+							// 	} catch {
+							// 		return undefined
+							// 	}
+							// })()
+							const toolAny = tool as any
+							// const items: any[] = toolAny?.items ?? currentTodoList?.items ?? []
+							// const total = toolAny?.total ?? currentTodoList?.totalCount ?? items.length
+							// const completed = toolAny?.completed ?? currentTodoList?.completedCount ?? items.filter((it) => it?.status === "completed").length
+							const items: any[] = toolAny?.items ??  []
+							const total = toolAny?.total ?? items.length
+							const completed = toolAny?.completed ?? items.filter((it) => it?.status === "completed").length
+							
+							// const items: any[] = currentTodoList?.items ?? []
+							// const total = currentTodoList?.totalCount ?? summaryFromTool?.total ?? items.length
+							// const completed = currentTodoList?.completedCount ?? summaryFromTool?.completed ?? items.filter((it) => it?.status === "completed").length
 							const percent = total > 0 ? Math.round((completed * 100) / total) : 0
 
 							// Render nested items with indentation, but keep progress based on top-level only
@@ -502,7 +510,7 @@ export const ChatRowContent = ({
 									if (renderCount >= MAX_RENDER) break
 									const it = arr[idx]
 									const key = (it?.id ?? `${level}-${idx}`) as React.Key
-									const icon = it?.status === "completed" ? "[x]" : it?.status === "in_progress" ? "[~]" : "[ ]"
+									const icon = it?.status === "completed" ? "[x]" : it?.status === "in_progress" ? "[-]" : "[ ]"
 									out.push(
 										<li key={key} style={{ marginBottom: 2, paddingLeft: level * 16 }}>
 											<span style={{ opacity: 0.85 }}>{icon}</span> {it?.content || "(untitled)"}

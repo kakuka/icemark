@@ -69,6 +69,17 @@ export async function updateTodoListTool(
 			// 	return
 			// }
 
+			const completeMessage = JSON.stringify({
+				tool: "updateTodoList",
+				reason: removeClosingTag("reason", reasonParam),
+				items: normalized.items,
+				total: normalized.totalCount,
+				completed: normalized.completedCount,
+			  })
+			  
+			  // 用“完成版”替换之前的 partial 工具消息
+			await cline.ask("tool", completeMessage,false)
+
 			// Apply change after approval
 			const provider = cline.providerRef.deref()
 			if (!provider) {
@@ -76,7 +87,14 @@ export async function updateTodoListTool(
 				return
 			}
 			;(provider as any).setTaskTodoList?.(cline.taskId, normalized)
-			await provider.postStateToWebview()
+			
+			// in cline.recursivelyMakeClineRequests will call await this.providerRef.deref()?.postStateToWebview()
+			// so we don't need to call postStateToWebview here
+			//await provider.postStateToWebview()
+
+			// const markdown = renderTodoListAsMarkdown(normalized.items, normalized.completedCount, normalized.totalCount, removeClosingTag("reason", reasonParam))
+			// pushToolResult(markdown)
+			// cline.say("text", markdown)
 
 			cline.consecutiveMistakeCount = 0
 			pushToolResult(formatResponse.toolResult("Updated todo list successfully"))
@@ -87,6 +105,29 @@ export async function updateTodoListTool(
 		return
 	}
 }
+
+// function renderTodoListAsMarkdown(items: TodoItem[], completed: number, total: number, reason?: string) {
+// 	const lines: string[] = []
+// 	lines.push(`**Todo List:**  ${completed}/${total} (${total > 0 ? Math.round((completed * 100) / total) : 0}%)`)
+// 	if (reason) {
+// 		lines.push("")
+// 		lines.push(`Reason: ${reason}`)
+		
+// 	}
+// 	lines.push("")
+// 	const walk = (arr: TodoItem[], level: number) => {
+// 		for (let i = 0; i < arr.length; i++) {
+// 			const it = arr[i]
+// 			const icon = it.status === "completed" ? "[x]" : it.status === "in_progress" ? "[~]" : "[ ]"
+// 			lines.push(`${"  ".repeat(level)}- ${icon} ${it.content}`)
+// 			if (Array.isArray(it.children) && it.children.length > 0) {
+// 				walk(it.children, level + 1)
+// 			}
+// 		}
+// 	}
+// 	walk(items, 0)
+// 	return lines.join("\n")
+// }
 
 function normalizeAndValidate(input: any): { items: TodoItem[]; completedCount: number; totalCount: number } | string {
 	const items: any[] = Array.isArray(input) ? input : Array.isArray(input?.items) ? input.items : []
