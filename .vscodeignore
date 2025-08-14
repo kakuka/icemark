@@ -3,6 +3,7 @@
 .github/**
 .husky/**
 .vscode/**
+.dev-prompt/**
 coverage/**
 node_modules/**
 src/**
@@ -16,6 +17,7 @@ jest.*
 **/*.map
 **/*.ts
 **/.gitignore
+
 
 # Custom
 .env.sample
