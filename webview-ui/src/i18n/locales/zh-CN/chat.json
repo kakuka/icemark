@@ -262,10 +262,10 @@
 		"copyToInput": "复制到输入框（或按住Shift点击）"
 	},
 	"announcement": {
-		"title": "🎉 Icemark 1.2.7 已发布",
-		"description": "优化用户体验，增加使用文档。",
+		"title": "🎉 Icemark 1.2.8 已发布",
+		"description": "复杂任务支持。",
 		"whatsNew": "主要功能",
-		"feature1": "支持Markdown实时渲染",
+		"feature1": "添加todolist工具，让icemark可以管理复杂任务。",
 		"hideButton": "隐藏公告"
 	},
 	"browser": {

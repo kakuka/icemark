@@ -254,10 +254,10 @@
 		"description": "Auto-approve allows Icemark to perform actions without asking for permission. Only enable for actions you fully trust. More detailed configuration available in <settingsLink>Settings</settingsLink>."
 	},
 	"announcement": {
-		"title": "🎉 Icemark 1.2.7 Released",
-		"description": "Optimized user experience and added documentation.",
+		"title": "🎉 Icemark 1.2.8 Released",
+		"description": "complex task support.",
 		"whatsNew": "Main Features",
-		"feature1": "Support for real-time Markdown rendering",
+		"feature1": "add todolist tool,so icemark can manage complex task with it.",
 
 		"hideButton": "Hide announcement"
 	},
