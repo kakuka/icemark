@@ -198,6 +198,7 @@ type GlobalSettings = {
 	alwaysAllowSubtasks?: boolean | undefined
 	alwaysAllowExecute?: boolean | undefined
 	allowedCommands?: string[] | undefined
+	alwaysAllowUpdateTodoList?: boolean | undefined
 	browserToolEnabled?: boolean | undefined
 	browserViewportSize?: string | undefined
 	screenshotQuality?: number | undefined
@@ -478,6 +479,7 @@ type RooCodeEvents = {
 			| "url_content_fetch"
 			| "web_search"
 			| "prototype"
+			| "update_todo_list"
 		),
 		string,
 	]

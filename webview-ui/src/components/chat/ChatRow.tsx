@@ -88,7 +88,7 @@ export const ChatRowContent = ({
 	onSuggestionClick,
 }: ChatRowContentProps) => {
 	const { t } = useTranslation()
-	const { mcpServers, alwaysAllowMcp, currentCheckpoint, currentTodoList } = useExtensionState()
+	const { mcpServers, alwaysAllowMcp, currentCheckpoint } = useExtensionState()
 	const [reasoningCollapsed, setReasoningCollapsed] = useState(true)
 	const [isDiffErrorExpanded, setIsDiffErrorExpanded] = useState(false)
 	const [showCopySuccess, setShowCopySuccess] = useState(false)
@@ -476,7 +476,9 @@ export const ChatRowContent = ({
 				return (
 					<>
 						<div style={headerStyle}>
-							<span className="codicon codicon-checklist" style={{ color: normalColor, marginBottom: "-1.5px" }}></span>
+							<span
+								className="codicon codicon-checklist"
+								style={{ color: normalColor, marginBottom: "-1.5px" }}></span>
 							<span style={{ fontWeight: "bold" }}>{t("chat:todo.updated")}</span>
 						</div>
 						{(() => {
@@ -492,10 +494,11 @@ export const ChatRowContent = ({
 							// const items: any[] = toolAny?.items ?? currentTodoList?.items ?? []
 							// const total = toolAny?.total ?? currentTodoList?.totalCount ?? items.length
 							// const completed = toolAny?.completed ?? currentTodoList?.completedCount ?? items.filter((it) => it?.status === "completed").length
-							const items: any[] = toolAny?.items ??  []
+							const items: any[] = toolAny?.items ?? []
 							const total = toolAny?.total ?? items.length
-							const completed = toolAny?.completed ?? items.filter((it) => it?.status === "completed").length
-							
+							const completed =
+								toolAny?.completed ?? items.filter((it) => it?.status === "completed").length
+
 							// const items: any[] = currentTodoList?.items ?? []
 							// const total = currentTodoList?.totalCount ?? summaryFromTool?.total ?? items.length
 							// const completed = currentTodoList?.completedCount ?? summaryFromTool?.completed ?? items.filter((it) => it?.status === "completed").length
@@ -510,7 +513,12 @@ export const ChatRowContent = ({
 									if (renderCount >= MAX_RENDER) break
 									const it = arr[idx]
 									const key = (it?.id ?? `${level}-${idx}`) as React.Key
-									const icon = it?.status === "completed" ? "[x]" : it?.status === "in_progress" ? "[-]" : "[ ]"
+									const icon =
+										it?.status === "completed"
+											? "[x]"
+											: it?.status === "in_progress"
+												? "[-]"
+												: "[ ]"
 									out.push(
 										<li key={key} style={{ marginBottom: 2, paddingLeft: level * 16 }}>
 											<span style={{ opacity: 0.85 }}>{icon}</span> {it?.content || "(untitled)"}
@@ -530,8 +538,7 @@ export const ChatRowContent = ({
 										backgroundColor: CODE_BLOCK_BG_COLOR,
 										border: "1px solid var(--vscode-editorGroup-border)",
 										padding: "8px 10px",
-									}}
-								>
+									}}>
 									<div style={{ marginBottom: 6, opacity: 0.9, fontSize: 12 }}>
 										{t("chat:todo.progress")}: {completed}/{total} ({percent}%)
 									</div>

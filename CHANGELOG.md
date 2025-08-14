@@ -1,5 +1,8 @@
 # Icemark Changelog
 
+## [1.2.8] - 2025-08-14
+- add todo list for complex task
+
 ## [1.2.7] - 2025-08-02
 - fix markdown render 
 - docs
