@@ -137,7 +137,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 	const [workspaceExpanded, setWorkspaceExpanded] = useState<boolean>(false) // 默认折叠
 	
 	// WorkspaceIndicator 显示/隐藏状态 - 新增的toggle控制
-	const [workspaceVisible, setWorkspaceVisible] = useState<boolean>(false) // 默认隐藏
+	const [workspaceVisible, setWorkspaceVisible] = useState<boolean>(true) // 默认显示
 	
 	// 当task状态变化时，只在进入task页面时折叠
 	useEffect(() => {

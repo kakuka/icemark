@@ -5,7 +5,7 @@
 	"views.terminalMenu.label": "Icemark",
 	"views.activitybar.title": "Icemark",
 	"command.newTask.title": "New Task",
-	"command.workspace.title": "Toggle Workspace",
+	"command.workspace.title": "Workspace",
 	"command.mcpServers.title": "MCP Servers",
 	"command.prompts.title": "Prompts",
 	"command.history.title": "History",

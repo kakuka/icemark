@@ -103,12 +103,12 @@
 			{
 				"command": "icemark.workspaceButtonClicked",
 				"title": "%command.workspace.title%",
-				"icon": "$(folder)"
+				"icon": "assets/images/workspace-close.svg"
 			},
 			{
 				"command": "icemark.workspaceButtonClickedActive",
 				"title": "%command.workspace.title%",
-				"icon": "$(folder-opened)"
+				"icon": "assets/images/workspace.svg"
 			},
 			{
 				"command": "icemark.mcpButtonClicked",

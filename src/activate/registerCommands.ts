@@ -24,7 +24,7 @@ let sidebarPanel: vscode.WebviewView | undefined = undefined
 let tabPanel: vscode.WebviewPanel | undefined = undefined
 
 // Store workspace visibility state
-let workspaceVisible = false
+let workspaceVisible = true // 默认显示工作区
 
 /**
  * Get the currently active panel

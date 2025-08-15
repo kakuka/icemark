@@ -85,7 +85,7 @@ export async function activate(context: vscode.ExtensionContext) {
 	}
 
 	// Initialize workspace visibility context
-	vscode.commands.executeCommand("setContext", "icemark.workspaceVisible", false)
+	vscode.commands.executeCommand("setContext", "icemark.workspaceVisible", true)
 
 	const contextProxy = await ContextProxy.getInstance(context)
 	const provider = new ClineProvider(context, outputChannel, "sidebar", contextProxy)
