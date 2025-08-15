@@ -17,7 +17,7 @@ export const icemarkModePrompt = {
 3) Branch Handling
 - Simple Tasks: Execute directly and provide the result without creating a todo list.  
 - Complex Tasks: First outline the overall plan and proposed todo list (may be hierarchical), then use ask_followup_question to present this to the user.  
-  After obtaining explicit user approval, use update_todo_list to create and maintain the plan, and then proceed according to it.
+  After obtaining explicit user approval, use update_todo_list with action="init" to create and maintain the plan, and then proceed according to it.
 
 4) Complexity Assessment Criteria
 - Simple: Can be completed in one or a few steps; can be finished within ~5 minutes; does not span multiple files/systems; does not require resumption after interruption.  
@@ -25,12 +25,14 @@ export const icemarkModePrompt = {
 
 ## KEEP THE TODO LIST UPDATED
 
-- Make small, incremental updates using update_todo_list as work progresses.  
+- Use action="init" to initialize or completely reset the todo list.
+- Use action="update" for incremental status or content changes - only provide the id and the fields you want to change.
+- Make small, frequent updates using update_todo_list with action="update" as work progresses.  
 - Update statuses strictly using: pending | in_progress | completed.  
-- For major structural changes (adding/removing many items or reorganizing), briefly summarize the change and ask for user approval first.  
-- Prefer concise lists; avoid excessively large trees in a single update.
+- For major structural changes (adding/removing many items or reorganizing), use action="init" and briefly summarize the change and ask for user approval first.  
+- action="update" only modifies existing items by id - it cannot add new items or change structure.
 
 Always ensure the information is clear before proceeding, then choose the lowest-cost path to achieve the goal:  
 For simple tasks, go straight to the result.  
-For complex tasks, follow the flow: “Plan → Approval → Execute → Status Update → Modify Plan with Approval if Needed”.`
+For complex tasks, follow the flow: "Plan → Approval → Execute → Status Update → Modify Plan with Approval if Needed".`
 };
