@@ -23,6 +23,9 @@ export function getVisibleProviderOrLog(outputChannel: vscode.OutputChannel): Cl
 let sidebarPanel: vscode.WebviewView | undefined = undefined
 let tabPanel: vscode.WebviewPanel | undefined = undefined
 
+// Store workspace visibility state
+let workspaceVisible = false
+
 /**
  * Get the currently active panel
  * @returns WebviewPanel或WebviewView
@@ -76,6 +79,36 @@ const getCommandsMap = ({ context, outputChannel, provider }: RegisterCommandOpt
 			await visibleProvider.removeClineFromStack()
 			await visibleProvider.postStateToWebview()
 			await visibleProvider.postMessageToWebview({ type: "action", action: "chatButtonClicked" })
+		},
+		"icemark.workspaceButtonClicked": () => {
+			const visibleProvider = getVisibleProviderOrLog(outputChannel)
+
+			if (!visibleProvider) {
+				return
+			}
+
+			telemetryService.captureTitleButtonClicked("workspace")
+
+			// 切换workspace可见状态
+			workspaceVisible = !workspaceVisible
+			// 设置VSCode上下文，用于控制按钮样式
+			vscode.commands.executeCommand("setContext", "icemark.workspaceVisible", workspaceVisible)
+			visibleProvider.postMessageToWebview({ type: "action", action: "workspaceButtonClicked" })
+		},
+		"icemark.workspaceButtonClickedActive": () => {
+			const visibleProvider = getVisibleProviderOrLog(outputChannel)
+
+			if (!visibleProvider) {
+				return
+			}
+
+			telemetryService.captureTitleButtonClicked("workspace")
+
+			// 切换workspace可见状态
+			workspaceVisible = !workspaceVisible
+			// 设置VSCode上下文，用于控制按钮样式
+			vscode.commands.executeCommand("setContext", "icemark.workspaceVisible", workspaceVisible)
+			visibleProvider.postMessageToWebview({ type: "action", action: "workspaceButtonClicked" })
 		},
 		"icemark.mcpButtonClicked": () => {
 			const visibleProvider = getVisibleProviderOrLog(outputChannel)
