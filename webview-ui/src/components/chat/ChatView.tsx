@@ -136,6 +136,9 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 	// WorkspaceIndicator 展开/折叠状态
 	const [workspaceExpanded, setWorkspaceExpanded] = useState<boolean>(false) // 默认折叠
 	
+	// WorkspaceIndicator 显示/隐藏状态 - 新增的toggle控制
+	const [workspaceVisible, setWorkspaceVisible] = useState<boolean>(true) // 默认显示
+	
 	// 当task状态变化时，只在进入task页面时折叠
 	useEffect(() => {
 		if (task) {
@@ -563,6 +566,9 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 								textAreaRef.current?.focus()
 							}
 							break
+						case "workspaceButtonClicked":
+							setWorkspaceVisible((prev) => !prev)
+							break
 						case "focusInput":
 							textAreaRef.current?.focus()
 							break
@@ -608,6 +614,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 			handleSetChatBoxMessage,
 			handlePrimaryButtonClick,
 			handleSecondaryButtonClick,
+			setWorkspaceVisible,
 		],
 	)
 
@@ -1230,7 +1237,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 	return (
 		<div className={isHidden ? "hidden" : "fixed top-0 left-0 right-0 bottom-0 flex flex-col overflow-hidden"}>
 			{showAnnouncement && <Announcement hideAnnouncement={hideAnnouncement} />}
-			<WorkspaceIndicator expanded={workspaceExpanded} onToggle={setWorkspaceExpanded} />
+			{workspaceVisible && <WorkspaceIndicator expanded={workspaceExpanded} onToggle={setWorkspaceExpanded} />}
 			{task ? (
 				<>
 					

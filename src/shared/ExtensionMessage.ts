@@ -73,6 +73,7 @@ export interface ExtensionMessage {
 	text?: string
 	action?:
 		| "chatButtonClicked"
+		| "workspaceButtonClicked"
 		| "mcpButtonClicked"
 		| "settingsButtonClicked"
 		| "historyButtonClicked"

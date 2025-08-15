@@ -89,7 +89,7 @@
 				{
 					"type": "webview",
 					"id": "icemark.SidebarProvider",
-					"name": "icemark",
+					"name": "",
 					"icon": "assets/icons/icemark-icon.svg"
 				}
 			]
@@ -99,6 +99,16 @@
 				"command": "icemark.plusButtonClicked",
 				"title": "%command.newTask.title%",
 				"icon": "$(add)"
+			},
+			{
+				"command": "icemark.workspaceButtonClicked",
+				"title": "%command.workspace.title%",
+				"icon": "assets/images/workspace-close.svg"
+			},
+			{
+				"command": "icemark.workspaceButtonClickedActive",
+				"title": "%command.workspace.title%",
+				"icon": "assets/images/workspace.svg"
 			},
 			{
 				"command": "icemark.mcpButtonClicked",
@@ -234,28 +244,38 @@
 					"when": "view == icemark.SidebarProvider"
 				},
 				{
-					"command": "icemark.promptsButtonClicked",
+					"command": "icemark.workspaceButtonClicked",
 					"group": "navigation@2",
-					"when": "view == icemark.SidebarProvider"
+					"when": "view == icemark.SidebarProvider && !icemark.workspaceVisible"
 				},
 				{
-					"command": "icemark.mcpButtonClicked",
+					"command": "icemark.workspaceButtonClickedActive",
+					"group": "navigation@2",
+					"when": "view == icemark.SidebarProvider && icemark.workspaceVisible"
+				},
+				{
+					"command": "icemark.promptsButtonClicked",
 					"group": "navigation@3",
 					"when": "view == icemark.SidebarProvider"
 				},
 				{
-					"command": "icemark.historyButtonClicked",
+					"command": "icemark.mcpButtonClicked",
 					"group": "navigation@4",
 					"when": "view == icemark.SidebarProvider"
 				},
 				{
-					"command": "icemark.popoutButtonClicked",
+					"command": "icemark.historyButtonClicked",
 					"group": "navigation@5",
 					"when": "view == icemark.SidebarProvider"
 				},
 				{
-					"command": "icemark.settingsButtonClicked",
+					"command": "icemark.popoutButtonClicked",
 					"group": "navigation@6",
+					"when": "view == icemark.SidebarProvider"
+				},
+				{
+					"command": "icemark.settingsButtonClicked",
+					"group": "navigation@7",
 					"when": "view == icemark.SidebarProvider"
 				}
 			],
@@ -266,28 +286,38 @@
 					"when": "activeWebviewPanelId == icemark.TabPanelProvider"
 				},
 				{
-					"command": "icemark.promptsButtonClicked",
+					"command": "icemark.workspaceButtonClicked",
 					"group": "navigation@2",
-					"when": "activeWebviewPanelId == icemark.TabPanelProvider"
+					"when": "activeWebviewPanelId == icemark.TabPanelProvider && !icemark.workspaceVisible"
 				},
 				{
-					"command": "icemark.mcpButtonClicked",
+					"command": "icemark.workspaceButtonClickedActive",
+					"group": "navigation@2",
+					"when": "activeWebviewPanelId == icemark.TabPanelProvider && icemark.workspaceVisible"
+				},
+				{
+					"command": "icemark.promptsButtonClicked",
 					"group": "navigation@3",
 					"when": "activeWebviewPanelId == icemark.TabPanelProvider"
 				},
 				{
-					"command": "icemark.historyButtonClicked",
+					"command": "icemark.mcpButtonClicked",
 					"group": "navigation@4",
 					"when": "activeWebviewPanelId == icemark.TabPanelProvider"
 				},
 				{
-					"command": "icemark.popoutButtonClicked",
+					"command": "icemark.historyButtonClicked",
 					"group": "navigation@5",
 					"when": "activeWebviewPanelId == icemark.TabPanelProvider"
 				},
 				{
-					"command": "icemark.settingsButtonClicked",
+					"command": "icemark.popoutButtonClicked",
 					"group": "navigation@6",
+					"when": "activeWebviewPanelId == icemark.TabPanelProvider"
+				},
+				{
+					"command": "icemark.settingsButtonClicked",
+					"group": "navigation@7",
 					"when": "activeWebviewPanelId == icemark.TabPanelProvider"
 				}
 			]

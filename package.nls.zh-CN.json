@@ -2,6 +2,7 @@
 	"extension.displayName": "Icemark",
 	"extension.description": "产品经理的AI Agent",
 	"command.newTask.title": "新建任务",
+	"command.workspace.title": "工作区",
 	"command.explainCode.title": "解释",
 	"command.fixCode.title": "修复",
 	"command.improveCode.title": "改进",

@@ -84,6 +84,9 @@ export async function activate(context: vscode.ExtensionContext) {
 		context.globalState.update("allowedCommands", defaultCommands)
 	}
 
+	// Initialize workspace visibility context
+	vscode.commands.executeCommand("setContext", "icemark.workspaceVisible", true)
+
 	const contextProxy = await ContextProxy.getInstance(context)
 	const provider = new ClineProvider(context, outputChannel, "sidebar", contextProxy)
 	telemetryService.setProvider(provider)
