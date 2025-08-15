@@ -11,17 +11,29 @@ export async function updateTodoListTool(
 	removeClosingTag: RemoveClosingTag,
 ) {
 	const todosParam: string | undefined = block.params.todos
+	const actionParam: string | undefined = block.params.action
 	const reasonParam: string | undefined = block.params.reason
 
 	try {
 		if (block.partial) {
 			const partialMessage = JSON.stringify({
 				tool: "updateTodoList",
+				action: removeClosingTag("action", actionParam),
 				reason: removeClosingTag("reason", reasonParam),
 			})
 			await cline.ask("tool", partialMessage, block.partial).catch(() => {})
 			return
 		} else {
+			// Validate action parameter
+			if (!actionParam || !["init", "update"].includes(actionParam)) {
+				cline.consecutiveMistakeCount++
+				cline.recordToolError("update_todo_list")
+				pushToolResult(formatResponse.toolError(
+					`Invalid or missing <action>. Use "init" or "update".`
+				))
+				return
+			}
+
 			if (!todosParam) {
 				cline.consecutiveMistakeCount++
 				cline.recordToolError("update_todo_list")
@@ -44,41 +56,57 @@ export async function updateTodoListTool(
 				return
 			}
 
-			// Strict validation: only {id, content, status, children?} are allowed. status ∈ {pending,in_progress,completed}
-			const normalized = normalizeAndValidate(parsedTodos)
-			if (typeof normalized === "string") {
-				cline.consecutiveMistakeCount++
-				cline.recordToolError("update_todo_list")
-				pushToolResult(formatResponse.toolError(normalized))
-				return
-			}
+			let normalized: { items: TodoItem[]; completedCount: number; totalCount: number }
 
-			// Ask approval with lightweight payload (summary only)
-			// const summary = {
-			// 	total: normalized.totalCount,
-			// 	completed: normalized.completedCount,
-			// 	inProgress: normalized.items.filter((i) => i.status === "in_progress").length,
-			// }
-			// const completeMessage = JSON.stringify({
-			// 	tool: "updateTodoList",
-			// 	reason: removeClosingTag("reason", reasonParam),
-			// 	summary,
-			// })
-			// const didApprove = await askApproval("tool", completeMessage)
-			// if (!didApprove) {
-			// 	return
-			// }
+			if (actionParam === "init") {
+				// Init mode: full validation and replacement
+				const initResult = normalizeAndValidate(parsedTodos)
+				if (typeof initResult === "string") {
+					cline.consecutiveMistakeCount++
+					cline.recordToolError("update_todo_list")
+					pushToolResult(formatResponse.toolError(initResult))
+					return
+				}
+				normalized = initResult
+			} else {
+				// Update mode: incremental updates by id
+				const provider = cline.providerRef.deref()
+				if (!provider) {
+					pushToolResult(formatResponse.toolError("Provider is not available."))
+					return
+				}
+
+				const currentTodoList = (provider as any).getTaskTodoList?.(cline.taskId)
+				if (!currentTodoList || !currentTodoList.items || !Array.isArray(currentTodoList.items)) {
+					cline.consecutiveMistakeCount++
+					cline.recordToolError("update_todo_list")
+					pushToolResult(formatResponse.toolError(
+						"No existing todo list found. Use action=\"init\" to initialize first."
+					))
+					return
+				}
+
+				const updateResult = applyUpdates(currentTodoList, parsedTodos)
+				if (typeof updateResult === "string") {
+					cline.consecutiveMistakeCount++
+					cline.recordToolError("update_todo_list")
+					pushToolResult(formatResponse.toolError(updateResult))
+					return
+				}
+				normalized = updateResult
+			}
 
 			const completeMessage = JSON.stringify({
 				tool: "updateTodoList",
+				action: actionParam,
 				reason: removeClosingTag("reason", reasonParam),
 				items: normalized.items,
 				total: normalized.totalCount,
 				completed: normalized.completedCount,
-			  })
-			  
-			  // 用“完成版”替换之前的 partial 工具消息
-			await cline.ask("tool", completeMessage,false)
+			})
+			
+			// 用"完成版"替换之前的 partial 工具消息
+			await cline.ask("tool", completeMessage, false)
 
 			// Apply change after approval
 			const provider = cline.providerRef.deref()
@@ -88,14 +116,6 @@ export async function updateTodoListTool(
 			}
 			;(provider as any).setTaskTodoList?.(cline.taskId, normalized)
 			
-			// in cline.recursivelyMakeClineRequests will call await this.providerRef.deref()?.postStateToWebview()
-			// so we don't need to call postStateToWebview here
-			//await provider.postStateToWebview()
-
-			// const markdown = renderTodoListAsMarkdown(normalized.items, normalized.completedCount, normalized.totalCount, removeClosingTag("reason", reasonParam))
-			// pushToolResult(markdown)
-			// cline.say("text", markdown)
-
 			cline.consecutiveMistakeCount = 0
 			pushToolResult(formatResponse.toolResult("Updated todo list successfully"))
 			return
@@ -106,28 +126,94 @@ export async function updateTodoListTool(
 	}
 }
 
-// function renderTodoListAsMarkdown(items: TodoItem[], completed: number, total: number, reason?: string) {
-// 	const lines: string[] = []
-// 	lines.push(`**Todo List:**  ${completed}/${total} (${total > 0 ? Math.round((completed * 100) / total) : 0}%)`)
-// 	if (reason) {
-// 		lines.push("")
-// 		lines.push(`Reason: ${reason}`)
+function applyUpdates(currentTodoList: any, updateData: any): { items: TodoItem[]; completedCount: number; totalCount: number } | string {
+	const updateItems: any[] = Array.isArray(updateData) ? updateData : Array.isArray(updateData?.items) ? updateData.items : []
+	
+	if (!Array.isArray(updateItems) || updateItems.length === 0) {
+		return "Invalid todos for update: provide {\"items\":[...]} or a non-empty array of items."
+	}
+
+	// Validate update items
+	for (const item of updateItems) {
+		if (!item || typeof item.id !== "string" || item.id.trim() === "") {
+			return "Invalid todos for update: each item must include a non-empty 'id' string."
+		}
 		
-// 	}
-// 	lines.push("")
-// 	const walk = (arr: TodoItem[], level: number) => {
-// 		for (let i = 0; i < arr.length; i++) {
-// 			const it = arr[i]
-// 			const icon = it.status === "completed" ? "[x]" : it.status === "in_progress" ? "[~]" : "[ ]"
-// 			lines.push(`${"  ".repeat(level)}- ${icon} ${it.content}`)
-// 			if (Array.isArray(it.children) && it.children.length > 0) {
-// 				walk(it.children, level + 1)
-// 			}
-// 		}
-// 	}
-// 	walk(items, 0)
-// 	return lines.join("\n")
-// }
+		const hasStatus = "status" in item
+		const hasContent = "content" in item
+		
+		if (!hasStatus && !hasContent) {
+			return "Invalid todos for update: each item must include at least one of 'status' or 'content'."
+		}
+		
+		if (hasStatus && !["pending", "in_progress", "completed"].includes(item.status)) {
+			return "Invalid todos for update: 'status' must be one of pending | in_progress | completed."
+		}
+		
+		if (hasContent && (typeof item.content !== "string" || item.content.trim() === "")) {
+			return "Invalid todos for update: 'content' must be a non-empty string."
+		}
+	}
+
+	// Create a flat map of all items by id for fast lookup
+	const flatItemMap = new Map<string, TodoItem>()
+	const collectItems = (items: TodoItem[]) => {
+		for (const item of items) {
+			flatItemMap.set(item.id, item)
+			if (item.children) {
+				collectItems(item.children)
+			}
+		}
+	}
+	collectItems(currentTodoList.items)
+
+	// Check if all update ids exist
+	for (const updateItem of updateItems) {
+		if (!flatItemMap.has(updateItem.id)) {
+			return `Update failed: id "${updateItem.id}" not found in current todo list. Use action="init" to rebuild if needed.`
+		}
+	}
+
+	// Apply updates
+	for (const updateItem of updateItems) {
+		const existingItem = flatItemMap.get(updateItem.id)!
+		if ("status" in updateItem) {
+			existingItem.status = updateItem.status
+		}
+		if ("content" in updateItem) {
+			existingItem.content = updateItem.content
+		}
+	}
+
+	// Recalculate counts
+	const { completedCount, totalCount } = calculateCounts(currentTodoList.items)
+	
+	return {
+		items: currentTodoList.items,
+		completedCount,
+		totalCount
+	}
+}
+
+function calculateCounts(items: TodoItem[]): { completedCount: number; totalCount: number } {
+	let completedCount = 0
+	let totalCount = 0
+	
+	const countItems = (itemList: TodoItem[]) => {
+		for (const item of itemList) {
+			totalCount++
+			if (item.status === "completed") {
+				completedCount++
+			}
+			if (item.children) {
+				countItems(item.children)
+			}
+		}
+	}
+	
+	countItems(items)
+	return { completedCount, totalCount }
+}
 
 function normalizeAndValidate(input: any): { items: TodoItem[]; completedCount: number; totalCount: number } | string {
 	const items: any[] = Array.isArray(input) ? input : Array.isArray(input?.items) ? input.items : []
@@ -162,8 +248,7 @@ function normalizeAndValidate(input: any): { items: TodoItem[]; completedCount: 
 		return e?.message || "Invalid todos."
 	}
 
-	const totalCount = out.length
-	const completedCount = out.filter((i) => i.status === "completed").length
+	const { completedCount, totalCount } = calculateCounts(out)
 	return { items: out, completedCount, totalCount }
 }
 

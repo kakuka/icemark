@@ -491,20 +491,12 @@ export const ChatRowContent = ({
 							// 	}
 							// })()
 							const toolAny = tool as any
-							// const items: any[] = toolAny?.items ?? currentTodoList?.items ?? []
-							// const total = toolAny?.total ?? currentTodoList?.totalCount ?? items.length
-							// const completed = toolAny?.completed ?? currentTodoList?.completedCount ?? items.filter((it) => it?.status === "completed").length
 							const items: any[] = toolAny?.items ?? []
 							const total = toolAny?.total ?? items.length
 							const completed =
 								toolAny?.completed ?? items.filter((it) => it?.status === "completed").length
-
-							// const items: any[] = currentTodoList?.items ?? []
-							// const total = currentTodoList?.totalCount ?? summaryFromTool?.total ?? items.length
-							// const completed = currentTodoList?.completedCount ?? summaryFromTool?.completed ?? items.filter((it) => it?.status === "completed").length
 							const percent = total > 0 ? Math.round((completed * 100) / total) : 0
 
-							// Render nested items with indentation, but keep progress based on top-level only
 							let renderCount = 0
 							const MAX_RENDER = 50
 							const renderItems = (arr: any[], level: number): JSX.Element[] => {
