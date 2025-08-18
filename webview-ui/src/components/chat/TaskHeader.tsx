@@ -55,8 +55,10 @@ const TaskHeader = ({
 	const todoTotal = currentTodoList?.totalCount ?? 0
 	const todoPercent = todoTotal > 0 ? Math.round((todoCompleted * 100) / todoTotal) : 0
 
-	// Calculate reminder line count
-	const reminderLineCount = currentTaskReminder ? currentTaskReminder.split('\n').length : 0
+	// Calculate reminder line count (only count non-empty lines)
+	const reminderLineCount = currentTaskReminder 
+		? currentTaskReminder.split('\n').filter(line => line.trim().length > 0).length 
+		: 0
 
 	// Update reminder text when currentTaskReminder changes
 	useEffect(() => {

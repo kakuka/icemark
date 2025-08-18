@@ -87,6 +87,7 @@ import { prototypeTool } from "./tools/prototypeTool"
 import { updateTodoListTool } from "./tools/updateTodoListTool"
 import { formatReminderSection } from "./prompts/sections/todo"
 import { formatUserReminderSection } from "./prompts/sections/reminder"
+import { extractReminder } from "../shared/reminderExtractor"
 
 // prompts
 import { formatResponse } from "./prompts/responses"
@@ -541,6 +542,30 @@ export class Cline extends EventEmitter<ClineEvents> {
 	): Promise<undefined> {
 		if (this.abort) {
 			throw new Error(`[Cline#say] task ${this.taskId}.${this.instanceId} aborted`)
+		}
+
+		// Extract and store reminder content from user feedback messages
+		if (type === "user_feedback" && text && !partial) {
+			try {
+				const reminderContent = extractReminder(text)
+				if (reminderContent) {
+					const provider = this.providerRef.deref()
+					if (provider) {
+						// Get existing reminder and merge with new content
+						const existingReminder = provider.getTaskReminder(this.taskId)
+						const mergedReminder = existingReminder 
+							? `${existingReminder}\n\n${reminderContent}`
+							: reminderContent
+						
+						provider.setTaskReminder(this.taskId, mergedReminder)
+						await provider.postStateToWebview() // Update frontend state
+						console.log(`Reminder extracted and added for task ${this.taskId}: ${reminderContent}`)
+					}
+				}
+			} catch (error) {
+				console.error(`Error extracting reminder: ${error.message}`)
+				// Don't fail the message processing if reminder extraction fails
+			}
 		}
 
 		if (partial !== undefined) {
