@@ -949,6 +949,13 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 				vscode.window.showErrorMessage("原型操作失败：" + error.message)
 			}
 			break
+		case "updateTaskReminder":
+			const currentCline = provider.getCurrentCline()
+			if (currentCline && message.text !== undefined) {
+				provider.setTaskReminder(currentCline.taskId, message.text)
+				await provider.postStateToWebview()
+			}
+			break
 		case "toggleApiConfigPin":
 			if (message.text) {
 				const currentPinned = getGlobalState("pinnedApiConfigs") ?? {}

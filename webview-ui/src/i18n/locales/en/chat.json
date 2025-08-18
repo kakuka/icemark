@@ -10,7 +10,15 @@
 		"contextWindow": "Context Length:",
 		"closeAndStart": "Close task and start a new one",
 		"export": "Export task history",
-		"delete": "Delete Task (Shift + Click to skip confirmation)"
+		"delete": "Delete Task (Shift + Click to skip confirmation)",
+		"todo": "Todo",
+		"reminder": "Reminder",
+		"reminderTooltip": "Click to edit user reminder",
+		"addReminderTooltip": "Click to add user reminder",
+		"userReminder": "User Reminder",
+		"reminderPlaceholder": "Enter reminder content here. This will be continuously sent to AI throughout the task...",
+		"save": "Save",
+		"cancel": "Cancel"
 	},
 	"unpin": "Unpin",
 	"pin": "Pin",

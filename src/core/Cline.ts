@@ -86,6 +86,7 @@ import { webSearchTool } from "./tools/webSearchTool"
 import { prototypeTool } from "./tools/prototypeTool"
 import { updateTodoListTool } from "./tools/updateTodoListTool"
 import { formatReminderSection } from "./prompts/sections/todo"
+import { formatUserReminderSection } from "./prompts/sections/reminder"
 
 // prompts
 import { formatResponse } from "./prompts/responses"
@@ -2353,6 +2354,16 @@ export class Cline extends EventEmitter<ClineEvents> {
 			const reminder = formatReminderSection(todo)
 			if (reminder) {
 				details += `\n\n${reminder}`
+			}
+		} catch {}
+
+		// Append user reminders after todo reminders
+		try {
+			const provider = this.providerRef.deref()
+			const userReminder = provider?.getTaskReminder?.()
+			const userReminderSection = formatUserReminderSection(userReminder)
+			if (userReminderSection) {
+				details += `\n\n${userReminderSection}`
 			}
 		} catch {}
 
