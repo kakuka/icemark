@@ -210,6 +210,7 @@ export type ExtensionState = Pick<
 	settingsImportedAt?: number
 	historyPreviewCollapsed?: boolean
 	currentTodoList?: any
+	currentTaskReminder?: string
 }
 
 export type { ClineMessage, ClineAsk, ClineSay }

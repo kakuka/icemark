@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from "react"
+import { memo, useRef, useState, useEffect } from "react"
 import { useWindowSize } from "react-use"
 import { useTranslation } from "react-i18next"
 import { VSCodeBadge } from "@vscode/webview-ui-toolkit/react"
@@ -12,6 +12,7 @@ import { cn } from "@src/lib/utils"
 import { Button } from "@src/components/ui"
 import { useExtensionState } from "@src/context/ExtensionStateContext"
 import { useSelectedModel } from "@/components/ui/hooks/useSelectedModel"
+import { vscode } from "@src/utils/vscode"
 
 import Thumbnails from "../common/Thumbnails"
 
@@ -43,20 +44,56 @@ const TaskHeader = ({
 	onClose,
 }: TaskHeaderProps) => {
 	const { t } = useTranslation()
-	const { apiConfiguration, currentTaskItem, currentTodoList } = useExtensionState()
+	const { apiConfiguration, currentTaskItem, currentTodoList, currentTaskReminder } = useExtensionState()
 	const { info: model } = useSelectedModel(apiConfiguration)
 	const [isTaskExpanded, setIsTaskExpanded] = useState(false)
+	const [isReminderExpanded, setIsReminderExpanded] = useState(false)
+	const [reminderText, setReminderText] = useState(currentTaskReminder || "")
 
 	// Precompute todo progress to avoid calling hooks inside callbacks
 	const todoCompleted = currentTodoList?.completedCount ?? 0
 	const todoTotal = currentTodoList?.totalCount ?? 0
 	const todoPercent = todoTotal > 0 ? Math.round((todoCompleted * 100) / todoTotal) : 0
 
+	// Calculate reminder line count (only count non-empty lines)
+	const reminderLineCount = currentTaskReminder 
+		? currentTaskReminder.split('\n').filter(line => line.trim().length > 0).length 
+		: 0
+
+	// Update reminder text when currentTaskReminder changes
+	useEffect(() => {
+		console.log('TaskHeader: currentTaskReminder changed:', currentTaskReminder)
+		setReminderText(currentTaskReminder || "")
+	}, [currentTaskReminder])
+
+	// Debug: Log state changes
+	useEffect(() => {
+		console.log('TaskHeader: reminderText state:', reminderText)
+		console.log('TaskHeader: isReminderExpanded:', isReminderExpanded)
+	}, [reminderText, isReminderExpanded])
+
 	const textContainerRef = useRef<HTMLDivElement>(null)
 	const textRef = useRef<HTMLDivElement>(null)
 	const contextWindow = model?.contextWindow || 1
 
 	const { width: windowWidth } = useWindowSize()
+
+	const handleReminderClick = () => {
+		setIsReminderExpanded(!isReminderExpanded)
+	}
+
+	const handleReminderSave = () => {
+		vscode.postMessage({
+			type: "updateTaskReminder",
+			text: reminderText,
+		})
+		setIsReminderExpanded(false)
+	}
+
+	const handleReminderCancel = () => {
+		setReminderText(currentTaskReminder || "")
+		setIsReminderExpanded(false)
+	}
 
 	return (
 		<div className="py-2 px-3">
@@ -86,14 +123,33 @@ const TaskHeader = ({
 							)}
 						</div>
 					</div>
-					<Button
-						variant="ghost"
-						size="icon"
-						onClick={onClose}
-						title={t("chat:task.closeAndStart")}
-						className="shrink-0 w-5 h-5">
-						<span className="codicon codicon-close" />
-					</Button>
+					<div className="flex items-center gap-1 shrink-0">
+						{reminderLineCount > 0 ? (
+							<span
+								className="cursor-pointer text-xs font-bold text-vscode-foreground/80 hover:text-vscode-foreground transition-colors"
+								onClick={handleReminderClick}
+								title={t("chat:task.reminderTooltip")}
+							>
+								{t("chat:task.reminder")}({reminderLineCount})
+							</span>
+						) : (
+							<span
+								className="cursor-pointer text-xs font-bold text-vscode-foreground/60 hover:text-vscode-foreground/80 transition-colors"
+								onClick={handleReminderClick}
+								title={t("chat:task.addReminderTooltip")}
+							>
+								{t("chat:task.reminder")}(0)
+							</span>
+						)}
+						<Button
+							variant="ghost"
+							size="icon"
+							onClick={onClose}
+							title={t("chat:task.closeAndStart")}
+							className="shrink-0 w-5 h-5">
+							<span className="codicon codicon-close" />
+						</Button>
+					</div>
 				</div>
 				{/* Collapsed state: Track context and cost if we have any */}
 				{!isTaskExpanded && contextWindow > 0 && (
@@ -197,6 +253,53 @@ const TaskHeader = ({
 							)}
 						</div>
 					</>
+				)}
+				
+				{/* Reminder editing area */}
+				{isReminderExpanded && (
+					<div 
+						className="mt-3 p-3 border-t border-vscode-panel-border bg-vscode-editor-background/30 rounded-b-xs"
+						onClick={(e) => e.stopPropagation()}
+					>
+						<div className="flex items-center justify-between mb-2">
+							<span className="font-bold text-sm">{t("chat:task.userReminder")}</span>
+						</div>
+						<textarea
+							value={reminderText}
+							onChange={(e) => {
+								console.log('Textarea onChange triggered:', e.target.value)
+								setReminderText(e.target.value)
+							}}
+							onInput={(e) => {
+								console.log('Textarea onInput triggered:', e.currentTarget.value)
+							}}
+							onFocus={() => {
+								console.log('Textarea focused')
+							}}
+							placeholder={t("chat:task.reminderPlaceholder")}
+							className="w-full h-24 p-2 text-sm bg-vscode-input-background border border-vscode-input-border rounded resize-none focus:outline-none focus:border-vscode-focusBorder"
+							style={{ fontFamily: 'var(--vscode-editor-font-family)' }}
+							onClick={(e) => e.stopPropagation()}
+						/>
+						<div className="flex justify-end gap-2 mt-2">
+							<Button
+								variant="ghost"
+								size="sm"
+								onClick={handleReminderCancel}
+								className="text-xs h-6 px-2"
+							>
+								{t("chat:task.cancel")}
+							</Button>
+							<Button
+								variant="ghost"
+								size="sm"
+								onClick={handleReminderSave}
+								className="text-xs h-6 px-2 bg-vscode-button-background hover:bg-vscode-button-hoverBackground text-vscode-button-foreground"
+							>
+								{t("chat:task.save")}
+							</Button>
+						</div>
+					</div>
 				)}
 			</div>
 		</div>

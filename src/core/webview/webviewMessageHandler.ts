@@ -10,6 +10,7 @@ import { ApiConfiguration } from "../../shared/api"
 import { supportPrompt } from "../../shared/support-prompt"
 
 import { checkoutDiffPayloadSchema, checkoutRestorePayloadSchema, WebviewMessage } from "../../shared/WebviewMessage"
+import { extractReminder } from "../../shared/reminderExtractor"
 import { checkExistKey } from "../../shared/checkExistApiConfig"
 import { experimentDefault } from "../../shared/experiments"
 import { Terminal } from "../../integrations/terminal/Terminal"
@@ -139,6 +140,24 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 			//provider.postMessageToWebview({ type: "text", text: `Extension: ${Date.now()}` })
 			// initializing new instance of Cline will make sure that any agentically running promises in old instance don't affect our new task. this essentially creates a fresh slate for the new task
 			await provider.initClineWithTask(message.text, message.images)
+			
+			// Extract and store reminder content if present
+			if (message.text) {
+				try {
+					const reminderContent = extractReminder(message.text)
+					if (reminderContent) {
+						const currentCline = provider.getCurrentCline()
+						if (currentCline) {
+							provider.setTaskReminder(currentCline.taskId, reminderContent)
+							await provider.postStateToWebview() // Update frontend state
+							provider.log(`Reminder extracted and set for task ${currentCline.taskId}: ${reminderContent}`)
+						}
+					}
+				} catch (error) {
+					provider.log(`Error extracting reminder: ${error.message}`)
+					// Don't fail the task creation if reminder extraction fails
+				}
+			}
 			break
 		case "apiConfiguration":
 			if (message.apiConfiguration) {
@@ -947,6 +966,13 @@ export const webviewMessageHandler = async (provider: ClineProvider, message: We
 			} catch (error) {
 				provider.log(`Failed to handle prototype operation: ${error.message}`)
 				vscode.window.showErrorMessage("原型操作失败：" + error.message)
+			}
+			break
+		case "updateTaskReminder":
+			const currentCline = provider.getCurrentCline()
+			if (currentCline && message.text !== undefined) {
+				provider.setTaskReminder(currentCline.taskId, message.text)
+				await provider.postStateToWebview()
 			}
 			break
 		case "toggleApiConfigPin":

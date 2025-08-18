@@ -11,7 +11,14 @@
 		"closeAndStart": "关闭任务并开始新任务",
 		"export": "导出任务历史",
 		"delete": "删除任务（Shift + 点击跳过确认）",
-		"todo": "待办"
+		"todo": "待办",
+		"reminder": "提醒",
+		"reminderTooltip": "点击编辑用户提醒",
+		"addReminderTooltip": "点击添加用户提醒",
+		"userReminder": "用户提醒",
+		"reminderPlaceholder": "在此输入提醒内容，这些内容会在整个任务过程中持续提醒AI...",
+		"save": "保存",
+		"cancel": "取消"
 	},
 	"unpin": "取消置顶",
 	"pin": "置顶",

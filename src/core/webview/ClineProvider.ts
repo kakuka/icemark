@@ -69,6 +69,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 	private view?: vscode.WebviewView | vscode.WebviewPanel
 	private clineStack: Cline[] = []
 	private taskTodoMap: Map<string, any> = new Map()
+	private taskReminderMap: Map<string, string> = new Map()
 	private _workspaceTracker?: WorkspaceTracker // workSpaceTracker read-only for access outside this class
 	public get workspaceTracker(): WorkspaceTracker | undefined {
 		return this._workspaceTracker
@@ -195,6 +196,16 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 
 	public setTaskTodoList(taskId: string, todo: any) {
 		this.taskTodoMap.set(taskId, todo)
+	}
+
+	public getTaskReminder(taskId?: string): string | undefined {
+		const id = taskId ?? this.getCurrentCline()?.taskId
+		if (!id) return undefined
+		return this.taskReminderMap.get(id)
+	}
+
+	public setTaskReminder(taskId: string, reminder: string) {
+		this.taskReminderMap.set(taskId, reminder)
 	}
 
 	// returns the current clineStack length (how many cline objects are in the stack)
@@ -1339,6 +1350,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 			hasSystemPromptOverride,
 			historyPreviewCollapsed: historyPreviewCollapsed ?? false,
 			currentTodoList: this.getTaskTodoList(),
+			currentTaskReminder: this.getTaskReminder(),
 			alwaysAllowUpdateTodoList: alwaysAllowUpdateTodoList ?? false,
 		}
 	}

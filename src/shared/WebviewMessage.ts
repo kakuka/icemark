@@ -133,6 +133,7 @@ export interface WebviewMessage {
 		| "preLoginBrowserEnabled"
 		| "launchPreLoginBrowser"
 		| "clearBrowserLoginData"
+		| "updateTaskReminder"
 		| "prototype"
 	text?: string
 	disabled?: boolean
