@@ -4,11 +4,12 @@ Description: Perform intelligent web search using a list of keywords on differen
 Parameters:
 - keyword_list: (required) List of search keywords separated by commas. Maximum 4 keywords allowed. Order doesn't matter.
 - page_limit: (optional) Number of result pages to fetch, each page contains about 10 results. Default is 1, maximum is 10.
-- search_on: (optional) Search platform. Valid values: 'general', 'xiaohongshu', 'zhihu', 'weibo'. Default is 'general'.
+- search_on: (optional) Search platform. Valid values: 'general', 'xiaohongshu', 'zhihu', 'weibo', 'reddit'. Default is 'general'.
   - 'general': Use general search engines (Bing, Baidu, Sogou, DuckDuckGo)
   - 'xiaohongshu': Search on XiaoHongShu (Little Red Book) platform
   - 'zhihu': Search on Zhihu platform  
   - 'weibo': Search on Weibo platform
+  - 'reddit': Search on Reddit platform (supports r/subreddit syntax)
 Usage:
 <web_search>
 <keyword_list>javascript, tutorial, beginners</keyword_list>
@@ -61,6 +62,20 @@ Examples:
 <search_on>general</search_on>
 </web_search>
 
+6. Search on Reddit platform with subreddit syntax:
+<web_search>
+<keyword_list>r/programming, javascript, tips</keyword_list>
+<page_limit>2</page_limit>
+<search_on>reddit</search_on>
+</web_search>
+
+7. Search multiple subreddits on Reddit:
+<web_search>
+<keyword_list>r/javascript, r/typescript, async programming</keyword_list>
+<page_limit>1</page_limit>
+<search_on>reddit</search_on>
+</web_search>
+
 Output Format:
 The tool returns a JSON object containing:
 - keywords: Array of search keywords used
@@ -90,5 +105,11 @@ Note:
   - XiaoHongShu: User posts and notes
   - Zhihu: Questions and answers
   - Weibo: Social media posts
+  - Reddit: Posts and discussions from subreddits
+- Reddit platform supports intelligent subreddit syntax:
+  - Use "r/subreddit" in keywords to search specific subreddits (e.g., "r/programming")
+  - Use "subreddit:name" format as alternative syntax
+  - Mix subreddit syntax with regular keywords for targeted searches
+  - Search multiple subreddits by including multiple "r/subreddit" entries
 - To get different results, modify the keywords, page limit, or search platform in your query`
 } 

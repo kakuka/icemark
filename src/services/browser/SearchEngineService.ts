@@ -3,6 +3,7 @@ import { GeneralSearcher, SearchResponse } from "./searcher/GeneralSearcher"
 import { XiaoHongShuSearcher, XiaoHongShuSearchResponse } from "./searcher/XiaoHongShuSearcher"
 import { ZhihuSearcher, ZhihuSearchResponse } from "./searcher/ZhihuSearcher"
 import { WeiboSearcher, WeiboSearchResponse } from "./searcher/WeiboSearcher"
+import { RedditSearcher, RedditSearchResponse } from "./searcher/RedditSearcher"
 import { BingConfig } from "./searcher/config/bing_config"
 import { BaiduConfig } from "./searcher/config/baidu_config"
 import { DuckDuckGoConfig } from "./searcher/config/duckduckgo_config"
@@ -59,7 +60,7 @@ export class SearchEngineService {
 	 * 执行网络搜索，按优先级逐个尝试搜索引擎
 	 * @param keywords 关键词列表，长度应小于5
 	 * @param pageLimit 搜索页数限制，默认3页，最大5页
-	 * @param searchOn 搜索平台，'general'使用通用搜索引擎，'xiaohongshu'使用小红书搜索，'zhihu'使用知乎搜索，'weibo'使用微博搜索，默认'general'
+	 * @param searchOn 搜索平台，'general'使用通用搜索引擎，'xiaohongshu'使用小红书搜索，'zhihu'使用知乎搜索，'weibo'使用微博搜索，'reddit'使用Reddit搜索，默认'general'
 	 * @returns 搜索结果列表（最多30条）
 	 */
 	async search(keywords: string[], pageLimit: number = 3, searchOn: string = 'general'): Promise<SearchResult[]> {
@@ -88,6 +89,8 @@ export class SearchEngineService {
 				return this.searchZhihu(query, pageLimit)
 			case 'weibo':
 				return this.searchWeibo(query, pageLimit)
+			case 'reddit':
+				return this.searchReddit(query, pageLimit)
 			case 'general':
 			default:
 				return this.searchGeneral(query, pageLimit)
@@ -438,5 +441,88 @@ export class SearchEngineService {
 			console.error(`[SearchEngineService] ${errorMessage}`)
 			throw new Error(errorMessage)
 		}
+	}
+
+	/**
+	 * 使用 Reddit 搜索器执行搜索
+	 * @param query 搜索查询
+	 * @param pageLimit 搜索页数限制
+	 * @returns 转换为通用格式的搜索结果
+	 */
+	private async searchReddit(query: string, pageLimit: number): Promise<SearchResult[]> {
+		try {
+			console.log(`[SearchEngineService] 使用 Reddit 搜索器搜索: "${query}"`)
+			
+			// 计算最大结果数：每页大约10条结果
+			const maxResults = pageLimit * 10
+			
+			const searcher = new RedditSearcher(this.context)
+			const searchResponse: RedditSearchResponse = await searcher.search(query, maxResults, false)
+			
+			if (searchResponse.success && searchResponse.results.length > 0) {
+				// 将 Reddit 搜索结果转换为通用格式，使用包装函数生成丰富的snippet
+				const results: SearchResult[] = searchResponse.results.map(post => ({
+					title: post.title,
+					url: post.postLink,
+					snippet: this.wrapRedditResult(post),
+					domain: 'reddit.com'
+				}))
+
+				console.log(`[SearchEngineService] Reddit 搜索成功，获取到 ${results.length} 条结果`)
+				return results
+			} else {
+				throw new Error(`Reddit 搜索失败: ${searchResponse.error || '未返回有效结果'}`)
+			}
+		} catch (error) {
+			const originalMessage = error instanceof Error ? error.message : String(error)
+			// 如果错误信息已经包含了"搜索没有找到相关结果"，就不要再包装了
+			if (originalMessage.includes('搜索没有找到相关结果')) {
+				console.error(`[SearchEngineService] ${originalMessage}`)
+				throw new Error(originalMessage)
+			} else {
+				const errorMessage = `Reddit 搜索执行失败: ${originalMessage}`
+				console.error(`[SearchEngineService] ${errorMessage}`)
+				throw new Error(errorMessage)
+			}
+		}
+	}
+
+	/**
+	 * 包装 Reddit 搜索结果，将完整信息格式化为markdown
+	 * @param post Reddit 帖子对象
+	 * @returns 格式化后的snippet
+	 */
+	private wrapRedditResult(post: any): string {
+		let snippet = ""
+		
+		// 显示 subreddit 和作者信息
+		snippet += `**Subreddit**: r/${post.subreddit}\n`
+		snippet += `**作者**: u/${post.author}\n`
+		snippet += `**发布时间**: ${post.publishTime}\n`
+		
+		// 互动数据
+		snippet += `**互动数据**: ⬆️ ${post.upvotes} | 💬 ${post.commentCount}\n`
+		
+		// 帖子内容
+		if (post.content && post.content.trim().length > 0) {
+			snippet += `\n**帖子内容**:\n${post.content}\n`
+		}
+		
+		// 如果有评论，添加评论信息
+		if (post.comments && post.comments.length > 0) {
+			snippet += `\n**热门评论**:\n`
+			post.comments.forEach((comment: any, index: number) => {
+				snippet += `${index + 1}. **u/${comment.author}**: ${comment.content}`
+				if (comment.upvotes && comment.upvotes !== '0') {
+					snippet += ` (⬆️ ${comment.upvotes})`
+				}
+				if (comment.time) {
+					snippet += ` _${comment.time}_`
+				}
+				snippet += `\n`
+			})
+		}
+		
+		return snippet
 	}
 } 
