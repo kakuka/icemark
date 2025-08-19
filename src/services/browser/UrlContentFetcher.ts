@@ -2,6 +2,7 @@ import * as vscode from "vscode"
 import * as cheerio from "cheerio"
 import TurndownService from "turndown"
 import { BrowserSession } from "./BrowserSession"
+import { RedditContentFetcher } from "./contentFetcher/RedditContentFetcher"
 
 export class UrlContentFetcher {
 	private context: vscode.ExtensionContext
@@ -24,7 +25,7 @@ export class UrlContentFetcher {
 		
 		console.log("UrlContentFetcher: 启动浏览器，使用BrowserSession管理")
 		// 使用headless模式启动浏览器，自动获得预登录、反检测等功能
-		await this.browserSession.launchBrowser(true)
+		await this.browserSession.launchBrowser(false)
 		this.isLaunched = true
 	}
 
@@ -46,7 +47,24 @@ export class UrlContentFetcher {
 		if (!this.isLaunched) {
 			throw new Error("Browser not initialized")
 		}
-		console.log("UrlContentFetcher: 将URL内容转换为Markdown格式")
+		
+		// 检查是否为 Reddit 链接，如果是则使用专门的 RedditContentFetcher
+		if (RedditContentFetcher.isRedditUrl(url)) {
+			console.log("UrlContentFetcher: 检测到 Reddit 链接，使用 RedditContentFetcher")
+			
+			const redditFetcher = new RedditContentFetcher(this.context, this.browserSession)
+			try {
+				// 直接导航到 URL，因为浏览器已经启动
+				await this.browserSession.navigateToUrl(url)
+				const markdown = await redditFetcher.fetchRedditContent(url)
+				return markdown
+			} catch (error) {
+				console.warn("RedditContentFetcher 失败，回退到通用方法:", error)
+				// 如果 Reddit 专门提取失败，回退到通用方法
+			}
+		}
+		
+		console.log("UrlContentFetcher: 使用通用方法将URL内容转换为Markdown格式")
 		
 		let markdown = ''
 		
