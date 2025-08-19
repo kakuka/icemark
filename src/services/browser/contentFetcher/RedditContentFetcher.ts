@@ -59,7 +59,7 @@ export class RedditContentFetcher {
 	 */
 	async fetchRedditContent(url: string): Promise<string> {
 		if (!RedditContentFetcher.isRedditUrl(url)) {
-			throw new Error("提供的 URL 不是 Reddit 链接")
+			throw new Error("The provided URL is not a Reddit link")
 		}
 
 		console.log(`[RedditContentFetcher] 开始提取 Reddit 内容: ${url}`)
@@ -75,8 +75,8 @@ export class RedditContentFetcher {
 			return markdown
 
 		} catch (error) {
-			console.error(`[RedditContentFetcher] 提取失败:`, error)
-			throw new Error(`Reddit 内容提取失败: ${error instanceof Error ? error.message : String(error)}`)
+			console.error(`[RedditContentFetcher] Extraction failed:`, error)
+			throw new Error(`Reddit content extraction failed: ${error instanceof Error ? error.message : String(error)}`)
 		}
 	}
 
@@ -86,14 +86,14 @@ export class RedditContentFetcher {
 	private async extractPostContent(): Promise<RedditPostContent> {
 		const page = (this.browserSession as any)['page']
 		if (!page) {
-			throw new Error("页面未初始化")
+			throw new Error("Page not initialized")
 		}
 
 		// 等待页面内容加载 - 检查是否有 main-content
 		try {
 			await page.waitForSelector('#main-content', { timeout: 5000 })
 		} catch {
-			throw new Error("页面内容未加载或不是有效的 Reddit 帖子页面")
+			throw new Error("Page content not loaded or not a valid Reddit post page")
 		}
 		await new Promise(resolve => setTimeout(resolve, 2000))
 
@@ -101,32 +101,32 @@ export class RedditContentFetcher {
 			// 检查是否有内容
 			const mainContent = document.querySelector('#main-content')
 			if (!mainContent) {
-				throw new Error("未找到主要内容区域")
+				throw new Error("Main content area not found")
 			}
 
 			// 提取标题 - 从 shreddit-title 元素
 			const titleElement = document.querySelector('shreddit-title')
-			const title = titleElement?.getAttribute('title') || '无标题'
+			const title = titleElement?.getAttribute('title') || 'Untitled'
 
 			// 提取 shreddit-post 元素获取基本信息
 			const postElement = document.querySelector('shreddit-post')
 			if (!postElement) {
-				throw new Error("未找到帖子元素")
+				throw new Error("Post element not found")
 			}
 
 			// 从 shreddit-post 属性中提取信息
-			const author = postElement.getAttribute('author') || '未知用户'
-			const subredditName = postElement.getAttribute('subreddit-name') || '未知板块'
+			const author = postElement.getAttribute('author') || 'Unknown'
+			const subredditName = postElement.getAttribute('subreddit-name') || 'Unknown'
 			const commentCount = postElement.getAttribute('comment-count') || '0'
 			const score = postElement.getAttribute('score') || '0'
 			const createdTimestamp = postElement.getAttribute('created-timestamp') || ''
 
 			// 格式化时间
-			let publishTime = '未知时间'
+			let publishTime = 'Unknown time'
 			if (createdTimestamp) {
 				try {
 					const date = new Date(createdTimestamp)
-					publishTime = date.toLocaleString('zh-CN')
+					publishTime = date.toLocaleString('en-US')
 				} catch {
 					publishTime = createdTimestamp
 				}
@@ -136,26 +136,76 @@ export class RedditContentFetcher {
 			let content = ''
 			const textBodyElement = postElement.querySelector('[slot="text-body"]')
 			if (textBodyElement) {
-				// 提取文本内容，保持段落结构
-				const paragraphs = textBodyElement.querySelectorAll('p, li')
-				const contentParts: string[] = []
-				
-				paragraphs.forEach(p => {
-					const text = p.textContent?.trim()
-					if (text) {
-						contentParts.push(text)
-					}
-				})
-				
-				content = contentParts.join('\n\n')
+				content = textBodyElement.textContent?.trim() || ''
 			}
 
 			if (!content) {
-				content = '无内容或内容无法提取'
+				content = 'No content or content could not be extracted'
 			}
 
-			// 提取评论（暂时返回空数组，因为评论结构可能需要单独处理）
+			// 提取评论
 			const comments: any[] = []
+			const commentTree = document.querySelector('#comment-tree')
+			if (commentTree) {
+				// 获取顶级评论（直接子级的 shreddit-comment 元素）
+				const topLevelComments = commentTree.querySelectorAll(':scope > shreddit-comment')
+				topLevelComments.forEach(commentElement => {
+					const comment = extractShredditComment(commentElement)
+					if (comment) {
+						comments.push(comment)
+					}
+				})
+			}
+
+			// 递归提取 shreddit-comment 的函数
+			function extractShredditComment(commentElement: Element): any | null {
+				try {
+					// 从 shreddit-comment 属性中提取基本信息
+					const author = commentElement.getAttribute('author') || 'Anonymous'
+					const score = commentElement.getAttribute('score') || '0'
+					const thingId = commentElement.getAttribute('thingid') || ''
+					const permalink = commentElement.getAttribute('permalink') || ''
+					
+					// 提取时间信息
+					const timeElement = commentElement.querySelector('time')
+					const publishTime = timeElement?.getAttribute('title') || 
+									   timeElement?.textContent?.trim() || 'Unknown time'
+
+					// 提取评论内容 - 从 slot="comment" 中的内容
+					let content = ''
+					const commentContentElement = commentElement.querySelector('[slot="comment"]')
+					if (commentContentElement) {
+						content = commentContentElement.textContent?.trim() || ''
+					}
+
+					if (!content) {
+						content = 'No content or content could not be extracted'
+					}
+
+					// 递归提取子评论
+					const replies: any[] = []
+					const childComments = commentElement.querySelectorAll(':scope > shreddit-comment')
+					childComments.forEach(childComment => {
+						const reply = extractShredditComment(childComment)
+						if (reply) {
+							replies.push(reply)
+						}
+					})
+
+					return {
+						author,
+						content,
+						upvotes: score,
+						publishTime,
+						thingId,
+						permalink,
+						replies: replies.length > 0 ? replies : undefined
+					}
+				} catch (error) {
+					console.error('Error extracting comment:', error)
+					return null
+				}
+			}
 
 			return {
 				title,
@@ -181,30 +231,61 @@ export class RedditContentFetcher {
 		markdown += `# ${postContent.title}\n\n`
 
 		// 元信息
-		markdown += `**来源**: Reddit - r/${postContent.subreddit}\n`
-		markdown += `**作者**: u/${postContent.author}\n`
-		markdown += `**发布时间**: ${postContent.publishTime}\n`
-		markdown += `**赞数**: ${postContent.upvotes} | **评论数**: ${postContent.commentCount}\n`
-		markdown += `**链接**: ${postContent.url}\n\n`
+		markdown += `**Source**: Reddit - r/${postContent.subreddit}\n`
+		markdown += `**Author**: u/${postContent.author}\n`
+		markdown += `**Posted**: ${postContent.publishTime}\n`
+		markdown += `**Upvotes**: ${postContent.upvotes} | **Comments**: ${postContent.commentCount}\n`
+		markdown += `**Link**: ${postContent.url}\n\n`
 
 		markdown += `---\n\n`
 
 		// 帖子内容
-		markdown += `## 帖子内容\n\n`
+		markdown += `## Post Content\n\n`
 		markdown += `${postContent.content}\n\n`
 
 		// 评论部分
 		if (postContent.comments.length > 0) {
-			markdown += `## 热门评论\n\n`
+			markdown += `## Comments\n\n`
 			
 			postContent.comments.forEach((comment, index) => {
-				markdown += `### 评论 ${index + 1}\n\n`
-				markdown += `**作者**: u/${comment.author} | **赞数**: ${comment.upvotes} | **时间**: ${comment.publishTime}\n\n`
-				markdown += `${comment.content}\n\n`
-				markdown += `---\n\n`
+				markdown += this.formatComment(comment, `${index + 1}`, 0)
 			})
 		}
 
+		return markdown
+	}
+
+	/**
+	 * 递归格式化评论为 Markdown
+	 */
+	private formatComment(comment: RedditComment, commentNumber: string, depth: number): string {
+		let markdown = ''
+		const indent = '  '.repeat(depth) // 缩进表示层级
+		const headerLevel = Math.min(depth + 3, 6) // 限制标题层级最大为 h6
+		const headerPrefix = '#'.repeat(headerLevel)
+
+		// 评论标题和元信息
+		markdown += `${indent}${headerPrefix} Comment ${commentNumber}\n\n`
+		markdown += `${indent}**Author**: u/${comment.author} | **Upvotes**: ${comment.upvotes} | **Time**: ${comment.publishTime}\n\n`
+		
+		// 评论内容
+		const contentLines = comment.content.split('\n')
+		contentLines.forEach(line => {
+			markdown += `${indent}${line}\n`
+		})
+		markdown += `\n`
+
+		// 递归处理回复
+		if (comment.replies && comment.replies.length > 0) {
+			markdown += `${indent}**Replies**:\n\n`
+			comment.replies.forEach((reply, replyIndex) => {
+				// 构建层次化编号：1 -> 1-1, 1-2, 1-3...
+				const replyNumber = `${commentNumber}-${replyIndex + 1}`
+				markdown += this.formatComment(reply, replyNumber, depth + 1)
+			})
+		}
+
+		markdown += `${indent}---\n\n`
 		return markdown
 	}
 
@@ -219,6 +300,6 @@ export class RedditContentFetcher {
 	 * 清理资源
 	 */
 	async cleanup(): Promise<void> {
-		// 不需要关闭浏览器，由 UrlContentFetcher 管理
+		// Browser management is handled by UrlContentFetcher
 	}
 } 
