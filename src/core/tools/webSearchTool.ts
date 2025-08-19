@@ -38,7 +38,7 @@ export async function webSearchTool(
 	}
 
 	// 解析搜索平台
-	const validPlatforms = ['general', 'xiaohongshu', 'zhihu', 'weibo']
+	const validPlatforms = ['general', 'xiaohongshu', 'zhihu', 'weibo', 'reddit']
 	let searchOn = 'general' // 默认值
 	if (searchOnParam) {
 		const platform = searchOnParam.trim().toLowerCase()
@@ -93,7 +93,8 @@ export async function webSearchTool(
 				'general': '通用搜索引擎',
 				'xiaohongshu': '小红书',
 				'zhihu': '知乎',
-				'weibo': '微博'
+				'weibo': '微博',
+				'reddit': 'Reddit'
 			}
 
 			const completeMessage = JSON.stringify({
@@ -156,7 +157,6 @@ export async function webSearchTool(
 
 				return
 			} catch (error) {
-				await cline.say("error", `搜索失败: ${error}`)
 				await handleError("performing web search", error)
 				return
 			}
