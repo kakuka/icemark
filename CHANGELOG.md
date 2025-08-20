@@ -1,5 +1,10 @@
 # Icemark Changelog
 
+## [1.2.9] - 2025-08-20
+- support reminder
+- support todolist
+- support reddit search and scrape
+
 ## [1.2.8] - 2025-08-14
 - add todo list for complex task
 
