@@ -16,18 +16,43 @@ export class BaiduConfig {
 			// 重写JavaScript代码
 			inputAndSubmitJs: `
 				(() => {
-					const searchInput = document.getElementById('kw');
+					const searchInput = document.getElementById('chat-textarea');
 					if (searchInput && searchInput.offsetParent !== null) { // Check visibility
-						searchInput.value = '${BaseSearchEngineConfig.PLACEHOLDERS.QUERY}';
-						const form = document.getElementById('form');
-						if (form && typeof form.submit === 'function') {
-							form.submit();
-							return true;
-						} else {
-							const enterEvent = new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, which: 13, bubbles: true });
-							searchInput.dispatchEvent(enterEvent);
-							return true;
-						}
+						// 清空当前内容并设置新的搜索查询
+						searchInput.value = '';
+						searchInput.focus();
+						
+						// 设置搜索内容
+						const query = '${BaseSearchEngineConfig.PLACEHOLDERS.QUERY}';
+						searchInput.value = query;
+						
+						// 触发input事件以确保页面识别到内容变化
+						const inputEvent = new Event('input', { bubbles: true, cancelable: true });
+						searchInput.dispatchEvent(inputEvent);
+						
+						// 模拟按下回车键触发搜索
+						const enterEvent = new KeyboardEvent('keydown', { 
+							key: 'Enter', 
+							code: 'Enter', 
+							keyCode: 13, 
+							which: 13, 
+							bubbles: true,
+							cancelable: true
+						});
+						searchInput.dispatchEvent(enterEvent);
+						
+						// 也尝试keypress事件作为备选
+						const keypressEvent = new KeyboardEvent('keypress', { 
+							key: 'Enter', 
+							code: 'Enter', 
+							keyCode: 13, 
+							which: 13, 
+							bubbles: true,
+							cancelable: true
+						});
+						searchInput.dispatchEvent(keypressEvent);
+						
+						return true;
 					}
 					return false; // Not found or not visible
 				})()

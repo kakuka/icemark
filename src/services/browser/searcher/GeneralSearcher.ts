@@ -108,7 +108,7 @@ export class GeneralSearcher {
 	/**
 	 * 执行结果提取操作
 	 */
-	private async executeExtractResults(query: string, maxAttempts: number = 30, attemptInterval: number = 100): Promise<SearchResult[]> {
+	private async executeExtractResults(query: string, maxAttempts: number = 30, attemptInterval: number = 1000): Promise<SearchResult[]> {
 		for (let attempt = 0; attempt < maxAttempts; attempt++) {
 			try {
 				const page = this.browserSession['page']
@@ -156,7 +156,7 @@ export class GeneralSearcher {
 	/**
 	 * 执行点击下一页操作
 	 */
-	private async executeClickNextPage(currentPageNum: number, maxAttempts: number = 30, attemptInterval: number = 100): Promise<boolean> {
+	private async executeClickNextPage(currentPageNum: number, maxAttempts: number = 30, attemptInterval: number = 1000): Promise<boolean> {
 		for (let attempt = 0; attempt < maxAttempts; attempt++) {
 			try {
 				const page = this.browserSession['page']
