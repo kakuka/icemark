@@ -78,7 +78,7 @@ export class ClineProvider extends EventEmitter<ClineProviderEvents> implements 
 
 	public isViewLaunched = false
 	public settingsImportedAt?: number
-	public readonly latestAnnouncementId = "icemark-1-2-8" // Update for v1.0 announcement
+	public readonly latestAnnouncementId = "icemark-1-2-9" // Update for v1.0 announcement
 	public readonly providerSettingsManager: ProviderSettingsManager
 	public readonly customModesManager: CustomModesManager
 

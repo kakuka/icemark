@@ -24,7 +24,7 @@ Reminder extraction utility:
   - Extracted: "Theme: dark mode\n\nDeploy to AWS"
 */
 
-export const reminderRegex = /<reminder>(.*?)<\/reminder>/gs
+export const reminderRegex = /<reminder>([\s\S]*?)<\/reminder>/g
 
 export function extractReminder(text: string): string {
 	if (!text) {
@@ -33,19 +33,21 @@ export function extractReminder(text: string): string {
 
 	// Reset regex lastIndex to ensure consistent behavior with global flag
 	reminderRegex.lastIndex = 0
-	const matches = [...text.matchAll(reminderRegex)]
-	
+	const matches: RegExpExecArray[] = []
+	let match: RegExpExecArray | null
+	while ((match = reminderRegex.exec(text)) !== null) {
+		matches.push(match)
+	}
+
 	if (matches.length === 0) {
 		return ""
 	}
 
 	// Extract all reminder contents and filter out empty ones
-	const reminderContents = matches
-		.map(match => match[1].trim())
-		.filter(content => content.length > 0)
+	const reminderContents = matches.map((match) => match[1].trim()).filter((content) => content.length > 0)
 
 	// Join multiple reminders with double newlines for clarity
-	return reminderContents.join('\n\n')
+	return reminderContents.join("\n\n")
 }
 
 export function hasReminder(text: string): boolean {
@@ -55,4 +57,4 @@ export function hasReminder(text: string): boolean {
 	// Reset regex lastIndex to ensure consistent behavior with global flag
 	reminderRegex.lastIndex = 0
 	return reminderRegex.test(text)
-} 
+}
